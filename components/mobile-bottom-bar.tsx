@@ -24,21 +24,21 @@ export default function MobileBottomBar() {
       <div className="bg-white/95 backdrop-blur-sm border-t border-gray-200 p-4 shadow-2xl">
         <div className="flex gap-3">
           <Button
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className="flex-1 bg-wj-dark hover:bg-wj-darker text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => window.open("tel:+15551234567")}
           >
             <Phone className="mr-2 h-5 w-5" />
             Call Now
           </Button>
           <Button
-            className="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => window.open("https://wa.me/15551234567")}
           >
             <MessageCircle className="mr-2 h-5 w-5" />
             WhatsApp
           </Button>
           <Button
-            className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => window.open("mailto:info@wjcleanforce.com")}
           >
             <Mail className="mr-2 h-5 w-5" />

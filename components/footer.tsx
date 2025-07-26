@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Enhanced Company Info */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-wj-dark to-wj-accent rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-lg">
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
               <span className="text-2xl font-bold">WJ Cleanforce</span>
@@ -30,28 +30,28 @@ export default function Footer() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="hover:bg-blue-600 rounded-xl transition-all duration-300 hover:scale-105"
+                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
                 <Facebook className="h-5 w-5" />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
-                className="hover:bg-blue-600 rounded-xl transition-all duration-300 hover:scale-105"
+                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
                 <Twitter className="h-5 w-5" />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
-                className="hover:bg-blue-600 rounded-xl transition-all duration-300 hover:scale-105"
+                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
                 <Instagram className="h-5 w-5" />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
-                className="hover:bg-blue-600 rounded-xl transition-all duration-300 hover:scale-105"
+                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
                 <Linkedin className="h-5 w-5" />
               </Button>
@@ -125,19 +125,19 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-8 text-white">Stay Connected</h3>
             <div className="space-y-6 mb-8">
               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-wj-dark to-wj-darker rounded-lg flex items-center justify-center">
                   <Phone className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-gray-300 text-lg">(555) 123-4567</span>
               </div>
               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-wj-accent to-wj-accent-dark rounded-lg flex items-center justify-center">
                   <Mail className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-gray-300 text-lg">info@wjcleanforce.com</span>
               </div>
               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-wj-accent to-wj-accent-dark rounded-lg flex items-center justify-center">
                   <MapPin className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-gray-300 text-lg">Greater Metro Area</span>
@@ -153,7 +153,7 @@ export default function Footer() {
                 />
                 <Button
                   size="sm"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl px-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark rounded-xl px-6 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Subscribe
                 </Button>

@@ -50,6 +50,18 @@
 }
 
 @layer base {
+  :root {
+    /* WJ Cleaning Logo Colors */
+    --wj-blue-light: #84B4C7;
+    --wj-blue-dark: #2C5F70;
+    --wj-blue-lighter: #A3C5D6;
+    --wj-blue-darker: #1E4A5A;
+    /* WJ Cleaning Accent - Harmonious teal-gray */
+    --wj-accent: #5A7D8C;
+    --wj-accent-light: #7A9DAC;
+    --wj-accent-dark: #4A6D7C;
+  }
+  
   * {
     @apply border-border;
   }
@@ -59,24 +71,7 @@
   }
 }
 
-/* Enhanced responsive cleaning patterns */
 @layer utilities {
-  .cleaning-pattern {
-    background-size: 120px 120px;
-  }
-
-  @media (max-width: 768px) {
-    .cleaning-pattern {
-      background-size: 80px 80px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .cleaning-pattern {
-      background-size: 60px 60px;
-    }
-  }
-
   /* Split-color section responsive */
   .split-section {
     @apply grid lg:grid-cols-2 gap-0 items-center min-h-[600px];
@@ -174,6 +169,8 @@
     transform: scale(1);
   }
 }
+
+
 
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;

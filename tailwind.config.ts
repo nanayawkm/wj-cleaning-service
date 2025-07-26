@@ -20,6 +20,15 @@ const config: Config = {
           DEFAULT: "#2563eb",
           foreground: "#ffffff",
         },
+        wj: {
+          light: "var(--wj-blue-light)",
+          dark: "var(--wj-blue-dark)",
+          lighter: "var(--wj-blue-lighter)",
+          darker: "var(--wj-blue-darker)",
+          accent: "var(--wj-accent)",
+          "accent-light": "var(--wj-accent-light)",
+          "accent-dark": "var(--wj-accent-dark)",
+        },
         secondary: {
           DEFAULT: "#f1f5f9",
           foreground: "#0f172a",

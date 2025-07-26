@@ -1,10 +1,11 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import MobileBottomBar from "@/components/mobile-bottom-bar"
+import { LanguageProvider } from "@/contexts/LanguageContext"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -57,11 +58,7 @@ export const metadata: Metadata = {
     apple: '/placeholder-logo.png',
   },
   manifest: '/site.webmanifest',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+
   verification: {
     google: 'your-google-verification-code',
     // yandex: 'your-yandex-verification-code',
@@ -76,6 +73,13 @@ export const metadata: Metadata = {
     'business:contact_data:region': 'Metro Area',
     'business:contact_data:country_name': 'United States',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#2563eb',
 }
 
 export default function RootLayout({
@@ -133,10 +137,12 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
-        <MobileBottomBar />
+        <LanguageProvider>
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+          <MobileBottomBar />
+        </LanguageProvider>
       </body>
     </html>
   )
