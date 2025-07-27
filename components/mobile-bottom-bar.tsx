@@ -1,11 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, Mail } from "lucide-react"
+import { IconPhone, IconMessage, IconMail, IconShieldCheck } from "@tabler/icons-react"
 import { useState, useEffect } from "react"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function MobileBottomBar() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,24 +27,24 @@ export default function MobileBottomBar() {
         <div className="flex gap-3">
           <Button
             className="flex-1 bg-wj-dark hover:bg-wj-darker text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => window.open("tel:+15551234567")}
+            onClick={() => window.open(`tel:${t('phoneNumber')}`)}
           >
-            <Phone className="mr-2 h-5 w-5" />
-            Call Now
+            <IconPhone className="mr-2 h-5 w-5" />
+            {t('callNow')}
           </Button>
           <Button
             className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => window.open("https://wa.me/15551234567")}
+            onClick={() => window.open(`https://wa.me/${t('phoneNumber').replace(/\D/g, '')}`)}
           >
-            <MessageCircle className="mr-2 h-5 w-5" />
+            <IconMessage className="mr-2 h-5 w-5" />
             WhatsApp
           </Button>
           <Button
             className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => window.open("mailto:info@wjcleanforce.com")}
+            onClick={() => window.open(`mailto:${t('email')}`)}
           >
-            <Mail className="mr-2 h-5 w-5" />
-            Email
+            <IconMail className="mr-2 h-5 w-5" />
+            {t('email')}
           </Button>
         </div>
       </div>

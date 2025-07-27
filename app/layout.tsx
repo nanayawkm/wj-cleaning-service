@@ -10,6 +10,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://wjcleanforce.com'),
   title: "WJ Cleanforce - Professional Cleaning & Staffing Services",
   description:
     "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.",

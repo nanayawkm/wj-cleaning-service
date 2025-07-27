@@ -3,18 +3,21 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
-  ArrowRight,
-  CheckCircle,
-  Users,
-  Sparkles,
-  Building,
-  Home,
-  Warehouse,
-  Phone,
-  MessageCircle,
-  Star,
-  Clock,
-} from "lucide-react"
+  IconArrowRight,
+  IconCheck,
+  IconUsers,
+  IconSparkles,
+  IconBuilding,
+  IconHome,
+  IconBuildingWarehouse,
+  IconPhone,
+  IconMessage,
+  IconStar,
+  IconClock,
+  IconDroplet,
+  IconShield,
+  IconBriefcase,
+} from "@tabler/icons-react"
 import Link from "next/link"
 import Image from "next/image"
 import { CleaningBackground } from "@/components/cleaning-background"
@@ -36,7 +39,6 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-                <Sparkles className="h-4 w-4 mr-2" />
                 <span className="text-sm font-medium">Professional Cleaning & Staffing Solutions</span>
               </div>
 
@@ -55,7 +57,7 @@ export default function HomePage() {
                   className="bg-white text-wj-dark hover:bg-wj-lighter/20 font-semibold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   {t('getFreeQuote')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <IconArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
@@ -63,50 +65,45 @@ export default function HomePage() {
                   className="border-2 border-white text-white hover:bg-white hover:text-wj-dark bg-transparent font-semibold text-lg px-8 py-4 rounded-xl"
                 >
                   {t('hireStaff')}
-                  <Users className="ml-2 h-5 w-5" />
+                  <IconUsers className="ml-2 h-5 w-5" />
                 </Button>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="flex items-center space-x-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white">500+</div>
-                  <div className="text-sm text-blue-200">Happy Clients</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white">24/7</div>
-                  <div className="text-sm text-blue-200">Support</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white">100%</div>
-                  <div className="text-sm text-blue-200">Guaranteed</div>
-                </div>
-              </div>
+
             </div>
 
             <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <Image
-                  src="/placeholder.svg?height=500&width=600&text=Professional+Cleaning+Team"
-                  alt="Professional cleaning team"
-                  width={600}
-                  height={500}
-                  className="rounded-xl shadow-2xl"
-                />
+              {/* Decorative background elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-wj-light/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-wj-accent/20 rounded-full blur-xl"></div>
+              
+              {/* Main logo container */}
+              <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100 transform hover:scale-105 transition-all duration-500 hover:shadow-3xl">
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-white rounded-3xl"></div>
+                
+                {/* Logo with enhanced styling */}
+                <div className="relative z-10">
+                  <img
+                    src="/images/logo.png"
+                    alt="WJ Cleaning Services"
+                    className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg mx-auto drop-shadow-lg"
+                  />
+                </div>
+                
+                {/* Floating elements */}
+                <div className="absolute top-4 right-4 w-3 h-3 bg-wj-dark rounded-full opacity-60 animate-pulse"></div>
+                <div className="absolute bottom-6 left-6 w-2 h-2 bg-wj-accent rounded-full opacity-40 animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 -right-2 w-1 h-1 bg-wj-light rounded-full opacity-50 animate-pulse delay-500"></div>
               </div>
+              
+              {/* Bottom accent line */}
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-wj-dark to-wj-accent rounded-full"></div>
             </div>
           </div>
         </div>
 
-        {/* Smooth Wave Transition */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1200 120" fill="none" className="w-full h-16 text-white">
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </div>
+
       </section>
 
       {/* Services Section - White Background */}
@@ -135,8 +132,8 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[400px] flex flex-col">
               <CardContent className="p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-wj-lighter/20 rounded-bl-3xl opacity-50"></div>
-                <div className="w-20 h-20 bg-gradient-to-br from-wj-dark to-wj-darker rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                  <Home className="h-10 w-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
+                  <IconHome className="h-10 w-10 text-wj-dark" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t('residentialCleaning')}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed flex-1">
@@ -147,7 +144,7 @@ export default function HomePage() {
                   className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto"
                 >
                   {t('learnMore')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <IconArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -155,8 +152,8 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[400px] flex flex-col">
               <CardContent className="p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-wj-lighter/20 rounded-bl-3xl opacity-50"></div>
-                <div className="w-20 h-20 bg-gradient-to-br from-wj-dark to-wj-darker rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                  <Building className="h-10 w-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
+                  <IconBriefcase className="h-10 w-10 text-wj-dark" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t('officeCleaning')}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed flex-1">
@@ -167,7 +164,7 @@ export default function HomePage() {
                   className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto"
                 >
                   {t('learnMore')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <IconArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -175,8 +172,8 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[400px] flex flex-col">
               <CardContent className="p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-wj-lighter/20 rounded-bl-3xl opacity-50"></div>
-                <div className="w-20 h-20 bg-gradient-to-br from-wj-dark to-wj-darker rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                  <Warehouse className="h-10 w-10 text-white" />
+                                                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
+                  <IconBuildingWarehouse className="h-10 w-10 text-wj-dark" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t('warehouseStaffing')}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed flex-1">
@@ -187,7 +184,7 @@ export default function HomePage() {
                   className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto"
                 >
                   {t('learnMore')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <IconArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -195,8 +192,8 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[400px] flex flex-col">
               <CardContent className="p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-wj-lighter/20 rounded-bl-3xl opacity-50"></div>
-                <div className="w-20 h-20 bg-gradient-to-br from-wj-dark to-wj-darker rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                  <Users className="h-10 w-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
+                  <IconUsers className="h-10 w-10 text-wj-dark" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t('eventStaffing')}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed flex-1">
@@ -207,7 +204,7 @@ export default function HomePage() {
                   className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto"
                 >
                   {t('learnMore')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <IconArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -239,9 +236,9 @@ export default function HomePage() {
 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-wj-dark rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Star className="h-6 w-6 text-white" />
-                    </div>
+                                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconShield className="h-6 w-6 text-wj-dark" />
+                  </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2 text-lg">{t('experienceYears')}</h3>
                       <p className="text-gray-600">Ons team beschikt over meer dan 5 jaar ervaring in de schoonmaaksector.</p>
@@ -249,9 +246,9 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-wj-dark rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Clock className="h-6 w-6 text-white" />
-                    </div>
+                                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconClock className="h-6 w-6 text-wj-dark" />
+                  </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2 text-lg">{t('personalizedSchedules')}</h3>
                       <p className="text-gray-600">Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.</p>
@@ -259,9 +256,9 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-wj-dark rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Sparkles className="h-6 w-6 text-white" />
-                    </div>
+                                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconSparkles className="h-6 w-6 text-wj-dark" />
+                  </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2 text-lg">{t('extraHygiene')}</h3>
                       <p className="text-gray-600">Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.</p>
@@ -286,12 +283,10 @@ export default function HomePage() {
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-wj-accent/30 rounded-full blur-2xl opacity-50"></div>
 
               <div className="relative z-10">
-                <Image
-                  src="/placeholder.svg?height=500&width=600&text=William+and+Jennifer+Cleaning+Team"
+                <img
+                  src="/images/pexels-tima-miroshnichenko-6197122.jpg"
                   alt="Professional cleaning team William and Jennifer"
-                  width={600}
-                  height={500}
-                  className="rounded-2xl shadow-2xl"
+                  className="w-full h-auto rounded-2xl shadow-2xl"
                 />
 
                 {/* Quote badge */}
@@ -329,8 +324,17 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-20 h-20 bg-wj-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-2xl font-bold text-white">1</span>
+              <div className="relative mb-6">
+                <div className="w-56 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+                  <img
+                    src="/images/call.jpg"
+                    alt="Get your quote - phone consultation"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-wj-dark rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-xl font-bold text-white">1</span>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Get Your Quote</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -340,8 +344,17 @@ export default function HomePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-wj-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-2xl font-bold text-white">2</span>
+              <div className="relative mb-6">
+                <div className="w-64 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+                  <img
+                    src="/images/calendar.jpg"
+                    alt="Schedule service - calendar planning"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-wj-dark rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-xl font-bold text-white">2</span>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Schedule Service</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -351,8 +364,17 @@ export default function HomePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-wj-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-2xl font-bold text-white">3</span>
+              <div className="relative mb-6">
+                <div className="w-64 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+                  <img
+                    src="/images/clean.jpg"
+                    alt="Enjoy clean spaces - professional cleaning results"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-wj-dark rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-xl font-bold text-white">3</span>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Enjoy Clean Spaces</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -390,7 +412,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
-                <Phone className="mr-2 h-5 w-5" />
+                <IconPhone className="mr-2 h-5 w-5" />
                 Get Free Quote Now
               </Button>
               <Button
@@ -398,25 +420,18 @@ export default function HomePage() {
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white hover:text-wj-dark bg-transparent font-semibold text-lg px-10 py-4 rounded-xl"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
+                <IconMessage className="mr-2 h-5 w-5" />
                 WhatsApp Us
               </Button>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
-                <div className="text-4xl font-bold text-white mb-2">500+</div>
-                <div className="text-wj-light font-medium">Happy Customers</div>
-              </div>
-              <div className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
-                <div className="text-4xl font-bold text-white mb-2">24/7</div>
-                <div className="text-wj-light font-medium">Support Available</div>
-              </div>
+            <div className="flex justify-center">
               <div className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
                 <div className="text-4xl font-bold text-white mb-2">100%</div>
                 <div className="text-wj-light font-medium">Satisfaction Guaranteed</div>
               </div>
             </div>
+
           </div>
         </div>
       </section>

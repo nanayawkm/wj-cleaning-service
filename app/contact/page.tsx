@@ -5,52 +5,52 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { CheckCircle, Phone, Mail, MapPin, Clock, MessageCircle, Send } from 'lucide-react'
+import { Textarea } from '@/components/ui/textarea'
+import { IconPhone, IconMail, IconMapPin, IconClock, IconShieldCheck, IconUsers, IconStar, IconAward, IconHeart, IconDroplet, IconSparkles, IconCheck, IconBuilding, IconHome, IconBriefcase, IconBuildingWarehouse, IconSend } from '@tabler/icons-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 import { CleaningBackground } from '@/components/cleaning-background'
 
 export default function ContactPage() {
+  const { t } = useLanguage()
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-wj-light/10 via-white to-wj-accent-light/10">
       <CleaningBackground />
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/20 text-white mb-6">Contact Us</Badge>
+            <Badge className="bg-white/20 text-white mb-6">{t('contactUs')}</Badge>
             <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-tight">
-              Let's Start a
-              <span className="block text-wj-light">Conversation</span>
+              {t('contactHeroTitle')}
             </h1>
             <p className="text-xl text-wj-light leading-relaxed">
-              Ready to experience the WJ Cleanforce difference? Get in touch with us today for a free consultation and
-              discover how we can help you achieve your cleaning and staffing goals.
+              {t('contactHeroSubtitle')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative overflow-hidden">
+        <CleaningBackground />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Contact Form */}
             <div className="space-y-8">
               <div>
-                <Badge className="bg-wj-light/20 text-wj-dark mb-4">Get In Touch</Badge>
+                <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('getInTouch')}</Badge>
                 <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                  Send Us a
-                  <span className="block text-wj-dark">Message</span>
+                  {t('sendMessage')}
                 </h2>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Fill out the form below and we'll get back to you within 24 hours with a personalized quote and
-                  solution tailored to your needs.
+                  {t('sendMessageDesc')}
                 </p>
               </div>
 
               <div className="flex items-center space-x-4 p-6 bg-wj-light/10 rounded-2xl">
-                <CheckCircle className="h-16 w-16 text-wj-accent mx-auto mb-4" />
+                <IconShieldCheck className="h-16 w-16 text-wj-accent mx-auto mb-4" />
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">Quick Response Guaranteed</h3>
                   <p className="text-gray-600">We typically respond within 2-4 hours during business hours.</p>
@@ -61,21 +61,21 @@ export default function ContactPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="text-gray-700 font-medium">
-                      First Name *
+                      {t('name')} *
                     </Label>
                     <Input
                       id="firstName"
-                      placeholder="Your first name"
+                      placeholder={t('name')}
                       className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName" className="text-gray-700 font-medium">
-                      Last Name *
+                      {t('name')} *
                     </Label>
                     <Input
                       id="lastName"
-                      placeholder="Your last name"
+                      placeholder={t('name')}
                       className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
@@ -84,23 +84,23 @@ export default function ContactPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-gray-700 font-medium">
-                      Email Address *
+                      {t('email')} *
                     </Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="your.email@example.com"
+                      placeholder={t('email')}
                       className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-gray-700 font-medium">
-                      Phone Number
+                      {t('phone')}
                     </Label>
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder={t('phoneNumber')}
                       className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
@@ -125,11 +125,11 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-gray-700 font-medium">
-                    Message *
+                    {t('message')} *
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder="Tell us about your needs, schedule preferences, and any specific requirements..."
+                    placeholder={t('message')}
                     rows={6}
                     className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                   />
@@ -139,14 +139,23 @@ export default function ContactPage() {
                   type="submit"
                   className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-lg py-6"
                 >
-                  <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  <IconSend className="mr-2 h-5 w-5" />
+                  {t('submit')}
                 </Button>
               </form>
             </div>
 
             {/* Contact Information */}
             <div className="space-y-8">
+              <div className="mb-8">
+                <div className="w-full h-32 rounded-2xl shadow-2xl overflow-hidden bg-white border-2 border-gray-100">
+                  <img
+                    src="/images/contact us.jpg"
+                    alt="Contact us - professional cleaning service"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
               <div>
                 <Badge className="bg-wj-accent-light/20 text-wj-accent-dark mb-4">Contact Information</Badge>
                 <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -160,10 +169,10 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="w-12 h-12 bg-gradient-to-r from-wj-dark to-wj-accent rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-white" />
-                  </div>
+                                  <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                      <IconPhone className="h-6 w-6 text-wj-dark" />
+                    </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Phone</h3>
                     <p className="text-gray-600">+31 (0) 685063641</p>
@@ -171,10 +180,10 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="w-12 h-12 bg-gradient-to-r from-wj-accent to-wj-dark rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-white" />
-                  </div>
+                                  <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-accent">
+                      <IconMail className="h-6 w-6 text-wj-accent" />
+                    </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Email</h3>
                     <p className="text-gray-600">info@wjcleaningservices.nl</p>
@@ -182,10 +191,10 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="w-12 h-12 bg-gradient-to-r from-wj-accent to-wj-accent-dark rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-white" />
-                  </div>
+                                  <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-accent">
+                      <IconMapPin className="h-6 w-6 text-wj-accent" />
+                    </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Service Area</h3>
                     <p className="text-gray-600">Flevoland Region</p>
@@ -193,10 +202,10 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="w-12 h-12 bg-gradient-to-r from-wj-dark to-wj-accent rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-white" />
-                  </div>
+                                  <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                      <IconClock className="h-6 w-6 text-wj-dark" />
+                    </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Business Hours</h3>
                     <p className="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM</p>
@@ -212,7 +221,7 @@ export default function ContactPage() {
                   accommodate same-day requests.
                 </p>
                 <Button className="w-full bg-white text-wj-dark hover:bg-wj-light/10 justify-start">
-                  <Phone className="mr-2 h-5 w-5" />
+                  <IconPhone className="mr-2 h-5 w-5" />
                   Call Now: +31 (0) 685063641
                 </Button>
               </div>
@@ -222,8 +231,9 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gradient-to-r from-wj-light/10 to-wj-accent-light/10">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-r from-wj-light/10 to-wj-accent-light/10 relative overflow-hidden">
+        <CleaningBackground />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <Badge className="bg-wj-light/20 text-wj-dark mb-4">Frequently Asked Questions</Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -312,8 +322,8 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
+        <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl lg:text-6xl font-bold mb-8">
               Ready to Get

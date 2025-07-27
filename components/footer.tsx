@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Sparkles, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Heart } from "lucide-react"
+import { IconSparkles, IconPhone, IconMail, IconMapPin, IconBrandFacebook, IconBrandTwitter, IconBrandInstagram, IconBrandLinkedin, IconHeart, IconDroplet, IconShieldCheck } from "@tabler/icons-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -17,9 +18,13 @@ export default function Footer() {
           {/* Enhanced Company Info */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-wj-dark to-wj-accent rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-lg">
-                <Sparkles className="h-6 w-6 text-white" />
-              </div>
+                              <div className="w-10 h-10 group-hover:scale-105 transition-transform duration-300 shadow-lg">
+                  <img
+                    src="/images/logo.png"
+                    alt="WJ Cleaning Services"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               <span className="text-2xl font-bold">WJ Cleanforce</span>
             </Link>
             <p className="text-gray-300 leading-relaxed text-lg">
@@ -32,28 +37,28 @@ export default function Footer() {
                 variant="ghost"
                 className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
-                <Facebook className="h-5 w-5" />
+                <IconBrandFacebook className="h-5 w-5" />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
                 className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
-                <Twitter className="h-5 w-5" />
+                <IconBrandTwitter className="h-5 w-5" />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
                 className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
-                <Instagram className="h-5 w-5" />
+                <IconBrandInstagram className="h-5 w-5" />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
                 className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
-                <Linkedin className="h-5 w-5" />
+                <IconBrandLinkedin className="h-5 w-5" />
               </Button>
             </div>
           </div>
@@ -125,40 +130,26 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-8 text-white">Stay Connected</h3>
             <div className="space-y-6 mb-8">
               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-wj-dark to-wj-darker rounded-lg flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-white" />
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
+                  <IconPhone className="h-5 w-5 text-wj-dark" />
                 </div>
-                <span className="text-gray-300 text-lg">(555) 123-4567</span>
+                                  <span className="text-gray-300 text-lg">+31 (0) 685063641</span>
               </div>
-              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-wj-accent to-wj-accent-dark rounded-lg flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-white" />
-                </div>
+                              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
+                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
+                    <IconMail className="h-5 w-5 text-wj-accent" />
+                  </div>
                 <span className="text-gray-300 text-lg">info@wjcleanforce.com</span>
               </div>
-              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-wj-accent to-wj-accent-dark rounded-lg flex items-center justify-center">
-                  <MapPin className="h-5 w-5 text-white" />
-                </div>
+                              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
+                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
+                    <IconMapPin className="h-5 w-5 text-wj-accent" />
+                  </div>
                 <span className="text-gray-300 text-lg">Greater Metro Area</span>
               </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold mb-4 text-white text-lg">Newsletter</h4>
-              <div className="flex space-x-3">
-                <Input
-                  placeholder="Your email"
-                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 rounded-xl flex-1"
-                />
-                <Button
-                  size="sm"
-                  className="bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark rounded-xl px-6 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Subscribe
-                </Button>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -168,9 +159,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2">
-              <p className="text-gray-400 text-lg">© {new Date().getFullYear()} WJ Cleanforce. Made with</p>
-              <Heart className="h-4 w-4 text-red-500" />
-              <p className="text-gray-400 text-lg">by William & Jennifer</p>
+              <p className="text-gray-400 text-lg">© {new Date().getFullYear()} WJ Cleaning Services. All rights reserved.</p>
             </div>
             <div className="flex space-x-8 text-lg">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
