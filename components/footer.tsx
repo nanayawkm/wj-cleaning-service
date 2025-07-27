@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { IconSparkles, IconPhone, IconMail, IconMapPin, IconBrandFacebook, IconBrandTwitter, IconBrandInstagram, IconBrandLinkedin, IconHeart, IconDroplet, IconShieldCheck } from "@tabler/icons-react"
+import { IconSparkles, IconPhone, IconMail, IconMapPin, IconBrandFacebook, IconBrandTwitter, IconBrandLinkedin, IconHeart, IconDroplet, IconShieldCheck } from "@tabler/icons-react"
 import Link from "next/link"
 import Image from "next/image"
 import { CONTACT_DETAILS } from "./constant"
@@ -38,13 +38,7 @@ export default function Footer() {
               Winfred and Jackie with love and dedication to exceptional service.
             </p>
             <div className="flex space-x-4">
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
-              >
-                <IconBrandInstagram className="h-5 w-5" />
-              </Button>
+              {/* Social media buttons removed */}
             </div>
           </div>
 

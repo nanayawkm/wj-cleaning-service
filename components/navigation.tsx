@@ -96,8 +96,11 @@ export default function Navigation() {
             <Button
               size="sm"
               className="bg-wj-dark hover:bg-wj-darker font-semibold px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+              asChild
             >
-              {t('getQuote')}
+              <Link href="/contact">
+                {t('getQuote')}
+              </Link>
             </Button>
           </div>
 
@@ -157,8 +160,13 @@ export default function Navigation() {
                       {CONTACT_DETAILS.phone}
                     </a>
                   </Button>
-                  <Button className="w-full bg-wj-dark hover:bg-wj-darker font-semibold rounded-xl py-6">
-                    {t('getFreeQuote')}
+                  <Button 
+                    className="w-full bg-wj-dark hover:bg-wj-darker font-semibold rounded-xl py-6"
+                    asChild
+                  >
+                    <Link href="/contact" onClick={() => setIsOpen(false)}>
+                      {t('getFreeQuote')}
+                    </Link>
                   </Button>
                 </div>
               </div>
