@@ -19,14 +19,14 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gradient-to-br from-wj-light/10 via-white to-wj-accent-light/10">
       <CleaningBackground />
       {/* Hero Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/20 text-white mb-4 sm:mb-6">{t('contactUs')}</Badge>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+            <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('contactUs')}</Badge>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight">
               {t('contactHeroTitle')}
             </h1>
-            <p className="text-lg sm:text-xl text-wj-light leading-relaxed px-4">
+            <p className="text-base sm:text-lg lg:text-xl text-wj-light leading-relaxed px-2 sm:px-4">
               {t('contactHeroSubtitle')}
             </p>
           </div>
@@ -34,114 +34,113 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 sm:py-20 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-start">
             {/* Contact Form */}
-            <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div>
-                <Badge className="bg-wj-light/20 text-wj-dark mb-3 sm:mb-4">{t('getInTouch')}</Badge>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">{t('getInTouch')}</Badge>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
                   {t('sendMessage')}
                 </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
                   {t('sendMessageDesc')}
                 </p>
               </div>
 
-              <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-wj-light/10 rounded-xl sm:rounded-2xl">
-                <IconShieldCheck className="h-12 w-12 sm:h-16 sm:w-16 text-wj-accent mx-auto mb-3 sm:mb-4" />
+              <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-3 sm:p-4 lg:p-6 bg-wj-light/10 rounded-lg sm:rounded-xl lg:rounded-2xl">
+                <IconShieldCheck className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-wj-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900">Quick Response Guaranteed</h3>
-                  <p className="text-sm sm:text-base text-gray-600">We typically respond within 2-4 hours during business hours.</p>
+                  <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900">Quick Response Guaranteed</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600">We typically respond within 2-4 hours during business hours.</p>
                 </div>
               </div>
 
-              <form className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-gray-700 font-medium text-sm sm:text-base">
+              <form className="space-y-3 sm:space-y-4 lg:space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                  <div className="space-y-1 sm:space-y-2">
+                    <Label htmlFor="firstName" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
                       {t('name')} *
                     </Label>
                     <Input
                       id="firstName"
                       placeholder={t('name')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-sm sm:text-base"
+                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-gray-700 font-medium text-sm sm:text-base">
+                  <div className="space-y-1 sm:space-y-2">
+                    <Label htmlFor="lastName" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
                       {t('name')} *
                     </Label>
                     <Input
                       id="lastName"
                       placeholder={t('name')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-sm sm:text-base"
+                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-700 font-medium text-sm sm:text-base">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                  <div className="space-y-1 sm:space-y-2">
+                    <Label htmlFor="email" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
                       {t('email')} *
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder={t('email')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-sm sm:text-base"
+                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-gray-700 font-medium text-sm sm:text-base">
+                  <div className="space-y-1 sm:space-y-2">
+                    <Label htmlFor="phone" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
                       {t('phone')}
                     </Label>
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder={t('phoneNumber')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-sm sm:text-base"
+                      placeholder={t('phone')}
+                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-gray-700 font-medium text-sm sm:text-base">
-                    Service Type *
+                <div className="space-y-1 sm:space-y-2">
+                  <Label htmlFor="service" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
+                    {t('serviceType')} *
                   </Label>
                   <select
                     id="service"
-                    className="w-full px-3 sm:px-4 pr-8 sm:pr-10 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:border-wj-dark focus:ring-wj-dark/20 bg-white text-sm sm:text-base"
+                    className="w-full px-3 sm:px-4 pr-8 sm:pr-10 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:border-wj-dark focus:ring-wj-dark/20 bg-white text-xs sm:text-sm lg:text-base"
                   >
                     <option value="">{t('selectService')}</option>
                     <option value="residential">{t('residentialCleaning')}</option>
-                    <option value="commercial">{t('officeCleaning')}</option>
+                    <option value="office">{t('officeCleaning')}</option>
                     <option value="warehouse">{t('warehouseStaffing')}</option>
                     <option value="event">{t('eventStaffing')}</option>
-                    <option value="other">{t('other')}</option>
                   </select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gray-700 font-medium text-sm sm:text-base">
+                <div className="space-y-1 sm:space-y-2">
+                  <Label htmlFor="message" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
                     {t('message')} *
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder={t('message')}
+                    placeholder={t('messagePlaceholder')}
                     rows={4}
-                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-sm sm:text-base"
+                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-base sm:text-lg py-4 sm:py-6"
+                  className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base lg:text-lg"
                 >
                   <IconSend className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  {t('submit')}
+                  {t('sendMessage')}
                 </Button>
               </form>
             </div>

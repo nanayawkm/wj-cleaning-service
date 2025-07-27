@@ -23,6 +23,7 @@ import { CleaningBackground } from "@/components/cleaning-background"
 import { useLanguage } from "@/contexts/LanguageContext"
 import Link from "next/link"
 import Image from "next/image"
+import { Badge } from "@/components/ui/badge"
 
 export default function HomePage() {
   const { t } = useLanguage()
@@ -129,21 +130,29 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
-            {/* Modern Service Cards */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
-              <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
-                <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
-                  <IconHome className="h-8 w-8 sm:h-10 sm:w-10 text-wj-dark" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
+            {/* Enhanced Residential Cleaning Card */}
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
+              {/* Image Header */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                <div className="absolute inset-0 bg-[url('/images/services/cleanclean.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <IconHome className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">{t('residentialCleaning')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-1">
-                  {t('residentialDesc')}
-                </p>
+              </div>
+              
+              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('residentialCleaning')}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                    {t('residentialDesc')}
+                  </p>
+                </div>
+                
                 <Link
                   href="/services"
-                  className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto text-sm sm:text-base"
+                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
                 >
                   {t('learnMore')}
                   <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
@@ -151,19 +160,28 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
-              <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
-                <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
-                  <IconBriefcase className="h-8 w-8 sm:h-10 sm:w-10 text-wj-dark" />
+            {/* Enhanced Office Cleaning Card */}
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
+              {/* Image Header */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                <div className="absolute inset-0 bg-[url('/images/services/office-cleaning.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <IconBriefcase className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">{t('officeCleaning')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-1">
-                  {t('officeDesc')}
-                </p>
+              </div>
+              
+              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('officeCleaning')}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                    {t('officeDesc')}
+                  </p>
+                </div>
+                
                 <Link
                   href="/services"
-                  className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto text-sm sm:text-base"
+                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
                 >
                   {t('learnMore')}
                   <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
@@ -171,19 +189,28 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
-              <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
-                <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
-                  <IconBuildingWarehouse className="h-8 w-8 sm:h-10 sm:w-10 text-wj-dark" />
+            {/* Enhanced Warehouse Staffing Card */}
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
+              {/* Image Header */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                <div className="absolute inset-0 bg-[url('/images/services/warehouse-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <IconBuildingWarehouse className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">{t('warehouseStaffing')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-1">
-                  {t('warehouseDesc')}
-                </p>
+              </div>
+              
+              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('warehouseStaffing')}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                    {t('warehouseDesc')}
+                  </p>
+                </div>
+                
                 <Link
                   href="/services"
-                  className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto text-sm sm:text-base"
+                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
                 >
                   {t('learnMore')}
                   <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
@@ -191,19 +218,28 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
-              <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
-                <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
-                  <IconUsers className="h-8 w-8 sm:h-10 sm:w-10 text-wj-dark" />
+            {/* Enhanced Event Staffing Card */}
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
+              {/* Image Header */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                <div className="absolute inset-0 bg-[url('/images/services/event-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <IconUsers className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">{t('eventStaffing')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-1">
-                  {t('eventDesc')}
-                </p>
+              </div>
+              
+              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('eventStaffing')}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                    {t('eventDesc')}
+                  </p>
+                </div>
+                
                 <Link
                   href="/services"
-                  className="inline-flex items-center text-wj-dark font-semibold hover:text-wj-darker transition-colors group-hover:translate-x-1 duration-300 mt-auto text-sm sm:text-base"
+                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
                 >
                   {t('learnMore')}
                   <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
@@ -322,60 +358,60 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center scroll-animate">
-              <div className="relative mb-6">
-                <div className="w-56 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+              <div className="relative mb-4 sm:mb-6">
+                <div className="w-full max-w-xs sm:max-w-sm aspect-[4/3] rounded-xl sm:rounded-2xl shadow-lg overflow-hidden bg-gray-50 mx-auto">
                   <img
                     src="/images/call.jpg"
                     alt="Get your quote - phone consultation"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-wj-dark rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-xl font-bold text-white">1</span>
+                <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-lg sm:text-xl font-bold text-wj-dark">1</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('getYourQuote')}</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">{t('getYourQuote')}</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-2 sm:px-0">
                 {t('getYourQuoteDesc')}
               </p>
             </div>
 
             <div className="text-center scroll-animate">
-              <div className="relative mb-6">
-                <div className="w-64 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+              <div className="relative mb-4 sm:mb-6">
+                <div className="w-full max-w-xs sm:max-w-sm aspect-[4/3] rounded-xl sm:rounded-2xl shadow-lg overflow-hidden bg-gray-50 mx-auto">
                   <img
                     src="/images/calendar.jpg"
                     alt="Schedule service - calendar planning"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-wj-dark rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-xl font-bold text-white">2</span>
+                <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-lg sm:text-xl font-bold text-wj-dark">2</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('scheduleService')}</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">{t('scheduleService')}</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-2 sm:px-0">
                 {t('scheduleServiceDesc')}
               </p>
             </div>
 
             <div className="text-center scroll-animate">
-              <div className="relative mb-6">
-                <div className="w-56 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+              <div className="relative mb-4 sm:mb-6">
+                <div className="w-full max-w-xs sm:max-w-sm aspect-[4/3] rounded-xl sm:rounded-2xl shadow-lg overflow-hidden bg-gray-50 mx-auto">
                   <img
                     src="/images/clean.jpg"
                     alt="Enjoy clean spaces - professional cleaning results"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-wj-dark rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-xl font-bold text-white">3</span>
+                <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-lg sm:text-xl font-bold text-wj-dark">3</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('enjoyCleanSpaces')}</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">{t('enjoyCleanSpaces')}</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-2 sm:px-0">
                 {t('enjoyCleanSpacesDesc')}
               </p>
             </div>
@@ -402,28 +438,28 @@ export default function HomePage() {
               {t('ctaDescription')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16 scroll-animate">
               <Button
                 size="lg"
-                className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
-                <IconPhone className="mr-2 h-5 w-5" />
+                <IconPhone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 {t('getFreeQuoteNow')}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-wj-dark bg-transparent font-semibold text-lg px-10 py-4 rounded-xl"
+                className="border-2 border-white text-white hover:bg-white hover:text-wj-dark bg-transparent font-semibold text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-4 rounded-xl"
               >
-                <IconMessage className="mr-2 h-5 w-5" />
+                <IconMessage className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 {t('whatsappUs')}
               </Button>
             </div>
 
             <div className="flex justify-center scroll-animate">
-              <div className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
-                <div className="text-4xl font-bold text-white mb-2">100%</div>
-                <div className="text-wj-light font-medium">{t('satisfactionGuaranteed')}</div>
+              <div className="p-4 sm:p-6 bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20">
+                <div className="text-2xl sm:text-4xl font-bold text-white mb-1 sm:mb-2">100%</div>
+                <div className="text-sm sm:text-base text-wj-light font-medium">{t('satisfactionGuaranteed')}</div>
               </div>
             </div>
 

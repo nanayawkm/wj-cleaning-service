@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <CleaningBackground />
       
       {/* Hero Section with Background Image */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-r from-wj-dark/90 to-wj-accent/90 text-white overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-r from-wj-dark/90 to-wj-accent/90 text-white overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -33,11 +33,11 @@ export default function ServicesPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/30 text-white mb-4 sm:mb-6 backdrop-blur-md font-semibold">{t('ourServices')}</Badge>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight drop-shadow-lg">
+            <Badge className="bg-white/30 text-white mb-3 sm:mb-4 lg:mb-6 backdrop-blur-md font-semibold text-xs sm:text-sm">{t('ourServices')}</Badge>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight drop-shadow-lg">
               {t('servicesTitle')}
             </h1>
-            <p className="text-lg sm:text-xl text-white leading-relaxed drop-shadow-lg font-medium px-4">
+            <p className="text-base sm:text-lg lg:text-xl text-white leading-relaxed drop-shadow-lg font-medium px-2 sm:px-4">
               {t('servicesSubtitle')}
             </p>
           </div>
@@ -45,58 +45,58 @@ export default function ServicesPage() {
       </section>
 
       {/* Cleaning Services Section */}
-      <section className="py-16 sm:py-20 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12 sm:mb-16">
-            <Badge className="bg-wj-light/20 text-wj-dark mb-3 sm:mb-4">{t('commercialIndustrial')}</Badge>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">{t('commercialIndustrial')}</Badge>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
               {t('comprehensiveCleaning')}
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
               {t('comprehensiveCleaningDesc')}
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Column - Services List */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="flex items-start space-x-3 sm:space-x-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                  <IconDroplet className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+              <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                  <IconDroplet className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{t('comprehensiveCleaning')}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{t('comprehensiveCleaning')}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 leading-relaxed">
                     {t('comprehensiveCleaningDesc')}
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Dusting and cleaning of all surfaces</span>
+              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Dusting and cleaning of all surfaces</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Mopping and sweeping floors</span>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Mopping and sweeping floors</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Emptying dustbins and waste disposal</span>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Emptying dustbins and waste disposal</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Cleaning and wiping of glass windows and doors</span>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Cleaning and wiping of glass windows and doors</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Bathroom and toilet cleaning</span>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Bathroom and toilet cleaning</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Removing empty crates and pallets that aren't needed</span>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Removing empty crates and pallets that aren't needed</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
@@ -116,9 +116,6 @@ export default function ServicesPage() {
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                <div className="absolute top-4 right-4 w-12 h-12 sm:w-16 sm:h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <IconSparkles className="h-6 w-6 sm:h-8 sm:w-8 text-wj-dark" />
-                </div>
               </div>
             </div>
           </div>

@@ -17,14 +17,14 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <CleaningBackground />
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-r from-wj-dark to-wj-accent text-white overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-20 xl:py-24 2xl:py-32 bg-gradient-to-r from-wj-dark to-wj-accent text-white overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/20 text-white mb-4 sm:mb-6">{t('aboutUs')}</Badge>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+            <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('aboutUs')}</Badge>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight">
               {t('aboutHeroTitle')}
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-wj-light leading-relaxed font-light max-w-3xl mx-auto px-4">
+            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-wj-light leading-relaxed font-light max-w-3xl mx-auto px-2 sm:px-4">
               {t('aboutHeroSubtitle')}
             </p>
           </div>
@@ -32,65 +32,65 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 sm:py-20 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="space-y-6 sm:space-y-8">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div>
-                <Badge className="bg-wj-light/20 text-wj-dark mb-3 sm:mb-4">Our Story</Badge>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">Our Story</Badge>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
                   Built on Trust, Driven by Excellence
                 </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
                   Founded by Winfred and Jackie, a dedicated couple who understood the importance of trust, reliability, and
                   attention to detail. What started as a small family business has grown into a trusted partner for hundreds
                   of satisfied customers.
                 </p>
               </div>
 
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <IconHeart className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+              <div className="space-y-3 sm:space-y-4 lg:space-y-6">
+                <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconHeart className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Family-Owned Business</h3>
-                    <p className="text-sm sm:text-base text-gray-600">We treat every client like family, ensuring personalized care and attention to every detail.</p>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Family-Owned Business</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">We treat every client like family, ensuring personalized care and attention to every detail.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <IconShield className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconShield className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Trusted & Reliable</h3>
-                    <p className="text-sm sm:text-base text-gray-600">Our reputation is built on consistent quality, reliability, and exceptional customer service.</p>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Trusted & Reliable</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">Our reputation is built on consistent quality, reliability, and exceptional customer service.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <IconStar className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconStar className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Excellence in Service</h3>
-                    <p className="text-sm sm:text-base text-gray-600">We go above and beyond to exceed expectations, delivering results that speak for themselves.</p>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Excellence in Service</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">We go above and beyond to exceed expectations, delivering results that speak for themselves.</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="relative order-first lg:order-last">
-              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
                   alt="Winfred and Jackie - Founders of WJ Cleanforce"
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white/90 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl">
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 lg:bottom-6 lg:left-6 bg-white/90 backdrop-blur-sm p-2 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl">
                   <p className="text-xs sm:text-sm font-semibold text-gray-900">Winfred & Jackie</p>
                   <p className="text-xs text-gray-600">Founders, WJ Cleanforce</p>
                 </div>

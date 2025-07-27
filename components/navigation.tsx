@@ -37,10 +37,10 @@ export default function Navigation() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-md shadow-sm">
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Enhanced Logo */}
           <Link href="/" className="flex items-center group">
-            <div className="w-32 h-16 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-24 h-12 sm:w-32 sm:h-16 group-hover:scale-105 transition-transform duration-300">
               <img
                 src="/images/logo.png"
                 alt="WJ Cleaning Services"
@@ -50,7 +50,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -68,7 +68,7 @@ export default function Navigation() {
           </nav>
 
           {/* Language Toggle */}
-          <div className="hidden md:flex items-center mr-4">
+          <div className="hidden md:flex items-center mr-3 lg:mr-4">
             <Button
               variant="ghost"
               size="sm"
@@ -81,21 +81,22 @@ export default function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
             <Button
               variant="outline"
               size="sm"
-              className="font-semibold border-2 border-gray-200 hover:border-wj-dark hover:text-wj-dark rounded-xl bg-transparent"
+              className="font-semibold border-2 border-gray-200 hover:border-wj-dark hover:text-wj-dark rounded-xl bg-transparent text-xs lg:text-sm"
               asChild
             >
               <a href={`tel:${CONTACT_DETAILS.phone}`}>
-                <IconPhone className="mr-2 h-4 w-4" />
-                {CONTACT_DETAILS.phone}
+                <IconPhone className="mr-1 lg:mr-2 h-3 w-3 lg:h-4 lg:w-4" />
+                <span className="hidden lg:inline">{CONTACT_DETAILS.phone}</span>
+                <span className="lg:hidden">Call</span>
               </a>
             </Button>
             <Button
               size="sm"
-              className="bg-wj-dark hover:bg-wj-darker font-semibold px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+              className="bg-wj-dark hover:bg-wj-darker font-semibold px-4 lg:px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-xs lg:text-sm"
               asChild
             >
               <Link href="/contact">
@@ -108,14 +109,14 @@ export default function Navigation() {
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden hover:bg-wj-light/20 rounded-xl">
-                <IconMenu className="h-6 w-6" />
+                <IconMenu className="h-5 w-5 sm:h-6 sm:w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white">
-              <div className="flex flex-col space-y-6 mt-8">
-                <Link href="/" className="flex items-center mb-8">
-                  <div className="w-32 h-16">
+            <SheetContent side="right" className="w-[280px] sm:w-[320px] bg-white">
+              <div className="flex flex-col space-y-4 sm:space-y-6 mt-6 sm:mt-8">
+                <Link href="/" className="flex items-center mb-6 sm:mb-8">
+                  <div className="w-28 h-14 sm:w-32 sm:h-16">
                     <img
                       src="/images/logo.png"
                       alt="WJ Cleaning Services"
@@ -129,7 +130,7 @@ export default function Navigation() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-semibold transition-all duration-300 hover:text-wj-dark py-3 px-4 rounded-xl ${
+                    className={`text-base sm:text-lg font-semibold transition-all duration-300 hover:text-wj-dark py-3 px-4 rounded-xl ${
                       isActive(item.href)
                         ? "text-wj-dark bg-wj-lighter/20 border-l-4 border-wj-dark"
                         : "text-gray-700 hover:bg-gray-50"
@@ -139,29 +140,32 @@ export default function Navigation() {
                   </Link>
                 ))}
 
-                <div className="pt-8 space-y-4">
+                <div className="pt-6 sm:pt-8 space-y-3 sm:space-y-4">
                   {/* Mobile Language Toggle */}
                   <Button
                     variant="outline"
                     onClick={handleLanguageToggle}
-                    className="w-full justify-start font-semibold border-2 border-gray-300/50 hover:border-wj-dark hover:text-wj-dark rounded-2xl py-6 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-lg border-l-4 border-l-wj-dark/30"
+                    className="w-full justify-start font-semibold border-2 border-gray-300/50 hover:border-wj-dark hover:text-wj-dark rounded-2xl py-4 sm:py-6 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-lg border-l-4 border-l-wj-dark/30"
                   >
-                    <IconWorld className="mr-2 h-5 w-5" />
+                    <IconWorld className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     {language === 'en' ? 'Nederlands' : 'English'}
                   </Button>
-                  
+
+                  {/* Mobile Phone Button */}
                   <Button
                     variant="outline"
-                    className="w-full justify-start font-semibold border-2 border-gray-300/50 hover:border-wj-accent hover:text-wj-accent rounded-2xl py-6 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-lg border-l-4 border-l-wj-accent/30"
+                    className="w-full justify-start font-semibold border-2 border-gray-300/50 hover:border-wj-accent hover:text-wj-accent rounded-2xl py-4 sm:py-6 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-lg border-l-4 border-l-wj-accent/30"
                     asChild
                   >
                     <a href={`tel:${CONTACT_DETAILS.phone}`}>
-                      <IconPhone className="mr-2 h-5 w-5" />
+                      <IconPhone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                       {CONTACT_DETAILS.phone}
                     </a>
                   </Button>
+
+                  {/* Mobile CTA Button */}
                   <Button 
-                    className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark font-semibold rounded-2xl py-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-wj-dark/20 hover:border-wj-dark/40"
+                    className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark font-semibold rounded-2xl py-4 sm:py-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-wj-dark/20 hover:border-wj-dark/40"
                     asChild
                   >
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
