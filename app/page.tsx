@@ -55,17 +55,23 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   className="bg-white text-wj-dark hover:bg-wj-lighter/20 font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  asChild
                 >
-                  {t('getFreeQuote')}
-                  <IconArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <Link href="/contact">
+                    {t('getFreeQuote')}
+                    <IconArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-2 border-white text-white hover:bg-white hover:text-wj-dark bg-transparent font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl"
+                  asChild
                 >
-                  {t('hireStaff')}
-                  <IconUsers className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <Link href="/contact">
+                    {t('hireStaff')}
+                    <IconUsers className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Link>
                 </Button>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
@@ -10,7 +10,11 @@ import { LanguageProvider } from "@/components/language-provider"
 import Script from "next/script"
 import { CONTACT_DETAILS } from "@/components/constant"
 
-const inter = Inter({ subsets: ["latin"] })
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins"
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wjcleanforce.com'),
@@ -124,7 +128,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <ContextLanguageProvider>
           <LanguageProvider>
             <Navigation />
