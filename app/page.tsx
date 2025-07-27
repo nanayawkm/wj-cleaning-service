@@ -223,10 +223,10 @@ export default function HomePage() {
 
                 <div className="space-y-4 sm:space-y-6">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-                    {t('aboutTitle')}
+                    Trusted Partners in Excellence
                   </h2>
                   <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                    {t('aboutDesc')}
+                    Winfred and Jackie started WJ Cleanforce with a simple mission: to provide exceptional cleaning and staffing services that exceed expectations. Their commitment to quality, reliability, and customer satisfaction has made them the go-to choice for businesses and homeowners alike.
                   </p>
                 </div>
 
@@ -281,14 +281,14 @@ export default function HomePage() {
               <div className="relative z-10">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
-                  alt="Professional cleaning team William and Jennifer"
+                  alt="Professional cleaning team Winfred and Jackie"
                   className="w-full h-auto rounded-xl sm:rounded-2xl shadow-2xl"
                 />
 
                 {/* Quote badge */}
                 <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl border-l-4 border-wj-accent">
                   <p className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">"Excellence in Every Detail"</p>
-                  <p className="text-xs text-gray-600">- William & Jennifer, Founders</p>
+                  <p className="text-xs text-gray-600">- Winfred & Jackie, Founders</p>
                 </div>
               </div>
             </div>

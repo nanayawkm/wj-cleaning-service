@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   description:
     "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.",
   generator: 'Next.js',
-  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleanforce', 'William', 'Jennifer', 'cleaning company'],
-  authors: [{ name: 'WJ Cleanforce' }, { name: 'William & Jennifer' }],
+  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleanforce', 'Winfred', 'Jackie', 'cleaning company'],
+  authors: [{ name: 'WJ Cleanforce' }, { name: 'Winfred & Jackie' }],
   creator: 'WJ Cleanforce',
   publisher: 'WJ Cleanforce',
   robots: {
@@ -118,11 +118,11 @@ export default function RootLayout({
               "founder": [
                 {
                   "@type": "Person",
-                  "name": "William"
+                  "name": "Winfred"
                 },
                 {
                   "@type": "Person", 
-                  "name": "Jennifer"
+                  "name": "Jackie"
                 }
               ],
               "serviceType": [

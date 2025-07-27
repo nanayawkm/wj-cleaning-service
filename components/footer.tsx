@@ -29,7 +29,7 @@ export default function Footer() {
             </Link>
             <p className="text-gray-300 leading-relaxed text-lg">
               Professional cleaning and staffing services built on trust, reliability, and excellence. Founded by
-              William and Jennifer with love and dedication to exceptional service.
+              Winfred and Jackie with love and dedication to exceptional service.
             </p>
             <div className="flex space-x-4">
               <Button
@@ -37,28 +37,7 @@ export default function Footer() {
                 variant="ghost"
                 className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
               >
-                <IconBrandFacebook className="h-5 w-5" />
-              </Button>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
-              >
-                <IconBrandTwitter className="h-5 w-5" />
-              </Button>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
-              >
                 <IconBrandInstagram className="h-5 w-5" />
-              </Button>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:bg-wj-dark rounded-xl transition-all duration-300 hover:scale-105"
-              >
-                <IconBrandLinkedin className="h-5 w-5" />
               </Button>
             </div>
           </div>

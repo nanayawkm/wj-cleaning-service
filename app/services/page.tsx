@@ -21,10 +21,10 @@ export default function ServicesPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/services/hero-cleaning1.jpg"
+            src="/images/services/newnew.jpg"
             alt="Professional cleaning services"
             fill
-            className="object-cover blur-[2px]"
+            className="object-cover"
             priority
             quality={90}
           />

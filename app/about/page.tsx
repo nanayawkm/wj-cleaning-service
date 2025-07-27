@@ -43,7 +43,7 @@ export default function AboutPage() {
                   Built on Trust, Driven by Excellence
                 </h2>
                 <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                  Founded by William and Jennifer, a dedicated couple who understood the importance of trust, reliability, and
+                  Founded by Winfred and Jackie, a dedicated couple who understood the importance of trust, reliability, and
                   attention to detail. What started as a small family business has grown into a trusted partner for hundreds
                   of satisfied customers.
                 </p>
@@ -86,12 +86,12 @@ export default function AboutPage() {
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
-                  alt="William and Jennifer - Founders of WJ Cleanforce"
+                  alt="Winfred and Jackie - Founders of WJ Cleanforce"
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white/90 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl">
-                  <p className="text-xs sm:text-sm font-semibold text-gray-900">William & Jennifer</p>
+                  <p className="text-xs sm:text-sm font-semibold text-gray-900">Winfred & Jackie</p>
                   <p className="text-xs text-gray-600">Founders, WJ Cleanforce</p>
                 </div>
               </div>
