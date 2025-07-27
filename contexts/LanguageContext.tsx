@@ -1,6 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { CONTACT_DETAILS } from '@/components/constant'
 
 type Language = 'en' | 'nl'
 
@@ -129,9 +130,77 @@ const translations = {
     extraHygiene: "Extra Hygiene",
     
     // Contact
-    phoneNumber: "+31 (0) 685063641",
+    phoneNumber: CONTACT_DETAILS.phone,
     contactEmail: "info@wjcleaningservices.nl",
     region: "Flevoland Region",
+    
+    // Additional translations for hardcoded text
+    professionalCleaningStaffing: "Professional Cleaning & Staffing Solutions",
+    aboutWJCleanforce: "About WJ Cleanforce",
+    trustedPartnersExcellence: "Trusted Partners in Excellence",
+    aboutDescription: "Winfred and Jackie started WJ Cleanforce with a simple mission: to provide exceptional cleaning and staffing services that exceed expectations. Their commitment to quality, reliability, and customer satisfaction has made them the go-to choice for businesses and homeowners alike.",
+    experienceYearsDesc: "Our team has over 5 years of experience in the cleaning industry.",
+    personalizedSchedulesDesc: "Customized cleaning schedules that perfectly match your preferences.",
+    extraHygieneDesc: "Extra attention to hygiene for a completely clean and healthy environment.",
+    excellenceInDetail: "Excellence in Every Detail",
+    foundersQuote: "Winfred & Jackie, Founders",
+    howItWorks: "How It Works",
+    simpleProcessOutstanding: "Simple Process, Outstanding Results",
+    howItWorksDesc: "Getting started with WJ Cleanforce is easy. Our streamlined process ensures you get the service you need quickly and efficiently.",
+    getYourQuote: "Get Your Quote",
+    getYourQuoteDesc: "Contact us for a free consultation. We'll assess your needs and provide a transparent, competitive quote.",
+    scheduleService: "Schedule Service",
+    scheduleServiceDesc: "Choose a time that works for you. We offer flexible scheduling to fit your busy lifestyle and business needs.",
+    enjoyCleanSpaces: "Enjoy Clean Spaces",
+    enjoyCleanSpacesDesc: "Sit back and relax while our professional team delivers exceptional results that exceed your expectations.",
+    readyToGetStarted: "Ready to Get Started?",
+    experienceDifference: "Experience the WJ Cleanforce Difference Today",
+    ctaDescription: "Join hundreds of satisfied customers who trust us with their cleaning and staffing needs. Get your free quote in minutes.",
+    getFreeQuoteNow: "Get Free Quote Now",
+    whatsappUs: "WhatsApp Us",
+    satisfactionGuaranteed: "Satisfaction Guaranteed",
+    
+    // Services page specific translations
+    officeSupportStaff: "Office support staff",
+    restaurantCafePersonnel: "Restaurant & café personnel",
+    hotelStaff: "Hotel staff",
+    schoolSupportStaff: "School support staff",
+    eventStaffingText: "Event staffing",
+    
+    // Footer translations
+    quickLinks: "Quick Links",
+    stayConnected: "Stay Connected",
+    allRightsReserved: "All rights reserved.",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    cookiePolicy: "Cookie Policy",
+    
+    // FAQ translations
+    frequentlyAskedQuestions: "Frequently Asked Questions",
+    commonQuestionsAnswered: "Common Questions Answered",
+    faqDescription: "Find answers to the most frequently asked questions about our services, pricing, and policies.",
+    whatAreasServe: "What areas do you serve?",
+    whatAreasServeAnswer: "We primarily serve the Flevoland region and surrounding areas. Contact us to confirm if we cover your specific location.",
+    howQuicklyStart: "How quickly can you start?",
+    howQuicklyStartAnswer: "We can often accommodate same-day or next-day requests for urgent needs. Regular scheduling typically requires 24-48 hours notice.",
+    staffInsuredBonded: "Are your staff insured and bonded?",
+    staffInsuredBondedAnswer: "Yes, all our staff are fully insured and bonded. We carry comprehensive liability coverage for your peace of mind.",
+    cleaningProducts: "What cleaning products do you use?",
+    cleaningProductsAnswer: "We use eco-friendly, professional-grade cleaning products that are safe for families, pets, and the environment while delivering exceptional results.",
+    provideSupplies: "Do you provide supplies and equipment?",
+    provideSuppliesAnswer: "Yes, we bring all necessary cleaning supplies and equipment. You don't need to provide anything - we come fully prepared.",
+    satisfactionGuarantee: "What is your satisfaction guarantee?",
+    satisfactionGuaranteeAnswer: "We offer a 100% satisfaction guarantee. If you're not completely satisfied with our service, we'll return to fix it at no additional cost.",
+    
+    // About page specific translations
+    readyToWorkTogether: "Ready to Work Together?",
+    letsBuildAmazing: "Let's Build Something Amazing Together",
+    aboutCtaDescription: "Ready to experience the WJ Cleanforce difference? Contact us today for a free consultation and discover how we can help you achieve your goals.",
+    getStartedToday: "Get Started Today",
+    
+    // Form and UI translations
+    selectService: "Select a service",
+    other: "Other",
   },
   nl: {
     // Navigation  
@@ -251,9 +320,77 @@ const translations = {
     extraHygiene: "Extra Hygiëne",
     
     // Contact
-    phoneNumber: "+31 (0) 685063641", 
+    phoneNumber: CONTACT_DETAILS.phone, 
     contactEmail: "info@wjcleaningservices.nl",
     region: "Regio Flevoland",
+    
+    // Additional translations for hardcoded text
+    professionalCleaningStaffing: "Professionele Schoonmaak & Personeelsoplossingen",
+    aboutWJCleanforce: "Over WJ Cleanforce",
+    trustedPartnersExcellence: "Vertrouwde Partners in Uitmuntendheid",
+    aboutDescription: "Winfred en Jackie begonnen WJ Cleanforce met een eenvoudige missie: het leveren van uitzonderlijke schoonmaak- en personeelsdiensten die verwachtingen overtreffen. Hun toewijding aan kwaliteit, betrouwbaarheid en klanttevredenheid heeft hen tot de eerste keuze gemaakt voor bedrijven en huiseigenaren.",
+    experienceYearsDesc: "Ons team heeft meer dan 5 jaar ervaring in de schoonmaaksector.",
+    personalizedSchedulesDesc: "Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.",
+    extraHygieneDesc: "Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.",
+    excellenceInDetail: "Uitmuntendheid in Elk Detail",
+    foundersQuote: "Winfred & Jackie, Oprichters",
+    howItWorks: "Hoe Het Werkt",
+    simpleProcessOutstanding: "Eenvoudig Proces, Uitzonderlijke Resultaten",
+    howItWorksDesc: "Beginnen met WJ Cleanforce is eenvoudig. Ons gestroomlijnde proces zorgt ervoor dat je snel en efficiënt de service krijgt die je nodig hebt.",
+    getYourQuote: "Krijg Je Offerte",
+    getYourQuoteDesc: "Neem contact met ons op voor een gratis consultatie. We beoordelen je behoeften en geven een transparante, concurrerende offerte.",
+    scheduleService: "Plan Service",
+    scheduleServiceDesc: "Kies een tijd die voor jou werkt. We bieden flexibele planning die past bij je drukke levensstijl en zakelijke behoeften.",
+    enjoyCleanSpaces: "Geniet van Schone Ruimtes",
+    enjoyCleanSpacesDesc: "Leun achterover en ontspan terwijl ons professionele team uitzonderlijke resultaten levert die je verwachtingen overtreffen.",
+    readyToGetStarted: "Klaar om te Beginnen?",
+    experienceDifference: "Ervaar het WJ Cleanforce Verschil Vandaag",
+    ctaDescription: "Sluit je aan bij honderden tevreden klanten die ons vertrouwen met hun schoonmaak- en personeelsbehoeften. Krijg je gratis offerte in minuten.",
+    getFreeQuoteNow: "Krijg Nu Gratis Offerte",
+    whatsappUs: "WhatsApp Ons",
+    satisfactionGuaranteed: "Tevredenheid Gegarandeerd",
+    
+    // Services page specific translations
+    officeSupportStaff: "Kantoor ondersteunend personeel",
+    restaurantCafePersonnel: "Restaurant & café personeel",
+    hotelStaff: "Hotel personeel",
+    schoolSupportStaff: "School ondersteunend personeel",
+    eventStaffingText: "Evenement personeel",
+    
+    // Footer translations
+    quickLinks: "Snelle Links",
+    stayConnected: "Blijf Verbonden",
+    allRightsReserved: "Alle rechten voorbehouden.",
+    privacyPolicy: "Privacybeleid",
+    termsOfService: "Servicevoorwaarden",
+    cookiePolicy: "Cookiebeleid",
+    
+    // FAQ translations
+    frequentlyAskedQuestions: "Veelgestelde Vragen",
+    commonQuestionsAnswered: "Veelgestelde Vragen Beantwoord",
+    faqDescription: "Vind antwoorden op de meest gestelde vragen over onze diensten, prijzen en beleid.",
+    whatAreasServe: "Welke gebieden bedienen jullie?",
+    whatAreasServeAnswer: "We bedienen voornamelijk de regio Flevoland en omliggende gebieden. Neem contact met ons op om te bevestigen of we jouw specifieke locatie bedienen.",
+    howQuicklyStart: "Hoe snel kunnen jullie beginnen?",
+    howQuicklyStartAnswer: "We kunnen vaak dezelfde dag of de volgende dag accommoderen voor urgente behoeften. Regelmatige planning vereist meestal 24-48 uur kennisgeving.",
+    staffInsuredBonded: "Zijn jullie personeel verzekerd en gebonden?",
+    staffInsuredBondedAnswer: "Ja, al ons personeel is volledig verzekerd en gebonden. We hebben uitgebreide aansprakelijkheidsdekking voor je gemoedsrust.",
+    cleaningProducts: "Welke schoonmaakproducten gebruiken jullie?",
+    cleaningProductsAnswer: "We gebruiken milieuvriendelijke, professionele schoonmaakproducten die veilig zijn voor gezinnen, huisdieren en het milieu terwijl ze uitzonderlijke resultaten leveren.",
+    provideSupplies: "Leveren jullie benodigdheden en apparatuur?",
+    provideSuppliesAnswer: "Ja, we brengen alle benodigde schoonmaakbenodigdheden en apparatuur mee. Je hoeft niets te leveren - we komen volledig voorbereid.",
+    satisfactionGuarantee: "Wat is jullie tevredenheidsgarantie?",
+    satisfactionGuaranteeAnswer: "We bieden een 100% tevredenheidsgarantie. Als je niet volledig tevreden bent met onze service, komen we terug om het gratis op te lossen.",
+    
+    // About page specific translations
+    readyToWorkTogether: "Klaar om Samen te Werken?",
+    letsBuildAmazing: "Laten We Iets Geweldigs Samen Bouwen",
+    aboutCtaDescription: "Klaar om het WJ Cleanforce verschil te ervaren? Neem vandaag contact met ons op voor een gratis consultatie en ontdek hoe we je kunnen helpen je doelen te bereiken.",
+    getStartedToday: "Begin Vandaag",
+    
+    // Form and UI translations
+    selectService: "Selecteer een service",
+    other: "Anders",
   }
 }
 

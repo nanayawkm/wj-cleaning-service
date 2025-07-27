@@ -8,6 +8,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { CONTACT_DETAILS } from "./constant"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -85,9 +86,12 @@ export default function Navigation() {
               variant="outline"
               size="sm"
               className="font-semibold border-2 border-gray-200 hover:border-wj-dark hover:text-wj-dark rounded-xl bg-transparent"
+              asChild
             >
-              <IconPhone className="mr-2 h-4 w-4" />
-              {t('phoneNumber')}
+              <a href={`tel:${CONTACT_DETAILS.phone}`}>
+                <IconPhone className="mr-2 h-4 w-4" />
+                {CONTACT_DETAILS.phone}
+              </a>
             </Button>
             <Button
               size="sm"
@@ -146,9 +150,12 @@ export default function Navigation() {
                   <Button
                     variant="outline"
                     className="w-full justify-start font-semibold border-2 rounded-xl py-6 bg-transparent"
+                    asChild
                   >
-                    <IconPhone className="mr-2 h-5 w-5" />
-                    {t('phoneNumber')}
+                    <a href={`tel:${CONTACT_DETAILS.phone}`}>
+                      <IconPhone className="mr-2 h-5 w-5" />
+                      {CONTACT_DETAILS.phone}
+                    </a>
                   </Button>
                   <Button className="w-full bg-wj-dark hover:bg-wj-darker font-semibold rounded-xl py-6">
                     {t('getFreeQuote')}

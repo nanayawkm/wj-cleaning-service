@@ -1,10 +1,16 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { IconSparkles, IconPhone, IconMail, IconMapPin, IconBrandFacebook, IconBrandTwitter, IconBrandInstagram, IconBrandLinkedin, IconHeart, IconDroplet, IconShieldCheck } from "@tabler/icons-react"
 import Link from "next/link"
 import Image from "next/image"
+import { CONTACT_DETAILS } from "./constant"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Footer() {
+  const { t } = useLanguage()
+  
   return (
     <footer className="bg-gray-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -44,7 +50,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-8 text-white">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-8 text-white">{t('quickLinks')}</h3>
             <div className="space-y-4">
               <Link
                 href="/"
@@ -75,7 +81,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-xl font-bold mb-8 text-white">Services</h3>
+            <h3 className="text-xl font-bold mb-8 text-white">{t('services')}</h3>
             <div className="space-y-4">
               <Link
                 href="/services"
@@ -106,25 +112,25 @@ export default function Footer() {
 
           {/* Contact & Newsletter */}
           <div>
-            <h3 className="text-xl font-bold mb-8 text-white">Stay Connected</h3>
+            <h3 className="text-xl font-bold mb-8 text-white">{t('stayConnected')}</h3>
             <div className="space-y-6 mb-8">
               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
                 <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
                   <IconPhone className="h-5 w-5 text-wj-dark" />
                 </div>
-                                  <span className="text-gray-300 text-lg">+31 (0) 685063641</span>
+                                  <a href={`tel:${CONTACT_DETAILS.phone}`} className="text-gray-300 text-lg">{CONTACT_DETAILS.phone}</a>
               </div>
                               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
                   <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
                     <IconMail className="h-5 w-5 text-wj-accent" />
                   </div>
-                <span className="text-gray-300 text-lg">info@wjcleanforce.com</span>
+                <a href={`mailto:${CONTACT_DETAILS.email}`} className="text-gray-300 text-lg">{CONTACT_DETAILS.email}</a>
               </div>
                               <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
                   <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
                     <IconMapPin className="h-5 w-5 text-wj-accent" />
                   </div>
-                <span className="text-gray-300 text-lg">Greater Metro Area</span>
+                    <a href={CONTACT_DETAILS.googlemap} target="_blank" className="text-gray-300 text-lg">{CONTACT_DETAILS.address}, {CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}</a>
               </div>
             </div>
 
@@ -138,17 +144,17 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2">
-              <p className="text-gray-400 text-lg">© {new Date().getFullYear()} WJ Cleaning Services. All rights reserved.</p>
+              <p className="text-gray-400 text-lg">© {new Date().getFullYear()} WJ Cleaning Services. {t('allRightsReserved')}</p>
             </div>
             <div className="flex space-x-8 text-lg">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-                Privacy Policy
+                {t('privacyPolicy')}
               </Link>
               <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-                Terms of Service
+                {t('termsOfService')}
               </Link>
               <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-                Cookie Policy
+                {t('cookiePolicy')}
               </Link>
             </div>
           </div>

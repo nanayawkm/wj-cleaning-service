@@ -23,7 +23,12 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   .dark {
@@ -46,6 +51,20 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
@@ -61,75 +80,71 @@
     --wj-accent-light: #7A9DAC;
     --wj-accent-dark: #4A6D7C;
   }
-  
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  }
 }
 
+/* Scroll Animations */
 @layer utilities {
-  /* Split-color section responsive */
-  .split-section {
-    @apply grid lg:grid-cols-2 gap-0 items-center min-h-[600px];
+  .animate-fade-in-up {
+    animation: fadeInUp 0.7s ease-out forwards;
   }
-
-  @media (max-width: 1024px) {
-    .split-section {
-      @apply grid-cols-1 gap-8 min-h-auto;
-    }
-
-    .split-section > div:first-child {
-      @apply rounded-t-2xl rounded-b-none;
-    }
-
-    .split-section > div:last-child {
-      @apply rounded-b-2xl rounded-t-none;
-    }
+  
+  .animate-fade-in-up-delay-1 {
+    animation: fadeInUp 0.7s ease-out 0.1s forwards;
   }
-
-  /* Modern startup aesthetics */
-  .startup-card {
-    @apply bg-white rounded-2xl shadow-lg border-0 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3;
+  
+  .animate-fade-in-up-delay-2 {
+    animation: fadeInUp 0.7s ease-out 0.2s forwards;
   }
-
-  .startup-button {
-    @apply font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  
+  .animate-fade-in-up-delay-3 {
+    animation: fadeInUp 0.7s ease-out 0.3s forwards;
   }
-
-  .startup-badge {
-    @apply inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold;
+  
+  .animate-fade-in-up-delay-4 {
+    animation: fadeInUp 0.7s ease-out 0.4s forwards;
   }
-}
-
-/* Advanced animations for modern feel */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+  
+  .animate-fade-in-up-delay-5 {
+    animation: fadeInUp 0.7s ease-out 0.5s forwards;
   }
-  50% {
-    transform: translateY(-10px);
+  
+  .animate-fade-in-up-delay-6 {
+    animation: fadeInUp 0.7s ease-out 0.6s forwards;
   }
-}
-
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0.3;
+  
+  .animate-fade-in-up-delay-7 {
+    animation: fadeInUp 0.7s ease-out 0.7s forwards;
   }
-  50% {
-    opacity: 0.8;
+  
+  .animate-fade-in-right {
+    animation: fadeInRight 0.7s ease-out forwards;
+  }
+  
+  .animate-fade-in-right-delay-4 {
+    animation: fadeInRight 0.7s ease-out 0.4s forwards;
+  }
+  
+  .animate-fade-in-right-delay-6 {
+    animation: fadeInRight 0.7s ease-out 0.6s forwards;
+  }
+  
+  .opacity-0 {
+    opacity: 0;
+  }
+  
+  .translate-y-4 {
+    transform: translateY(1rem);
+  }
+  
+  .translate-x-4 {
+    transform: translateX(1rem);
   }
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -137,10 +152,10 @@
   }
 }
 
-@keyframes slideInLeft {
+@keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(1rem);
   }
   to {
     opacity: 1;
@@ -148,114 +163,47 @@
   }
 }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
+/* Intersection Observer Animation Classes */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all 0.7s ease-out;
+}
+
+.scroll-animate.scroll-animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(1rem);
+  transition: all 0.7s ease-out;
+}
+
+.scroll-animate-right.scroll-animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-right,
+  .animate-fade-in-up,
+  .animate-fade-in-up-delay-1,
+  .animate-fade-in-up-delay-2,
+  .animate-fade-in-up-delay-3,
+  .animate-fade-in-up-delay-4,
+  .animate-fade-in-up-delay-5,
+  .animate-fade-in-up-delay-6,
+  .animate-fade-in-up-delay-7,
+  .animate-fade-in-right,
+  .animate-fade-in-right-delay-4,
+  .animate-fade-in-right-delay-6 {
+    animation: none;
     opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s ease-out;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.5s ease-out;
-}
-
-.cleaning-symbol-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.cleaning-symbol-sparkle {
-  animation: sparkle 4s ease-in-out infinite;
-}
-
-/* Modern card hover effects */
-.modern-card {
-  @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-3;
-}
-
-/* Enhanced button styles */
-.btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
-}
-
-.btn-outline {
-  @apply border-2 border-gray-200 hover:border-blue-600 hover:text-blue-600 font-semibold px-8 py-4 rounded-xl transition-all duration-300;
-}
-
-.btn-white {
-  @apply bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
-}
-
-/* Decorative blob animations */
-.blob-float {
-  animation: float 8s ease-in-out infinite;
-}
-
-.blob-pulse {
-  animation: pulse 4s ease-in-out infinite;
-}
-
-/* Typography enhancements */
-.heading-gradient {
-  @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
-}
-
-/* Responsive utilities */
-@media (max-width: 640px) {
-  .mobile-stack {
-    @apply flex-col space-y-4 space-x-0;
-  }
-
-  .mobile-full {
-    @apply w-full;
-  }
-}
-
-/* Focus states for accessibility */
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-}
-
-/* Loading states */
-.loading-shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
+    transform: none;
+    transition: none;
   }
 }

@@ -97,7 +97,7 @@ export function CleaningBackground({ className = '' }: CleaningBackgroundProps) 
         return (
           <Icon
             key={index}
-            className="absolute text-wj-dark opacity-[0.03] w-5 h-5 md:w-6 md:h-6"
+            className="absolute text-wj-dark opacity-[0.08] w-5 h-5 md:w-6 md:h-6"
             style={{
               top,
               left,

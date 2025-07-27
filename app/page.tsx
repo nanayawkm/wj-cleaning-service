@@ -2,33 +2,33 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  IconArrowRight,
+import { 
+  IconArrowRight, 
   IconCheck,
-  IconUsers,
+  IconUsers, 
   IconSparkles,
   IconBuilding,
-  IconHome,
-  IconBuildingWarehouse,
+  IconHome, 
+  IconBriefcase, 
+  IconBuildingWarehouse, 
   IconPhone,
   IconMessage,
   IconStar,
-  IconClock,
+  IconShield, 
+  IconClock, 
   IconDroplet,
-  IconShield,
-  IconBriefcase,
+  IconAward
 } from "@tabler/icons-react"
-import Link from "next/link"
-import Image from "next/image"
 import { CleaningBackground } from "@/components/cleaning-background"
 import { useLanguage } from "@/contexts/LanguageContext"
+import Link from "next/link"
+import Image from "next/image"
 
 export default function HomePage() {
   const { t } = useLanguage()
   
   return (
     <div className="min-h-screen bg-white">
-
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-wj-dark text-white">
@@ -38,20 +38,20 @@ export default function HomePage() {
         <div className="relative container mx-auto px-4 py-16 sm:py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="space-y-6 lg:space-y-8">
-              <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-                <span className="text-xs sm:text-sm font-medium">Professional Cleaning & Staffing Solutions</span>
+              <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 scroll-animate">
+                <span className="text-xs sm:text-sm font-medium">{t('professionalCleaningStaffing')}</span>
               </div>
 
               <div className="space-y-4 lg:space-y-6">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight scroll-animate">
                   {t('heroTitle')}
                 </h1>
-                <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 leading-relaxed font-light">
+                <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 leading-relaxed font-light scroll-animate">
                   {t('heroSubtitle')}
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 scroll-animate">
                 <Button
                   size="lg"
                   className="bg-white text-wj-dark hover:bg-wj-lighter/20 font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -70,7 +70,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative order-first lg:order-last">
+            <div className="relative order-first lg:order-last scroll-animate-right">
               {/* Decorative background elements */}
               <div className="absolute -top-4 -right-4 w-16 h-16 sm:w-24 sm:h-24 bg-wj-light/20 rounded-full blur-xl"></div>
               <div className="absolute -bottom-4 -left-4 w-20 h-20 sm:w-32 sm:h-32 bg-wj-accent/20 rounded-full blur-xl"></div>
@@ -112,20 +112,20 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-wj-lighter/20 text-wj-dark rounded-full mb-4 sm:mb-6">
+            <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-wj-lighter/20 text-wj-dark rounded-full mb-4 sm:mb-6 scroll-animate">
               <span className="text-xs sm:text-sm font-semibold">{t('ourServices')}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight scroll-animate">
               {t('servicesTitle')}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 scroll-animate">
               {t('servicesSubtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {/* Modern Service Cards */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
               <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
@@ -145,7 +145,7 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
               <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
@@ -165,7 +165,7 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
               <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
@@ -185,7 +185,7 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-3 bg-white rounded-2xl overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col scroll-animate">
               <CardContent className="p-6 sm:p-8 text-center relative flex-1 flex flex-col">
                 <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-wj-lighter/20 rounded-bl-2xl sm:rounded-bl-3xl opacity-50"></div>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl border-2 border-wj-dark">
@@ -217,47 +217,47 @@ export default function HomePage() {
             {/* Left side - White background with content */}
             <div className="bg-white p-8 sm:p-12 lg:p-16 h-full flex flex-col justify-center">
               <div className="space-y-6 sm:space-y-8">
-                <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full">
-                  <span className="text-xs sm:text-sm font-semibold">About WJ Cleanforce</span>
+                <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full scroll-animate">
+                  <span className="text-xs sm:text-sm font-semibold">{t('aboutWJCleanforce')}</span>
                 </div>
 
                 <div className="space-y-4 sm:space-y-6">
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-                    Trusted Partners in Excellence
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight scroll-animate">
+                    {t('trustedPartnersExcellence')}
                   </h2>
-                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                    Winfred and Jackie started WJ Cleanforce with a simple mission: to provide exceptional cleaning and staffing services that exceed expectations. Their commitment to quality, reliability, and customer satisfaction has made them the go-to choice for businesses and homeowners alike.
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed scroll-animate">
+                    {t('aboutDescription')}
                   </p>
                 </div>
 
                 <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 scroll-animate">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
                       <IconShield className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-base sm:text-lg">{t('experienceYears')}</h3>
-                      <p className="text-sm sm:text-base text-gray-600">Ons team beschikt over meer dan 5 jaar ervaring in de schoonmaaksector.</p>
+                      <p className="text-sm sm:text-base text-gray-600">{t('experienceYearsDesc')}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 scroll-animate">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
                       <IconClock className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-base sm:text-lg">{t('personalizedSchedules')}</h3>
-                      <p className="text-sm sm:text-base text-gray-600">Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.</p>
+                      <p className="text-sm sm:text-base text-gray-600">{t('personalizedSchedulesDesc')}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 scroll-animate">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
                       <IconSparkles className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-base sm:text-lg">{t('extraHygiene')}</h3>
-                      <p className="text-sm sm:text-base text-gray-600">Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.</p>
+                      <p className="text-sm sm:text-base text-gray-600">{t('extraHygieneDesc')}</p>
                     </div>
                   </div>
                 </div>
@@ -265,7 +265,7 @@ export default function HomePage() {
             </div>
 
             {/* Right side - WJ Accent background with image and decorative elements */}
-            <div className="bg-wj-accent-light/20 p-8 sm:p-12 lg:p-16 h-full flex flex-col justify-center relative">
+            <div className="bg-wj-accent-light/20 p-8 sm:p-12 lg:p-16 h-full flex flex-col justify-center relative scroll-animate-right">
               {/* Decorative sparkles */}
               <div className="absolute top-6 right-6 sm:top-8 sm:right-8">
                 <div className="flex space-x-1 sm:space-x-2">
@@ -286,9 +286,9 @@ export default function HomePage() {
                 />
 
                 {/* Quote badge */}
-                <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl border-l-4 border-wj-accent">
-                  <p className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">"Excellence in Every Detail"</p>
-                  <p className="text-xs text-gray-600">- Winfred & Jackie, Founders</p>
+                <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl border-2 border-wj-accent/20 before:absolute before:inset-0 before:rounded-xl before:sm:rounded-2xl before:border-2 before:border-wj-accent/40 before:content-[''] before:pointer-events-none">
+                  <p className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">"{t('excellenceInDetail')}"</p>
+                  <p className="text-xs text-gray-600">- {t('foundersQuote')}</p>
                 </div>
               </div>
             </div>
@@ -305,21 +305,19 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-4 py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full mb-6">
-              <span className="text-sm font-semibold">How It Works</span>
+            <div className="inline-flex items-center px-4 py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full mb-6 scroll-animate">
+              <span className="text-sm font-semibold">{t('howItWorks')}</span>
             </div>
-            <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Simple Process,
-              <span className="block text-wj-purple">Outstanding Results</span>
+            <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 scroll-animate">
+              {t('simpleProcessOutstanding')}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Getting started with WJ Cleanforce is easy. Our streamlined process ensures you get the service you need
-              quickly and efficiently.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed scroll-animate">
+              {t('howItWorksDesc')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <div className="text-center scroll-animate">
               <div className="relative mb-6">
                 <div className="w-56 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
                   <img
@@ -332,14 +330,13 @@ export default function HomePage() {
                   <span className="text-xl font-bold text-white">1</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Get Your Quote</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('getYourQuote')}</h3>
               <p className="text-gray-600 leading-relaxed">
-                Contact us for a free consultation. We'll assess your needs and provide a transparent, competitive
-                quote.
+                {t('getYourQuoteDesc')}
               </p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center scroll-animate">
               <div className="relative mb-6">
                 <div className="w-64 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
                   <img
@@ -352,16 +349,15 @@ export default function HomePage() {
                   <span className="text-xl font-bold text-white">2</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Schedule Service</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('scheduleService')}</h3>
               <p className="text-gray-600 leading-relaxed">
-                Choose a time that works for you. We offer flexible scheduling to fit your busy lifestyle and business
-                needs.
+                {t('scheduleServiceDesc')}
               </p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center scroll-animate">
               <div className="relative mb-6">
-                <div className="w-64 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
+                <div className="w-56 h-48 rounded-2xl shadow-lg overflow-hidden bg-gray-50 flex items-center justify-center mx-auto">
                   <img
                     src="/images/clean.jpg"
                     alt="Enjoy clean spaces - professional cleaning results"
@@ -372,10 +368,9 @@ export default function HomePage() {
                   <span className="text-xl font-bold text-white">3</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Enjoy Clean Spaces</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('enjoyCleanSpaces')}</h3>
               <p className="text-gray-600 leading-relaxed">
-                Sit back and relax while our professional team delivers exceptional results that exceed your
-                expectations.
+                {t('enjoyCleanSpacesDesc')}
               </p>
             </div>
           </div>
@@ -389,27 +384,25 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 text-center relative">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-              <span className="text-sm font-medium">Ready to Get Started?</span>
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 scroll-animate">
+              <span className="text-sm font-medium">{t('readyToGetStarted')}</span>
             </div>
 
-            <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Experience the WJ Cleanforce
-              <span className="block text-wj-light">Difference Today</span>
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight scroll-animate">
+              {t('experienceDifference')}
             </h2>
 
-            <p className="text-xl text-wj-light mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join hundreds of satisfied customers who trust us with their cleaning and staffing needs. Get your free
-              quote in minutes.
+            <p className="text-xl text-wj-light mb-12 max-w-2xl mx-auto leading-relaxed scroll-animate">
+              {t('ctaDescription')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate">
               <Button
                 size="lg"
                 className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <IconPhone className="mr-2 h-5 w-5" />
-                Get Free Quote Now
+                {t('getFreeQuoteNow')}
               </Button>
               <Button
                 size="lg"
@@ -417,14 +410,14 @@ export default function HomePage() {
                 className="border-2 border-white text-white hover:bg-white hover:text-wj-dark bg-transparent font-semibold text-lg px-10 py-4 rounded-xl"
               >
                 <IconMessage className="mr-2 h-5 w-5" />
-                WhatsApp Us
+                {t('whatsappUs')}
               </Button>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center scroll-animate">
               <div className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
                 <div className="text-4xl font-bold text-white mb-2">100%</div>
-                <div className="text-wj-light font-medium">Satisfaction Guaranteed</div>
+                <div className="text-wj-light font-medium">{t('satisfactionGuaranteed')}</div>
               </div>
             </div>
 

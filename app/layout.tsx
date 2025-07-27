@@ -5,7 +5,10 @@ import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import MobileBottomBar from "@/components/mobile-bottom-bar"
-import { LanguageProvider } from "@/contexts/LanguageContext"
+import { LanguageProvider as ContextLanguageProvider } from "@/contexts/LanguageContext"
+import { LanguageProvider } from "@/components/language-provider"
+import Script from "next/script"
+import { CONTACT_DETAILS } from "@/components/constant"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -51,28 +54,12 @@ export const metadata: Metadata = {
     title: 'WJ Cleanforce - Professional Cleaning & Staffing Services',
     description: 'Professional cleaning and staffing services built on trust, reliability, and excellence.',
     images: ['/placeholder-logo.png'],
-    creator: '@wjcleanforce',
   },
-  icons: {
-    icon: '/placeholder-logo.svg',
-    shortcut: '/placeholder-logo.svg',
-    apple: '/placeholder-logo.png',
-  },
-  manifest: '/site.webmanifest',
-
   verification: {
     google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
-    // yahoo: 'your-yahoo-verification-code',
   },
-  category: 'business',
-  classification: 'Cleaning Services, Staffing Services',
-  other: {
-    'contact:phone_number': '+1-555-123-4567',
-    'contact:email': 'info@wjcleanforce.com',
-    'business:contact_data:locality': 'Greater Metro Area',
-    'business:contact_data:region': 'Metro Area',
-    'business:contact_data:country_name': 'United States',
+  alternates: {
+    canonical: 'https://wjcleanforce.com',
   },
 }
 
@@ -89,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -108,7 +95,7 @@ export default function RootLayout({
               "name": "WJ Cleanforce",
               "description": "Professional cleaning and staffing services built on trust, reliability, and excellence.",
               "url": "https://wjcleanforce.com",
-              "telephone": "+1-555-123-4567",
+              "telephone": CONTACT_DETAILS.phone,
               "email": "info@wjcleanforce.com",
               "address": {
                 "@type": "PostalAddress",
@@ -138,12 +125,113 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <LanguageProvider>
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
-          <MobileBottomBar />
-        </LanguageProvider>
+        <ContextLanguageProvider>
+          <LanguageProvider>
+            <Navigation />
+            <main>{children}</main>
+            <Footer />
+            <MobileBottomBar />
+          <Script
+            id="scroll-animations"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                // Improved scroll animation system with proper cleanup
+                (function() {
+                  let observer = null;
+                  let isInitialized = false;
+
+                  function cleanup() {
+                    if (observer) {
+                      observer.disconnect();
+                      observer = null;
+                    }
+                    isInitialized = false;
+                  }
+
+                  function initScrollAnimations() {
+                    // Prevent multiple initializations
+                    if (isInitialized) {
+                      return;
+                    }
+
+                    // Clean up any existing observer
+                    cleanup();
+
+                    // Check for reduced motion preference
+                    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                      return;
+                    }
+
+                    try {
+                      observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                          if (entry.isIntersecting) {
+                            entry.target.classList.add('scroll-animate-in');
+                          }
+                        });
+                      }, {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                      });
+
+                      // Find and observe elements
+                      const elements = document.querySelectorAll('.scroll-animate, .scroll-animate-right');
+                      elements.forEach(el => {
+                        // Reset animation state
+                        el.classList.remove('scroll-animate-in');
+                        observer.observe(el);
+                      });
+
+                      isInitialized = true;
+                    } catch (error) {
+                      console.warn('Scroll animations initialization failed:', error);
+                    }
+                  }
+
+                  // Initialize on DOM ready
+                  if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initScrollAnimations);
+                  } else {
+                    initScrollAnimations();
+                  }
+
+                  // Handle Next.js navigation
+                  if (typeof window !== 'undefined') {
+                    let navigationTimeout;
+
+                    function handleNavigation() {
+                      cleanup();
+                      clearTimeout(navigationTimeout);
+                      navigationTimeout = setTimeout(initScrollAnimations, 150);
+                    }
+
+                    // Listen for route changes
+                    window.addEventListener('popstate', handleNavigation);
+                    
+                    // Override pushState and replaceState
+                    const originalPushState = history.pushState;
+                    const originalReplaceState = history.replaceState;
+
+                    history.pushState = function(...args) {
+                      originalPushState.apply(history, args);
+                      handleNavigation();
+                    };
+
+                    history.replaceState = function(...args) {
+                      originalReplaceState.apply(history, args);
+                      handleNavigation();
+                    };
+
+                    // Cleanup on page unload
+                    window.addEventListener('beforeunload', cleanup);
+                  }
+                })();
+              `
+            }}
+          />
+          </LanguageProvider>
+        </ContextLanguageProvider>
       </body>
     </html>
   )

@@ -30,7 +30,7 @@ export default function MobileBottomBar() {
             onClick={() => window.open(`tel:${t('phoneNumber')}`)}
           >
             <IconPhone className="h-5 w-5" />
-            <span className="ml-1 text-xs hidden sm:inline">Call</span>
+            <span className="ml-1 text-xs hidden sm:inline">{t('callNow')}</span>
           </Button>
           <Button
             className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-3 px-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
@@ -44,7 +44,7 @@ export default function MobileBottomBar() {
             onClick={() => window.open(`mailto:${t('email')}`)}
           >
             <IconMail className="h-5 w-5" />
-            <span className="ml-1 text-xs hidden sm:inline">Email</span>
+            <span className="ml-1 text-xs hidden sm:inline">{t('email')}</span>
           </Button>
         </div>
       </div>

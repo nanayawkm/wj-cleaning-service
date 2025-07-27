@@ -273,19 +273,17 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
-              <span className="text-sm font-medium">Ready to Work Together?</span>
+              <span className="text-sm font-medium">{t('readyToWorkTogether')}</span>
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold mb-8">
-              Let's Build Something
-              <span className="block text-wj-light">Amazing Together</span>
+              {t('letsBuildAmazing')}
             </h2>
             <p className="text-xl text-wj-light mb-12 max-w-2xl mx-auto leading-relaxed">
-              Ready to experience the WJ Cleanforce difference? Contact us today for a free consultation and discover how
-              we can help you achieve your goals.
+              {t('aboutCtaDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button asChild size="lg" className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold">
-                <Link href="/contact">Get Started Today</Link>
+                <Link href="/contact">{t('getStartedToday')}</Link>
               </Button>
               <Button
                 size="lg"

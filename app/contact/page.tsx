@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { IconPhone, IconMail, IconMapPin, IconClock, IconShieldCheck, IconUsers, IconStar, IconAward, IconHeart, IconDroplet, IconSparkles, IconCheck, IconBuilding, IconHome, IconBriefcase, IconBuildingWarehouse, IconSend } from '@tabler/icons-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { CleaningBackground } from '@/components/cleaning-background'
+import { CONTACT_DETAILS } from '@/components/constant'
 
 export default function ContactPage() {
   const { t } = useLanguage()
@@ -114,12 +115,12 @@ export default function ContactPage() {
                     id="service"
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:border-wj-dark focus:ring-wj-dark/20 bg-white text-sm sm:text-base"
                   >
-                    <option value="">Select a service</option>
-                    <option value="residential">Residential Cleaning</option>
-                    <option value="commercial">Commercial Cleaning</option>
-                    <option value="warehouse">Warehouse Staffing</option>
-                    <option value="event">Event Staffing</option>
-                    <option value="other">Other</option>
+                    <option value="">{t('selectService')}</option>
+                    <option value="residential">{t('residentialCleaning')}</option>
+                    <option value="commercial">{t('officeCleaning')}</option>
+                    <option value="warehouse">{t('warehouseStaffing')}</option>
+                    <option value="event">{t('eventStaffing')}</option>
+                    <option value="other">{t('other')}</option>
                   </select>
                 </div>
 
@@ -157,14 +158,12 @@ export default function ContactPage() {
                 </div>
               </div>
               <div>
-                <Badge className="bg-wj-accent-light/20 text-wj-accent-dark mb-3 sm:mb-4">Contact Information</Badge>
+                <Badge className="bg-wj-accent-light/20 text-wj-accent-dark mb-3 sm:mb-4">{t('contactInfo')}</Badge>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-                  Get In Touch
-                  <span className="block text-wj-accent-dark">With Us</span>
+                  {t('getInTouch')}
                 </h2>
                 <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                  Prefer to call or email directly? We're here to help and answer any questions you might have about our
-                  services.
+                  {t('getInTouchDesc')}
                 </p>
               </div>
 
@@ -175,7 +174,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">Phone</h3>
-                    <p className="text-sm sm:text-base text-gray-600">+31 (0) 685063641</p>
+                    <p className="text-sm sm:text-base text-gray-600">{CONTACT_DETAILS.phone}</p>
                     <p className="text-xs sm:text-sm text-gray-500">Available 24/7 for emergencies</p>
                   </div>
                 </div>
@@ -186,7 +185,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">Email</h3>
-                    <p className="text-sm sm:text-base text-gray-600">info@wjcleaningservices.nl</p>
+                    <p className="text-sm sm:text-base text-gray-600">{CONTACT_DETAILS.email}</p>
                     <p className="text-xs sm:text-sm text-gray-500">We respond within 2-4 hours</p>
                   </div>
                 </div>
@@ -197,7 +196,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">Service Area</h3>
-                    <p className="text-sm sm:text-base text-gray-600">Flevoland Region</p>
+                    <p className="text-sm sm:text-base text-gray-600">{t('region')}</p>
                     <p className="text-xs sm:text-sm text-gray-500">Serving the greater metropolitan area</p>
                   </div>
                 </div>
@@ -222,7 +221,7 @@ export default function ContactPage() {
                 </p>
                 <Button className="w-full bg-white text-wj-dark hover:bg-wj-light/10 justify-start text-sm sm:text-base">
                   <IconPhone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  Call Now: +31 (0) 685063641
+                  Call Now: {CONTACT_DETAILS.phone}
                 </Button>
               </div>
             </div>
@@ -235,85 +234,78 @@ export default function ContactPage() {
         <CleaningBackground />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <Badge className="bg-wj-light/20 text-wj-dark mb-4">Frequently Asked Questions</Badge>
+            <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('frequentlyAskedQuestions')}</Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Common Questions
-              <span className="block text-wj-dark">Answered</span>
+              {t('commonQuestionsAnswered')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Find answers to the most frequently asked questions about our services, pricing, and policies.
+              {t('faqDescription')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">What areas do you serve?</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('whatAreasServe')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  We primarily serve the Flevoland region and surrounding areas. Contact us to confirm if we cover your
-                  specific location.
+                  {t('whatAreasServeAnswer')}
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">How quickly can you start?</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('howQuicklyStart')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  We can often accommodate same-day or next-day requests for urgent needs. Regular scheduling typically
-                  requires 24-48 hours notice.
+                  {t('howQuicklyStartAnswer')}
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">Are your staff insured and bonded?</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('staffInsuredBonded')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  Yes, all our staff are fully insured and bonded. We carry comprehensive liability coverage for your
-                  peace of mind.
+                  {t('staffInsuredBondedAnswer')}
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">What cleaning products do you use?</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('cleaningProducts')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  We use eco-friendly, professional-grade cleaning products that are safe for families, pets, and the
-                  environment while delivering exceptional results.
+                  {t('cleaningProductsAnswer')}
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">Do you provide supplies and equipment?</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('provideSupplies')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  Yes, we bring all necessary cleaning supplies and equipment. You don't need to provide anything - we
-                  come fully prepared.
+                  {t('provideSuppliesAnswer')}
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">What is your satisfaction guarantee?</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('satisfactionGuarantee')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  We offer a 100% satisfaction guarantee. If you're not completely satisfied with our service, we'll
-                  return to fix it at no additional cost.
+                  {t('satisfactionGuaranteeAnswer')}
                 </p>
               </CardContent>
             </Card>
@@ -326,26 +318,24 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl lg:text-6xl font-bold mb-8">
-              Ready to Get
-              <span className="block text-wj-light">Started?</span>
+              {t('readyToGetStarted')}
             </h2>
             <p className="text-xl text-wj-light mb-8 max-w-2xl mx-auto">
-              Don't wait to experience the WJ Cleanforce difference. Contact us today for your free consultation and
-              personalized quote.
+              {t('ctaDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
                 size="lg"
                 className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold"
               >
-                <a href="tel:+31685063641">Call Now</a>
+                <a href={`tel:${CONTACT_DETAILS.phone}`}>Call Now</a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-wj-dark bg-transparent"
               >
-                <a href="mailto:info@wjcleaningservices.nl">Email Us</a>
+                <a href={`mailto:${CONTACT_DETAILS.email}`}>{t('email')} Us</a>
               </Button>
             </div>
           </div>

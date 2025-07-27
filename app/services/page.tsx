@@ -210,23 +210,23 @@ export default function ServicesPage() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Office support staff</span>
+                  <span className="text-gray-700">{t('officeSupportStaff')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Restaurant & café personnel</span>
+                  <span className="text-gray-700">{t('restaurantCafePersonnel')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Hotel staff</span>
+                  <span className="text-gray-700">{t('hotelStaff')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">School support staff</span>
+                  <span className="text-gray-700">{t('schoolSupportStaff')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Event staffing</span>
+                  <span className="text-gray-700">{t('eventStaffingText')}</span>
                 </div>
               </div>
 
