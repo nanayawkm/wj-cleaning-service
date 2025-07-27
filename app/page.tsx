@@ -223,7 +223,7 @@ export default function HomePage() {
               {/* Image Header */}
               <div className="relative h-40 sm:h-48 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
-                <div className="absolute inset-0 bg-[url('/images/services/event-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-[url('/images/services/Event-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <IconUsers className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                 </div>

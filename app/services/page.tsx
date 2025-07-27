@@ -249,7 +249,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Warehouse */}
             <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
@@ -262,7 +262,7 @@ export default function ServicesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4">
-                                                        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-wj-dark">
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-wj-dark">
                     <IconBuildingWarehouse className="h-6 w-6 text-wj-dark" />
                   </div>
                 </div>
@@ -308,7 +308,7 @@ export default function ServicesPage() {
             <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/images/services/industry-restaurant.jpg"
+                  src="/images/services/industry-restaurant..jpg"
                   alt="Restaurant industry"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -359,7 +359,7 @@ export default function ServicesPage() {
             </Card>
 
             {/* School */}
-            <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 md:col-span-2 lg:col-span-1">
+            <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/images/services/industry-school.jpg"
