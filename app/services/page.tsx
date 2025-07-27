@@ -308,7 +308,7 @@ export default function ServicesPage() {
             <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/images/services/industry-restaurant..jpg"
+                  src="/images/services/industry-restaurant.jpg"
                   alt="Restaurant industry"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
