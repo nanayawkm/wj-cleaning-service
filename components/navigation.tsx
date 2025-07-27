@@ -144,7 +144,7 @@ export default function Navigation() {
                   <Button
                     variant="outline"
                     onClick={handleLanguageToggle}
-                    className="w-full justify-start font-semibold border-2 border-gray-200 hover:border-wj-dark hover:text-wj-dark rounded-xl py-6 bg-transparent transition-all duration-300 hover:bg-gray-50"
+                    className="w-full justify-start font-semibold border-2 border-gray-300/50 hover:border-wj-dark hover:text-wj-dark rounded-2xl py-6 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-lg border-l-4 border-l-wj-dark/30"
                   >
                     <IconWorld className="mr-2 h-5 w-5" />
                     {language === 'en' ? 'Nederlands' : 'English'}
@@ -152,7 +152,7 @@ export default function Navigation() {
                   
                   <Button
                     variant="outline"
-                    className="w-full justify-start font-semibold border-2 border-gray-200 hover:border-wj-accent hover:text-wj-accent rounded-xl py-6 bg-transparent transition-all duration-300 hover:bg-gray-50"
+                    className="w-full justify-start font-semibold border-2 border-gray-300/50 hover:border-wj-accent hover:text-wj-accent rounded-2xl py-6 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-lg border-l-4 border-l-wj-accent/30"
                     asChild
                   >
                     <a href={`tel:${CONTACT_DETAILS.phone}`}>
@@ -161,7 +161,7 @@ export default function Navigation() {
                     </a>
                   </Button>
                   <Button 
-                    className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark font-semibold rounded-xl py-6 shadow-md hover:shadow-lg transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark font-semibold rounded-2xl py-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-wj-dark/20 hover:border-wj-dark/40"
                     asChild
                   >
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
