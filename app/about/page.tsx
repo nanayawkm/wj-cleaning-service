@@ -17,15 +17,14 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <CleaningBackground />
       {/* Hero Section */}
-      <section className="py-24 bg-wj-dark text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-wj-light rounded-full blur-3xl opacity-20"></div>
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-r from-wj-dark to-wj-accent text-white overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/20 text-white mb-6">{t('aboutUs')}</Badge>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-tight">
+            <Badge className="bg-white/20 text-white mb-4 sm:mb-6">{t('aboutUs')}</Badge>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
               {t('aboutHeroTitle')}
             </h1>
-            <p className="text-xl lg:text-2xl text-wj-light leading-relaxed font-light max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-wj-light leading-relaxed font-light max-w-3xl mx-auto px-4">
               {t('aboutHeroSubtitle')}
             </p>
           </div>
@@ -33,76 +32,67 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-16 sm:py-20 relative overflow-hidden">
         <CleaningBackground />
-        <div className="absolute top-20 right-0 w-64 h-64 bg-wj-accent-light/30 rounded-full blur-3xl opacity-30"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-wj-light/20 text-wj-dark rounded-full">
-                <span className="text-sm font-semibold">Our Story</span>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="space-y-6 sm:space-y-8">
+              <div>
+                <Badge className="bg-wj-light/20 text-wj-dark mb-3 sm:mb-4">Our Story</Badge>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Built on Trust, Driven by Excellence
+                </h2>
+                <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                  Founded by William and Jennifer, a dedicated couple who understood the importance of trust, reliability, and
+                  attention to detail. What started as a small family business has grown into a trusted partner for hundreds
+                  of satisfied customers.
+                </p>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Trusted Partners
-                <span className="block text-wj-dark">in Excellence</span>
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                William and Jennifer started WJ Cleanforce with a simple mission: to provide exceptional cleaning and
-                staffing services that exceed expectations. Their commitment to quality, reliability, and customer
-                satisfaction has made them the go-to choice for businesses and homeowners alike.
-              </p>
-              <div className="flex items-center space-x-4 p-6 bg-wj-light/10 rounded-2xl border border-wj-light/20">
-                <div className="w-12 h-12 bg-wj-dark rounded-full flex items-center justify-center text-white font-bold text-lg border-2 border-white">
-                  W
+
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconHeart className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Family-Owned Business</h3>
+                    <p className="text-sm sm:text-base text-gray-600">We treat every client like family, ensuring personalized care and attention to every detail.</p>
+                  </div>
                 </div>
-                <div className="w-12 h-12 bg-wj-accent rounded-full flex items-center justify-center text-white font-bold text-lg border-2 border-white">
-                  J
+
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconShield className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Trusted & Reliable</h3>
+                    <p className="text-sm sm:text-base text-gray-600">Our reputation is built on consistent quality, reliability, and exceptional customer service.</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-600">Founded by</p>
-                  <p className="font-semibold text-gray-900">William & Jennifer</p>
+
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
+                    <IconStar className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Excellence in Service</h3>
+                    <p className="text-sm sm:text-base text-gray-600">We go above and beyond to exceed expectations, delivering results that speak for themselves.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="relative">
-              <img
-                src="/images/pexels-karolina-grabowska-4239145.jpg"
-                alt="Professional cleaning team at work"
-                className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl">
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-wj-dark">
-                        <IconUsers className="h-6 w-6 text-wj-dark" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900">500+ Happy Customers</h3>
-                        <p className="text-gray-600">Satisfied clients across the region</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-wj-accent">
-                        <IconStar className="h-6 w-6 text-wj-accent" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900">5+ Years Experience</h3>
-                        <p className="text-gray-600">Industry expertise and reliability</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-wj-dark">
-                        <IconShield className="h-6 w-6 text-wj-dark" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900">Fully Insured</h3>
-                        <p className="text-gray-600">Complete coverage for peace of mind</p>
-                      </div>
-                    </div>
-                  </div>
+            <div className="relative order-first lg:order-last">
+              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/images/pexels-tima-miroshnichenko-6197122.jpg"
+                  alt="William and Jennifer - Founders of WJ Cleanforce"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white/90 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl">
+                  <p className="text-xs sm:text-sm font-semibold text-gray-900">William & Jennifer</p>
+                  <p className="text-xs text-gray-600">Founders, WJ Cleanforce</p>
                 </div>
               </div>
             </div>

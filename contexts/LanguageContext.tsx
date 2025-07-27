@@ -84,15 +84,15 @@ const translations = {
     readyToExperienceDesc: "Get your free quote today and discover why hundreds of customers trust WJ Cleanforce for their cleaning and staffing needs.",
     callNow: "Call Now",
     
-    // About Page
-    aboutUs: "About Us",
-    aboutHeroTitle: "Built on Trust, Delivered with Excellence",
-    aboutHeroSubtitle: "Discover the story behind WJ Cleanforce and meet the dedicated couple who built this trusted cleaning and staffing service.",
-    ourStory: "Our Story",
+    // About Page - Updated with meaningful content
+    aboutUs: "Who We Are",
+    aboutHeroTitle: "Committed to Clean Spaces, Driven by Excellence",
+    aboutHeroSubtitle: "Meet William and Jennifer, the dedicated couple behind WJ Cleanforce. We've built our reputation on trust, reliability, and exceptional service that transforms spaces and exceeds expectations.",
+    ourStory: "Our Journey",
     ourStoryDesc: "Founded by William and Jennifer, a dedicated couple who understood the importance of trust, reliability, and attention to detail. What started as a small family business has grown into a trusted partner for hundreds of satisfied customers.",
     ourMission: "Our Mission",
     ourMissionDesc: "To provide exceptional cleaning services and reliable staffing solutions that exceed expectations, while building lasting relationships based on trust and quality.",
-    ourValues: "Our Values",
+    ourValues: "Our Core Values",
     trustReliability: "Trust & Reliability",
     trustReliabilityDesc: "We build lasting relationships through consistent, dependable service delivery.",
     qualityExcellence: "Quality & Excellence",
@@ -104,23 +104,23 @@ const translations = {
     professionalTeam: "Professional Team",
     professionalTeamDesc: "Qualified and vetted professionals committed to delivering exceptional results.",
     
-    // Contact Page
-    contactUs: "Contact Us",
-    contactHeroTitle: "Get in Touch",
-    contactHeroSubtitle: "Ready to experience the difference? Contact us today for a free quote or to discuss your cleaning and staffing needs.",
-    getInTouch: "Get in Touch",
+    // Contact Page - Updated with meaningful content
+    contactUs: "Get in Touch",
+    contactHeroTitle: "Ready to Transform Your Space?",
+    contactHeroSubtitle: "Let's discuss how we can help you achieve spotless results and reliable staffing solutions. Contact us today for a personalized consultation.",
+    getInTouch: "Start Your Project",
     getInTouchDesc: "We're here to help with all your cleaning and staffing needs. Contact us today for a free consultation.",
     contactInfo: "Contact Information",
     contactInfoDesc: "Reach out to us through any of these channels. We're here to help 24/7.",
     businessHours: "Business Hours",
     businessHoursDesc: "We're available during these hours for consultations and support.",
-    sendMessage: "Send Message",
-    sendMessageDesc: "Fill out the form below and we'll get back to you within 24 hours.",
-    name: "Name",
-    email: "Email",
-    phone: "Phone",
-    message: "Message",
-    submit: "Submit",
+    sendMessage: "Send Your Message",
+    sendMessageDesc: "Fill out the form below and we'll get back to you within 24 hours with a personalized solution.",
+    name: "Full Name",
+    email: "Email Address",
+    phone: "Phone Number",
+    message: "Tell Us About Your Needs",
+    submit: "Send Message",
     submitMessage: "Thank you for your message. We'll get back to you within 24 hours.",
     
     // Company Info (Real WJ Cleaning Services info)
@@ -130,7 +130,7 @@ const translations = {
     
     // Contact
     phoneNumber: "+31 (0) 685063641",
-    email: "info@wjcleaningservices.nl",
+    contactEmail: "info@wjcleaningservices.nl",
     region: "Flevoland Region",
   },
   nl: {
@@ -252,7 +252,7 @@ const translations = {
     
     // Contact
     phoneNumber: "+31 (0) 685063641", 
-    email: "info@wjcleaningservices.nl",
+    contactEmail: "info@wjcleaningservices.nl",
     region: "Regio Flevoland",
   }
 }
