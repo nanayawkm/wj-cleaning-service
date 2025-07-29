@@ -37,7 +37,7 @@ export default function MobileBottomBar() {
             onClick={() => window.open(`https://wa.me/${t('phoneNumber').replace(/\D/g, '')}`)}
           >
             <IconMessage className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="ml-1 hidden xs:inline">WhatsApp</span>
+            <span className="ml-1 hidden xs:inline">{t('whatsapp')}</span>
           </Button>
           <Button
             className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-1 sm:px-2 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm"

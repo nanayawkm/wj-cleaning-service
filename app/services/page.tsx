@@ -162,9 +162,9 @@ export default function ServicesPage() {
                   <IconBuildingWarehouse className="h-6 w-6 text-wj-dark" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Warehouse Staffing</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t('warehouseStaffingTitle')}</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our specialisation in warehouse staffing provides reliable personnel to keep your operations running smoothly and efficiently.
+                    {t('warehouseStaffingDesc')}
                   </p>
                 </div>
               </div>
@@ -172,23 +172,23 @@ export default function ServicesPage() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Order picking and packing</span>
+                  <span className="text-gray-700">{t('orderPickingPacking')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Inventory management</span>
+                  <span className="text-gray-700">{t('inventoryManagement')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Loading and unloading</span>
+                  <span className="text-gray-700">{t('loadingUnloading')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Quality control support</span>
+                  <span className="text-gray-700">{t('qualityControlSupport')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-5 w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-gray-700">Forklift operation</span>
+                  <span className="text-gray-700">{t('forkliftOperation')}</span>
                 </div>
               </div>
 

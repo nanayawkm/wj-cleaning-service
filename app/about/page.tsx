@@ -31,21 +31,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story Section */}
+      {/* Our Mission Section */}
       <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div>
-                <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">Our Story</Badge>
+                <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">{t('ourMission')}</Badge>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
-                  Built on Trust, Driven by Excellence
+                  {t('deliveringExcellence')}
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
-                  Founded by Winfred and Jackie, a dedicated couple who understood the importance of trust, reliability, and
-                  attention to detail. What started as a small family business has grown into a trusted partner for hundreds
-                  of satisfied customers.
+                  {t('aboutDescription')}
                 </p>
               </div>
 
@@ -55,8 +53,8 @@ export default function AboutPage() {
                     <IconHeart className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Family-Owned Business</h3>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">We treat every client like family, ensuring personalized care and attention to every detail.</p>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{t('customerCentricApproach')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('customerCentricDesc')}</p>
                   </div>
                 </div>
 
@@ -65,8 +63,8 @@ export default function AboutPage() {
                     <IconShield className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Trusted & Reliable</h3>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">Our reputation is built on consistent quality, reliability, and exceptional customer service.</p>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{t('trustedReliable')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('trustedReliableDesc')}</p>
                   </div>
                 </div>
 
@@ -75,8 +73,8 @@ export default function AboutPage() {
                     <IconStar className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Excellence in Service</h3>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">We go above and beyond to exceed expectations, delivering results that speak for themselves.</p>
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{t('excellenceInService')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('excellenceInServiceDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -86,13 +84,13 @@ export default function AboutPage() {
               <div className="relative rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
-                  alt="Winfred and Jackie - Founders of WJ Cleanforce"
+                  alt="Professional cleaning team at work"
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 lg:bottom-6 lg:left-6 bg-white/90 backdrop-blur-sm p-2 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl">
-                  <p className="text-xs sm:text-sm font-semibold text-gray-900">Winfred & Jackie</p>
-                  <p className="text-xs text-gray-600">Founders, WJ Cleanforce</p>
+                  <p className="text-xs sm:text-sm font-semibold text-gray-900">{t('professionalExcellence')}</p>
+                  <p className="text-xs text-gray-600">{t('qualityServiceGuaranteed')}</p>
                 </div>
               </div>
             </div>
@@ -107,15 +105,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full mb-6">
-              <span className="text-sm font-semibold">Our Values</span>
+              <span className="text-sm font-semibold">{t('ourValues')}</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              The Principles That
-              <span className="block text-wj-accent-dark">Guide Us Daily</span>
+              {t('principlesGuideUs')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our core values shape every decision we make and every service we provide. They're the foundation of our
-              success and the reason our customers trust us.
+              {t('valuesDescription')}
             </p>
           </div>
 
@@ -126,9 +122,9 @@ export default function AboutPage() {
                     <IconHeart className="h-5 w-5 text-wj-dark" />
                   </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Passion for Excellence</h3>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{t('passionForExcellence')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    We approach every task with dedication and attention to detail, ensuring exceptional results that exceed expectations.
+                    {t('passionForExcellenceDesc')}
                   </p>
                 </div>
               </div>
@@ -220,7 +216,7 @@ export default function AboutPage() {
               <span className="block text-wj-dark">in Every Detail</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover the quality and attention to detail that sets WJ Cleaning Services apart from the competition.
+              {t('discoverQuality')}
             </p>
           </div>
 
@@ -233,8 +229,8 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-white font-semibold text-lg">Residential Cleaning</h3>
-                <p className="text-white/90 text-sm">Complete home cleaning solutions</p>
+                                  <h3 className="text-white font-semibold text-lg">{t('residentialCleaning')}</h3>
+                <p className="text-white/90 text-sm">{t('completeHomeCleaning')}</p>
               </div>
             </div>
 
@@ -259,7 +255,7 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-white font-semibold text-lg">Warehouse Staffing</h3>
+                                  <h3 className="text-white font-semibold text-lg">{t('warehouseStaffing')}</h3>
                 <p className="text-white/90 text-sm">Reliable workforce solutions</p>
               </div>
             </div>
@@ -290,7 +286,7 @@ export default function AboutPage() {
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-wj-dark bg-transparent"
               >
-                <Link href="/services">View Our Services</Link>
+                <Link href="/services">{t('viewOurServices')}</Link>
               </Button>
             </div>
           </div>

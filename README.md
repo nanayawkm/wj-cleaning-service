@@ -1,6 +1,6 @@
 # WJ Cleanforce - Professional Cleaning & Staffing Services
 
-A modern, responsive website for WJ Cleanforce, a professional cleaning and staffing services company founded by Winfred and Jackie. Built with Next.js 15, TypeScript, and Tailwind CSS.
+A modern, responsive website for WJ Cleanforce, a professional cleaning and staffing services company. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
 ![WJ Cleanforce](./public/placeholder-logo.svg)
 
@@ -175,9 +175,9 @@ npm run start
 - Email: info@wjcleanforce.com
 - Service Area: Greater Metro Area
 
-## 👥 About the Founders
+## 👥 About WJ Cleanforce
 
-Founded by Winfred and Jackie, WJ Cleanforce is built on the principles of trust, reliability, and excellence. The company provides both cleaning services and professional staffing solutions with a personal touch that sets them apart in the industry.
+WJ Cleanforce is built on the principles of trust, reliability, and excellence. The company provides both cleaning services and professional staffing solutions with a professional approach that sets us apart in the industry.
 
 ## 🤝 Contributing
 
@@ -193,6 +193,6 @@ This project is proprietary and belongs to WJ Cleanforce.
 
 ---
 
-**Built with ❤️ by Winfred & Jackie**
+**Built with ❤️ for WJ Cleanforce**
 
 *For technical support or questions about this website, please contact the development team.* 

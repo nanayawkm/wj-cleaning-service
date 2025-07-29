@@ -26,7 +26,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center space-x-3 group">
                               <div className="w-10 h-10 group-hover:scale-105 transition-transform duration-300 shadow-lg">
                   <img
-                    src="/images/logo.png"
+                    src="/images/logo1.png"
                     alt="WJ Cleaning Services"
                     className="w-full h-full object-contain"
                   />
@@ -34,8 +34,7 @@ export default function Footer() {
               <span className="text-2xl font-bold">WJ Cleanforce</span>
             </Link>
             <p className="text-gray-300 leading-relaxed text-lg">
-              Professional cleaning and staffing services built on trust, reliability, and excellence. Founded by
-              Winfred and Jackie with love and dedication to exceptional service.
+              Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.
             </p>
             <div className="flex space-x-4">
               {/* Social media buttons removed */}
@@ -50,25 +49,25 @@ export default function Footer() {
                 href="/"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Home
+                {t('home')}
               </Link>
               <Link
                 href="/about"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                About Us
+                {t('about')}
               </Link>
               <Link
                 href="/services"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Our Services
+                {t('services')}
               </Link>
               <Link
                 href="/contact"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Contact
+                {t('contact')}
               </Link>
             </div>
           </div>
@@ -81,25 +80,25 @@ export default function Footer() {
                 href="/services"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Residential Cleaning
+                {t('residentialCleaning')}
               </Link>
               <Link
                 href="/services"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Office Cleaning
+                {t('officeCleaning')}
               </Link>
               <Link
                 href="/services"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Warehouse Staffing
+                {t('warehouseStaffing')}
               </Link>
               <Link
                 href="/services"
                 className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
               >
-                Event Staffing
+                {t('eventStaffing')}
               </Link>
             </div>
           </div>

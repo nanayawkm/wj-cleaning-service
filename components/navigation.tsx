@@ -42,7 +42,7 @@ export default function Navigation() {
           <Link href="/" className="flex items-center group">
             <div className="w-24 h-12 sm:w-32 sm:h-16 group-hover:scale-105 transition-transform duration-300">
               <img
-                src="/images/logo.png"
+                src="/images/logo1.png"
                 alt="WJ Cleaning Services"
                 className="w-full h-full object-contain"
               />
@@ -91,7 +91,7 @@ export default function Navigation() {
               <a href={`tel:${CONTACT_DETAILS.phone}`}>
                 <IconPhone className="mr-1 lg:mr-2 h-3 w-3 lg:h-4 lg:w-4" />
                 <span className="hidden lg:inline">{CONTACT_DETAILS.phone}</span>
-                <span className="lg:hidden">Call</span>
+                <span className="lg:hidden">{t('callNow')}</span>
               </a>
             </Button>
             <Button
@@ -118,7 +118,7 @@ export default function Navigation() {
                 <Link href="/" className="flex items-center mb-6 sm:mb-8">
                   <div className="w-28 h-14 sm:w-32 sm:h-16">
                     <img
-                      src="/images/logo.png"
+                      src="/images/logo1.png"
                       alt="WJ Cleaning Services"
                       className="w-full h-full object-contain"
                     />

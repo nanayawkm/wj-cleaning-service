@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { IconPhone, IconMail, IconMapPin, IconClock, IconShieldCheck, IconUsers, IconStar, IconAward, IconHeart, IconDroplet, IconSparkles, IconCheck, IconBuilding, IconHome, IconBriefcase, IconBuildingWarehouse, IconSend } from '@tabler/icons-react'
+import { IconPhone, IconMail, IconMapPin, IconClock, IconShieldCheck, IconUsers, IconStar, IconAward, IconHeart, IconDroplet, IconSparkles, IconCheck, IconBuilding, IconHome, IconBriefcase, IconBuildingWarehouse, IconSend, IconMessage } from '@tabler/icons-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { CleaningBackground } from '@/components/cleaning-background'
 import { CONTACT_DETAILS } from '@/components/constant'
@@ -116,10 +116,20 @@ export default function ContactPage() {
                     className="w-full px-3 sm:px-4 pr-8 sm:pr-10 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:border-wj-dark focus:ring-wj-dark/20 bg-white text-xs sm:text-sm lg:text-base"
                   >
                     <option value="">{t('selectService')}</option>
-                    <option value="residential">{t('residentialCleaning')}</option>
-                    <option value="office">{t('officeCleaning')}</option>
-                    <option value="warehouse">{t('warehouseStaffing')}</option>
-                    <option value="event">{t('eventStaffing')}</option>
+                    {/* Cleaning Services */}
+                    <optgroup label="Cleaning Services">
+                      <option value="residential">{t('residentialCleaning')}</option>
+                      <option value="office">{t('officeCleaning')}</option>
+                    </optgroup>
+                    {/* Staffing Services */}
+                    <optgroup label="Staffing Services">
+                      <option value="warehouse">{t('warehouseStaffing')}</option>
+                      <option value="event">{t('eventStaffing')}</option>
+                      <option value="office-support">{t('officeSupportStaff')}</option>
+                      <option value="restaurant-cafe">{t('restaurantCafePersonnel')}</option>
+                      <option value="hotel">{t('hotelStaff')}</option>
+                      <option value="school">{t('schoolSupportStaff')}</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -143,6 +153,20 @@ export default function ContactPage() {
                   {t('sendMessage')}
                 </Button>
               </form>
+
+              {/* WhatsApp Option */}
+              <div className="mt-4 sm:mt-6">
+                <div className="text-center">
+                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{t('or')}</p>
+                  <Button
+                    onClick={() => window.open(`https://wa.me/${CONTACT_DETAILS.phone.replace(/\D/g, '')}`)}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base lg:text-lg"
+                  >
+                    <IconMessage className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    {t('whatsapp')} {t('us')}
+                  </Button>
+                </div>
+              </div>
             </div>
 
             {/* Contact Information */}
@@ -172,9 +196,8 @@ export default function ContactPage() {
                     <IconPhone className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Phone</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('phone')}</h3>
                     <p className="text-sm sm:text-base text-gray-600">{CONTACT_DETAILS.phone}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">Available 24/7 for emergencies</p>
                   </div>
                 </div>
 
@@ -183,9 +206,9 @@ export default function ContactPage() {
                     <IconMail className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Email</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('email')}</h3>
                     <p className="text-sm sm:text-base text-gray-600">{CONTACT_DETAILS.email}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">We respond within 2-4 hours</p>
+                    <p className="text-xs sm:text-sm text-gray-500">{t('weRespondWithin')}</p>
                   </div>
                 </div>
 
@@ -194,9 +217,9 @@ export default function ContactPage() {
                     <IconMapPin className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Service Area</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('serviceArea')}</h3>
                     <p className="text-sm sm:text-base text-gray-600">{t('region')}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">Serving the greater metropolitan area</p>
+                    <p className="text-xs sm:text-sm text-gray-500">{t('servingGreaterMetro')}</p>
                   </div>
                 </div>
 
@@ -205,22 +228,21 @@ export default function ContactPage() {
                     <IconClock className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Business Hours</h3>
-                    <p className="text-sm sm:text-base text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p className="text-xs sm:text-sm text-gray-500">Weekend appointments available</p>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('businessHours')}</h3>
+                    <p className="text-sm sm:text-base text-gray-600">{t('mondayFriday')}</p>
+                    <p className="text-xs sm:text-sm text-gray-500">{t('weekendAppointments')}</p>
                   </div>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 bg-gradient-to-r from-wj-dark to-wj-accent rounded-xl sm:rounded-2xl text-white">
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Need Immediate Assistance?</h3>
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('needImmediateAssistance')}</h3>
                 <p className="text-sm sm:text-base text-wj-light mb-4 sm:mb-6">
-                  For urgent cleaning or staffing needs, call us directly. We offer emergency services and can often
-                  accommodate same-day requests.
+                  {t('immediateAssistanceDesc')}
                 </p>
                 <Button className="w-full bg-white text-wj-dark hover:bg-wj-light/10 justify-start text-sm sm:text-base">
                   <IconPhone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  Call Now: {CONTACT_DETAILS.phone}
+                  {t('callNow')}: {CONTACT_DETAILS.phone}
                 </Button>
               </div>
             </div>
@@ -254,16 +276,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg rounded-2xl">
-              <CardHeader>
-                <CardTitle className="text-xl text-gray-900">{t('howQuicklyStart')}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 leading-relaxed">
-                  {t('howQuicklyStartAnswer')}
-                </p>
-              </CardContent>
-            </Card>
+
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
@@ -327,7 +340,7 @@ export default function ContactPage() {
                 size="lg"
                 className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold"
               >
-                <a href={`tel:${CONTACT_DETAILS.phone}`}>Call Now</a>
+                <a href={`tel:${CONTACT_DETAILS.phone}`}>{t('callNow')}</a>
               </Button>
               <Button
                 size="lg"

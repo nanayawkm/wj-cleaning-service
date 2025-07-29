@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { 
@@ -27,6 +28,7 @@ import { Badge } from "@/components/ui/badge"
 
 export default function HomePage() {
   const { t } = useLanguage()
+  const [activeTab, setActiveTab] = useState<'cleaning' | 'staffing'>('cleaning')
   
   return (
     <div className="min-h-screen bg-white">
@@ -90,7 +92,7 @@ export default function HomePage() {
                 {/* Logo with enhanced styling */}
                 <div className="relative z-10">
                   <img
-                    src="/images/logo.png"
+                    src="/images/logo1.png"
                     alt="WJ Cleaning Services"
                     className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto drop-shadow-lg"
                   />
@@ -130,122 +132,167 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
-            {/* Enhanced Residential Cleaning Card */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
-              {/* Image Header */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
-                <div className="absolute inset-0 bg-[url('/images/services/cleanclean.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <IconHome className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
-                </div>
-              </div>
-              
-              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('residentialCleaning')}</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                    {t('residentialDesc')}
-                  </p>
-                </div>
-                
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
-                >
-                  {t('learnMore')}
-                  <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                </Link>
-              </CardContent>
-            </Card>
+          {/* Tabs */}
+          <div className="flex justify-center mb-8 sm:mb-12">
+            <div className="flex bg-gray-100 rounded-xl p-1 sm:p-2 shadow-inner">
+              <button
+                onClick={() => setActiveTab('cleaning')}
+                className={`px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 ease-in-out ${
+                  activeTab === 'cleaning'
+                    ? 'bg-wj-dark text-white shadow-lg transform scale-105'
+                    : 'bg-transparent text-gray-700 hover:text-gray-900 hover:bg-gray-200'
+                }`}
+              >
+                Cleaning
+              </button>
+              <button
+                onClick={() => setActiveTab('staffing')}
+                className={`px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 ease-in-out ${
+                  activeTab === 'staffing'
+                    ? 'bg-wj-dark text-white shadow-lg transform scale-105'
+                    : 'bg-transparent text-gray-700 hover:text-gray-900 hover:bg-gray-200'
+                }`}
+              >
+                Staffing
+              </button>
+            </div>
+          </div>
 
-            {/* Enhanced Office Cleaning Card */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
-              {/* Image Header */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
-                <div className="absolute inset-0 bg-[url('/images/services/office-cleaning.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <IconBriefcase className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
-                </div>
-              </div>
-              
-              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('officeCleaning')}</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                    {t('officeDesc')}
-                  </p>
+          {/* Services Cards Container */}
+          <div className="relative">
+            {/* Cleaning Services */}
+            <div 
+              className={`grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto transition-all duration-500 ease-in-out ${
+                activeTab === 'cleaning' 
+                  ? 'opacity-100 transform translate-y-0' 
+                  : 'opacity-0 transform translate-y-4 absolute inset-0 pointer-events-none'
+              }`}
+            >
+              {/* Enhanced Residential Cleaning Card */}
+              <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate hover:scale-105">
+                {/* Image Header */}
+                <div className="relative h-40 sm:h-48 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                  <div className="absolute inset-0 bg-[url('/images/services/cleanclean.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <IconHome className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
                 </div>
                 
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
-                >
-                  {t('learnMore')}
-                  <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                </Link>
-              </CardContent>
-            </Card>
+                <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('residentialCleaning')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                      {t('residentialDesc')}
+                    </p>
+                  </div>
+                  
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base hover:shadow-xl"
+                  >
+                    {t('learnMore')}
+                    <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
 
-            {/* Enhanced Warehouse Staffing Card */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
-              {/* Image Header */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
-                <div className="absolute inset-0 bg-[url('/images/services/warehouse-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <IconBuildingWarehouse className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
-                </div>
-              </div>
-              
-              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('warehouseStaffing')}</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                    {t('warehouseDesc')}
-                  </p>
+              {/* Enhanced Office Cleaning Card */}
+              <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate hover:scale-105">
+                {/* Image Header */}
+                <div className="relative h-40 sm:h-48 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                  <div className="absolute inset-0 bg-[url('/images/services/office-cleaning.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <IconBriefcase className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
                 </div>
                 
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
-                >
-                  {t('learnMore')}
-                  <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                </Link>
-              </CardContent>
-            </Card>
+                <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('officeCleaning')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                      {t('officeDesc')}
+                    </p>
+                  </div>
+                  
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base hover:shadow-xl"
+                  >
+                    {t('learnMore')}
+                    <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* Enhanced Event Staffing Card */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate">
-              {/* Image Header */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
-                <div className="absolute inset-0 bg-[url('/images/services/Event-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <IconUsers className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
-                </div>
-              </div>
-              
-              <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('eventStaffing')}</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                    {t('eventDesc')}
-                  </p>
+            {/* Staffing Services */}
+            <div 
+              className={`grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto transition-all duration-500 ease-in-out ${
+                activeTab === 'staffing' 
+                  ? 'opacity-100 transform translate-y-0' 
+                  : 'opacity-0 transform translate-y-4 absolute inset-0 pointer-events-none'
+              }`}
+            >
+              {/* Enhanced Warehouse Staffing Card */}
+              <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate hover:scale-105">
+                {/* Image Header */}
+                <div className="relative h-40 sm:h-48 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                  <div className="absolute inset-0 bg-[url('/images/services/warehouse-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <IconBuildingWarehouse className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
                 </div>
                 
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base"
-                >
-                  {t('learnMore')}
-                  <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                </Link>
-              </CardContent>
-            </Card>
+                <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('warehouseStaffing')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                      {t('warehouseDesc')}
+                    </p>
+                  </div>
+                  
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base hover:shadow-xl"
+                  >
+                    {t('learnMore')}
+                    <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Enhanced Event Staffing Card */}
+              <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-2 sm:hover:-translate-y-4 bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col scroll-animate hover:scale-105">
+                {/* Image Header */}
+                <div className="relative h-40 sm:h-48 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-wj-dark/80 to-wj-accent/80"></div>
+                  <div className="absolute inset-0 bg-[url('/images/services/Event-staffing.jpg')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <IconUsers className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                  </div>
+                </div>
+                
+                <CardContent className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">{t('eventStaffing')}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                      {t('eventDesc')}
+                    </p>
+                  </div>
+                  
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl transition-all duration-300 group-hover:scale-105 shadow-lg text-sm sm:text-base hover:shadow-xl"
+                  >
+                    {t('learnMore')}
+                    <IconArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -323,15 +370,11 @@ export default function HomePage() {
               <div className="relative z-10">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
-                  alt="Professional cleaning team Winfred and Jackie"
+                  alt="Professional cleaning team at work"
                   className="w-full h-auto rounded-xl sm:rounded-2xl shadow-2xl"
                 />
 
-                {/* Quote badge */}
-                <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl border-2 border-wj-accent/20 before:absolute before:inset-0 before:rounded-xl before:sm:rounded-2xl before:border-2 before:border-wj-accent/40 before:content-[''] before:pointer-events-none">
-                  <p className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">"{t('excellenceInDetail')}"</p>
-                  <p className="text-xs text-gray-600">- {t('foundersQuote')}</p>
-                </div>
+
               </div>
             </div>
           </div>

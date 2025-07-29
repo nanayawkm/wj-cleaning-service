@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   description:
     "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.",
   generator: 'Next.js',
-  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleanforce', 'Winfred', 'Jackie', 'cleaning company'],
-  authors: [{ name: 'WJ Cleanforce' }, { name: 'Winfred & Jackie' }],
+  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleanforce', 'cleaning company'],
+  authors: [{ name: 'WJ Cleanforce' }],
   creator: 'WJ Cleanforce',
   publisher: 'WJ Cleanforce',
   robots: {
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description: 'Professional cleaning and staffing services built on trust, reliability, and excellence. Serving the greater metro area with residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.',
     images: [
       {
-        url: '/placeholder-logo.png',
+        url: '/images/logo1.png',
         width: 1200,
         height: 630,
         alt: 'WJ Cleanforce - Professional Cleaning & Staffing Services',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'WJ Cleanforce - Professional Cleaning & Staffing Services',
     description: 'Professional cleaning and staffing services built on trust, reliability, and excellence.',
-    images: ['/placeholder-logo.png'],
+    images: ['/images/logo1.png'],
   },
   verification: {
     google: 'your-google-verification-code',
@@ -103,16 +103,7 @@ export default function RootLayout({
                 "addressLocality": "Greater Metro Area",
                 "addressCountry": "US"
               },
-              "founder": [
-                {
-                  "@type": "Person",
-                  "name": "Winfred"
-                },
-                {
-                  "@type": "Person", 
-                  "name": "Jackie"
-                }
-              ],
+              "foundingDate": "2020",
               "serviceType": [
                 "Residential Cleaning",
                 "Office Cleaning", 
