@@ -84,7 +84,7 @@ export default function AboutPage() {
               <div className="relative rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
-                  alt="Professional cleaning team at work"
+                  alt={t('professionalCleaningTeam')}
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -224,7 +224,7 @@ export default function AboutPage() {
             <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
               <img
                 src="/images/giorgio-trovato-5TXz228u4eo-unsplash.jpg"
-                alt="Professional cleaning service"
+                                  alt={t('professionalCleaningService')}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -237,7 +237,7 @@ export default function AboutPage() {
             <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
               <img
                 src="/images/pexels-karolina-grabowska-4239145.jpg"
-                alt="Commercial cleaning service"
+                                  alt={t('commercialCleaningService')}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -250,7 +250,7 @@ export default function AboutPage() {
             <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
               <img
                 src="/images/pexels-tima-miroshnichenko-6197121.jpg"
-                alt="Warehouse staffing service"
+                                  alt={t('warehouseStaffingService')}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

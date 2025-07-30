@@ -22,7 +22,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services/newnew.jpg"
-            alt="Professional cleaning services"
+            alt={t('professionalCleaningServices')}
             fill
             className="object-cover"
             priority
@@ -76,31 +76,31 @@ export default function ServicesPage() {
               <div className="space-y-2 sm:space-y-3 lg:space-y-4">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Dusting and cleaning of all surfaces</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('dustingCleaningSurfaces')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Mopping and sweeping floors</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('moppingSweepingFloors')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Emptying dustbins and waste disposal</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('emptyingDustbinsWaste')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Cleaning and wiping of glass windows and doors</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('cleaningWipingGlass')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Bathroom and toilet cleaning</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('bathroomToiletCleaning')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">Removing empty crates and pallets that aren't needed</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('removingEmptyCrates')}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Ensuring aisles and passageways are clear of obstacles</span>
+                  <span className="text-sm sm:text-base text-gray-700">{t('ensuringClearPassageways')}</span>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function ServicesPage() {
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/services/cleaning-surfaces.jpg.jpg"
-                  alt="Professional cleaning services"
+                  alt={t('professionalCleaningServices')}
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
@@ -142,7 +142,7 @@ export default function ServicesPage() {
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <Image
                   src="/images/services/staffing-support1.jpg.jpg"
-                  alt="Professional support staff"
+                  alt={t('professionalSupportStaff')}
                   width={600}
                   height={400}
                   className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700"
@@ -255,7 +255,7 @@ export default function ServicesPage() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/images/services/industry-warehouse.jpg"
-                  alt="Warehouse industry"
+                  alt={t('warehouseIndustry')}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   quality={90}
@@ -282,7 +282,7 @@ export default function ServicesPage() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/images/services/industry-office.jpg"
-                  alt="Office industry"
+                  alt={t('officeIndustry')}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   quality={90}
@@ -309,7 +309,7 @@ export default function ServicesPage() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/images/services/industry-restaurant..jpg"
-                  alt="Restaurant industry"
+                  alt={t('restaurantIndustry')}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   quality={90}
@@ -336,7 +336,7 @@ export default function ServicesPage() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/images/services/industry-hotel.jpg"
-                  alt="Hotel industry"
+                  alt={t('hotelIndustry')}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   quality={90}
@@ -363,7 +363,7 @@ export default function ServicesPage() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/images/services/industry-school.jpg"
-                  alt="School industry"
+                  alt={t('schoolIndustry')}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   quality={90}

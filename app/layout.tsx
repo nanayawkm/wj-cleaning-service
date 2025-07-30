@@ -18,14 +18,14 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wjcleanforce.com'),
-  title: "WJ Cleanforce - Professional Cleaning & Staffing Services",
+      title: "WJ Cleaning Services - Professional Cleaning & Staffing Services",
   description:
     "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.",
   generator: 'Next.js',
-  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleanforce', 'cleaning company'],
-  authors: [{ name: 'WJ Cleanforce' }],
-  creator: 'WJ Cleanforce',
-  publisher: 'WJ Cleanforce',
+  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleaning Services', 'cleaning company'],
+      authors: [{ name: 'WJ Cleaning Services' }],
+    creator: 'WJ Cleaning Services',
+    publisher: 'WJ Cleaning Services',
   robots: {
     index: true,
     follow: true,
@@ -41,21 +41,21 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://wjcleanforce.com',
-    siteName: 'WJ Cleanforce',
-    title: 'WJ Cleanforce - Professional Cleaning & Staffing Services',
+    siteName: 'WJ Cleaning Services',
+    title: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
     description: 'Professional cleaning and staffing services built on trust, reliability, and excellence. Serving the greater metro area with residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.',
     images: [
       {
         url: '/images/logo1.png',
         width: 1200,
         height: 630,
-        alt: 'WJ Cleanforce - Professional Cleaning & Staffing Services',
+        alt: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WJ Cleanforce - Professional Cleaning & Staffing Services',
+    title: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
     description: 'Professional cleaning and staffing services built on trust, reliability, and excellence.',
     images: ['/images/logo1.png'],
   },
@@ -93,7 +93,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "WJ Cleanforce",
+              "name": "WJ Cleaning Services",
               "description": "Professional cleaning and staffing services built on trust, reliability, and excellence.",
               "url": "https://wjcleanforce.com",
               "telephone": CONTACT_DETAILS.phone,

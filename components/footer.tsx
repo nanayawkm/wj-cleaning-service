@@ -27,15 +27,15 @@ export default function Footer() {
                               <div className="w-10 h-10 group-hover:scale-105 transition-transform duration-300 shadow-lg">
                   <img
                     src="/images/logo1.png"
-                    alt="WJ Cleaning Services"
+                    alt={t('wjCleaningServices')}
                     className="w-full h-full object-contain"
                   />
                 </div>
-              <span className="text-2xl font-bold">WJ Cleanforce</span>
+                              <span className="text-2xl font-bold">WJ Cleaning Services</span>
             </Link>
-            <p className="text-gray-300 leading-relaxed text-lg">
-              Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.
-            </p>
+                          <p className="text-gray-300 leading-relaxed text-lg">
+                {t('footerDescription')}
+              </p>
             <div className="flex space-x-4">
               {/* Social media buttons removed */}
             </div>

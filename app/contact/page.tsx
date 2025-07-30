@@ -50,13 +50,13 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-3 sm:p-4 lg:p-6 bg-wj-light/10 rounded-lg sm:rounded-xl lg:rounded-2xl">
-                <IconShieldCheck className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-wj-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
-                <div>
-                  <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900">Quick Response Guaranteed</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-600">We typically respond within 2-4 hours during business hours.</p>
-                </div>
-              </div>
+                             <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-3 sm:p-4 lg:p-6 bg-wj-light/10 rounded-lg sm:rounded-xl lg:rounded-2xl">
+                 <IconShieldCheck className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-wj-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
+                 <div>
+                   <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900">{t('quickResponseGuaranteed')}</h3>
+                   <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('quickResponseDesc')}</p>
+                 </div>
+               </div>
 
               <form className="space-y-3 sm:space-y-4 lg:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
@@ -116,13 +116,17 @@ export default function ContactPage() {
                     className="w-full px-3 sm:px-4 pr-8 sm:pr-10 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:border-wj-dark focus:ring-wj-dark/20 bg-white text-xs sm:text-sm lg:text-base"
                   >
                     <option value="">{t('selectService')}</option>
-                    {/* Cleaning Services */}
-                    <optgroup label="Cleaning Services">
-                      <option value="residential">{t('residentialCleaning')}</option>
-                      <option value="office">{t('officeCleaning')}</option>
-                    </optgroup>
+                                         {/* Cleaning Services */}
+                     <optgroup label={t('cleaningServices')}>
+                       <option value="residential">{t('residentialCleaning')}</option>
+                       <option value="office">{t('officeCleaning')}</option>
+                       <option value="warehouse-cleaning">{t('warehouseCleaning')}</option>
+                       <option value="restaurant-cleaning">{t('restaurantCleaning')}</option>
+                       <option value="hotel-cleaning">{t('hotelCleaning')}</option>
+                       <option value="school-cleaning">{t('schoolCleaning')}</option>
+                     </optgroup>
                     {/* Staffing Services */}
-                    <optgroup label="Staffing Services">
+                    <optgroup label={t('staffingServices')}>
                       <option value="warehouse">{t('warehouseStaffing')}</option>
                       <option value="event">{t('eventStaffing')}</option>
                       <option value="office-support">{t('officeSupportStaff')}</option>
@@ -173,11 +177,11 @@ export default function ContactPage() {
             <div className="space-y-6 sm:space-y-8">
               <div className="mb-6 sm:mb-8">
                 <div className="w-full h-24 sm:h-32 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden bg-white border-2 border-gray-100">
-                  <img
-                    src="/images/contact us.jpg"
-                    alt="Contact us - professional cleaning service"
-                    className="w-full h-full object-cover"
-                  />
+                                     <img
+                     src="/images/contact us.jpg"
+                     alt={t('contactUsProfessionalCleaning')}
+                     className="w-full h-full object-cover"
+                   />
                 </div>
               </div>
               <div>

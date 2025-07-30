@@ -13,19 +13,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     // Update meta tags for SEO
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        language === 'nl' 
-          ? 'Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid.'
-          : 'Professional cleaning and staffing services built on trust, reliability, and excellence.'
-      )
+              metaDescription.setAttribute('content', 
+          language === 'nl' 
+            ? 'Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid. Gebouwd met toewijding aan uitzonderlijke service.'
+            : 'Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.'
+        )
     }
 
     // Update title based on language
     const title = document.querySelector('title')
     if (title) {
       title.textContent = language === 'nl' 
-        ? 'WJ Cleanforce - Professionele Schoonmaak & Personeelsdiensten'
-        : 'WJ Cleanforce - Professional Cleaning & Staffing Services'
+        ? 'WJ Cleaning Services - Professionele Schoonmaak & Personeelsdiensten'
+        : 'WJ Cleaning Services - Professional Cleaning & Staffing Services'
     }
   }, [language])
 

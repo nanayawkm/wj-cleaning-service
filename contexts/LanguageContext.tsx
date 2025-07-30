@@ -22,7 +22,7 @@ const translations = {
     
     // Hero Section
     heroTitle: "Clean Spaces, Reliable Staff",
-    heroSubtitle: "WJ Cleanforce delivers exceptional cleaning services and professional staffing solutions. From residential homes to corporate offices, we ensure spotless results and dependable workforce.",
+    heroSubtitle: "WJ Cleaning Services delivers exceptional cleaning services and professional staffing solutions. From residential homes to corporate offices, we ensure spotless results and dependable workforce.",
     getFreeQuote: "Get Free Quote",
     hireStaff: "Hire Staff Today",
     
@@ -74,7 +74,7 @@ const translations = {
     schools: "Schools",
     schoolsDesc: "Educational facility cleaning and support staff for schools and learning environments.",
     serviceExcellence: "Service Excellence",
-    whyChooseWJ: "Why Choose WJ Cleanforce",
+    whyChooseWJ: "Why Choose WJ Cleaning Services",
     qualityAssured: "Quality Assured",
     qualityAssuredDesc: "Every service is backed by our quality guarantee and attention to detail.",
     fullyInsured: "Fully Insured",
@@ -82,15 +82,15 @@ const translations = {
     support247: "24/7 Support",
     support247Desc: "Round-the-clock availability for emergencies and urgent needs.",
     readyToExperience: "Ready to Experience the Difference?",
-    readyToExperienceDesc: "Get your free quote today and discover why hundreds of customers trust WJ Cleanforce for their cleaning and staffing needs.",
+    readyToExperienceDesc: "Get your free quote today and discover why hundreds of customers trust WJ Cleaning Services for their cleaning and staffing needs.",
     callNow: "Call Now",
     
     // About Page - Updated with meaningful content
     aboutUs: "Who We Are",
     aboutHeroTitle: "Committed to Clean Spaces, Driven by Excellence",
-    aboutHeroSubtitle: "WJ Cleanforce is committed to delivering exceptional cleaning and staffing services. We've built our reputation on trust, reliability, and exceptional service that transforms spaces and exceeds expectations.",
+    aboutHeroSubtitle: "WJ Cleaning Services is committed to delivering exceptional cleaning and staffing services. We've built our reputation on trust, reliability, and exceptional service that transforms spaces and exceeds expectations.",
     ourStory: "Our Journey",
-    ourStoryDesc: "WJ Cleanforce was established with a clear understanding of the importance of trust, reliability, and attention to detail. What started as a small business has grown into a trusted partner for hundreds of satisfied customers.",
+    ourStoryDesc: "WJ Cleaning Services was established with a clear understanding of the importance of trust, reliability, and attention to detail. What started as a small business has grown into a trusted partner for hundreds of satisfied customers.",
     ourMission: "Our Mission",
     ourMissionDesc: "To provide exceptional cleaning services and reliable staffing solutions that exceed expectations, while building lasting relationships based on trust and quality.",
     ourValues: "Our Core Values",
@@ -136,9 +136,9 @@ const translations = {
     
     // Additional translations for hardcoded text
     professionalCleaningStaffing: "Professional Cleaning & Staffing Solutions",
-    aboutWJCleanforce: "About WJ Cleanforce",
+    aboutWJCleanforce: "About WJ Cleaning Services",
     trustedPartnersExcellence: "Trusted Partners in Excellence",
-    aboutDescription: "WJ Cleanforce was established with a simple mission: to provide exceptional cleaning and staffing services that exceed expectations. Our commitment to quality, reliability, and customer satisfaction has made us the go-to choice for businesses and homeowners alike.",
+    aboutDescription: "WJ Cleaning Services was established with a simple mission: to provide exceptional cleaning and staffing services that exceed expectations. Our commitment to quality, reliability, and customer satisfaction has made us the go-to choice for businesses and homeowners alike.",
     experienceYearsDesc: "Our team has over 5 years of experience in the cleaning industry.",
     personalizedSchedulesDesc: "Customized cleaning schedules that perfectly match your preferences.",
     extraHygieneDesc: "Extra attention to hygiene for a completely clean and healthy environment.",
@@ -146,7 +146,7 @@ const translations = {
     foundersQuote: "Winfred & Jackie, Founders",
     howItWorks: "How It Works",
     simpleProcessOutstanding: "Simple Process, Outstanding Results",
-    howItWorksDesc: "Getting started with WJ Cleanforce is easy. Our streamlined process ensures you get the service you need quickly and efficiently.",
+    howItWorksDesc: "Getting started with WJ Cleaning Services is easy. Our streamlined process ensures you get the service you need quickly and efficiently.",
     getYourQuote: "Get Your Quote",
     getYourQuoteDesc: "Contact us for a free consultation. We'll assess your needs and provide a transparent, competitive quote.",
     scheduleService: "Schedule Service",
@@ -154,7 +154,7 @@ const translations = {
     enjoyCleanSpaces: "Enjoy Clean Spaces",
     enjoyCleanSpacesDesc: "Sit back and relax while our professional team delivers exceptional results that exceed your expectations.",
     readyToGetStarted: "Ready to Get Started?",
-    experienceDifference: "Experience the WJ Cleanforce Difference Today",
+    experienceDifference: "Experience the WJ Cleaning Services Difference Today",
     ctaDescription: "Join hundreds of satisfied customers who trust us with their cleaning and staffing needs. Get your free quote in minutes.",
     getFreeQuoteNow: "Get Free Quote Now",
     whatsappUs: "WhatsApp Us",
@@ -195,7 +195,7 @@ const translations = {
     // About page specific translations
     readyToWorkTogether: "Ready to Work Together?",
     letsBuildAmazing: "Let's Build Something Amazing Together",
-    aboutCtaDescription: "Ready to experience the WJ Cleanforce difference? Contact us today for a free consultation and discover how we can help you achieve your goals.",
+    aboutCtaDescription: "Ready to experience the WJ Cleaning Services difference? Contact us today for a free consultation and discover how we can help you achieve your goals.",
     getStartedToday: "Get Started Today",
     viewOurServices: "View Our Services",
     ourMission: "Our Mission",
@@ -224,6 +224,15 @@ const translations = {
     or: "or",
     us: "us",
     
+    // Cleaning service items
+    dustingCleaningSurfaces: "Dusting and cleaning of all surfaces",
+    moppingSweepingFloors: "Mopping and sweeping floors",
+    emptyingDustbinsWaste: "Emptying dustbins and waste disposal",
+    cleaningWipingGlass: "Cleaning and wiping of glass windows and doors",
+    bathroomToiletCleaning: "Bathroom and toilet cleaning",
+    removingEmptyCrates: "Removing empty crates and pallets that aren't needed",
+    ensuringClearPassageways: "Ensuring aisles and passageways are clear of obstacles",
+    
     // Form and UI translations
     selectService: "Select a service",
     serviceType: "Service Type",
@@ -237,6 +246,40 @@ const translations = {
     weekendAppointments: "Weekend appointments available",
     whatsapp: "WhatsApp",
     other: "Other",
+    
+    // Contact form translations
+    cleaningServices: "Cleaning Services",
+    staffingServices: "Staffing Services",
+    
+    // Industry alt text translations
+    warehouseIndustry: "Warehouse industry",
+    officeIndustry: "Office industry", 
+    restaurantIndustry: "Restaurant industry",
+    hotelIndustry: "Hotel industry",
+    schoolIndustry: "School industry",
+    
+    // Image alt text translations
+    professionalCleaningServices: "Professional cleaning services",
+    professionalSupportStaff: "Professional support staff",
+    wjCleaningServices: "WJ Cleaning Services",
+    professionalCleaningService: "Professional cleaning service",
+    commercialCleaningService: "Commercial cleaning service",
+    warehouseStaffingService: "Warehouse staffing service",
+    
+    // Contact page specific translations
+    quickResponseGuaranteed: "Quick Response Guaranteed",
+    quickResponseDesc: "We typically respond within 2-4 hours during business hours.",
+    contactUsProfessionalCleaning: "Contact us - professional cleaning service",
+    professionalCleaningTeam: "Professional cleaning team at work",
+    
+    // Additional cleaning service translations
+    warehouseCleaning: "Warehouse Cleaning",
+    restaurantCleaning: "Restaurant/Cafe Cleaning",
+    hotelCleaning: "Hotel Cleaning",
+    schoolCleaning: "School Cleaning",
+    
+    // Footer translations
+    footerDescription: "Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.",
   },
   nl: {
     // Navigation  
@@ -248,7 +291,7 @@ const translations = {
     
     // Hero Section
     heroTitle: "Schone Ruimtes, Betrouwbaar Personeel",
-    heroSubtitle: "WJ Cleanforce levert uitzonderlijke schoonmaakdiensten en professionele personeelsoplossingen. Van particuliere woningen tot kantoren, wij zorgen voor vlekkeloze resultaten.",
+    heroSubtitle: "WJ Cleaning Services levert uitzonderlijke schoonmaakdiensten en professionele personeelsoplossingen. Van particuliere woningen tot kantoren, wij zorgen voor vlekkeloze resultaten.",
     getFreeQuote: "Gratis Offerte",
     hireStaff: "Personeel Inhuren",
     
@@ -300,7 +343,7 @@ const translations = {
     schools: "Scholen",
     schoolsDesc: "Educatieve faciliteit schoonmaak en ondersteunend personeel voor scholen en leeromgevingen.",
     serviceExcellence: "Service Uitmuntendheid",
-    whyChooseWJ: "Waarom Kiezen voor WJ Cleanforce",
+    whyChooseWJ: "Waarom Kiezen voor WJ Cleaning Services",
     qualityAssured: "Gegarandeerde Kwaliteit",
     qualityAssuredDesc: "Elke service wordt ondersteund door onze kwaliteitsgarantie en aandacht voor detail.",
     fullyInsured: "Volledig Verzekerd",
@@ -308,15 +351,15 @@ const translations = {
     support247: "24/7 Ondersteuning",
     support247Desc: "Rond-de-klok beschikbaarheid voor noodgevallen en urgente behoeften.",
     readyToExperience: "Klaar om het Verschil te Ervaren?",
-    readyToExperienceDesc: "Krijg vandaag nog uw gratis offerte en ontdek waarom honderden klanten WJ Cleanforce vertrouwen voor hun schoonmaak- en personeelsbehoeften.",
+    readyToExperienceDesc: "Krijg vandaag nog uw gratis offerte en ontdek waarom honderden klanten WJ Cleaning Services vertrouwen voor hun schoonmaak- en personeelsbehoeften.",
     callNow: "Nu Bellen",
     
     // About Page
     aboutUs: "Over Ons",
     aboutHeroTitle: "Vertrouwen en Uitmuntendheid in Elke Service",
-    aboutHeroSubtitle: "WJ Cleanforce is uw betrouwbare partner voor professionele schoonmaak- en personeelsdiensten. Wij leveren uitmuntende resultaten die uw verwachtingen overtreffen.",
+    aboutHeroSubtitle: "WJ Cleaning Services is uw betrouwbare partner voor professionele schoonmaak- en personeelsdiensten. Wij leveren uitmuntende resultaten die uw verwachtingen overtreffen.",
     ourStory: "Onze Geschiedenis",
-    ourStoryDesc: "WJ Cleanforce is opgericht met een duidelijk begrip van het belang van vertrouwen, betrouwbaarheid en aandacht voor detail. Wat begon als een klein bedrijf is uitgegroeid tot een vertrouwde partner.",
+    ourStoryDesc: "WJ Cleaning Services is opgericht met een duidelijk begrip van het belang van vertrouwen, betrouwbaarheid en aandacht voor detail. Wat begon als een klein bedrijf is uitgegroeid tot een vertrouwde partner.",
     ourMission: "Onze Missie",
     ourMissionDesc: "Om uitmuntende schoonmaakdiensten en betrouwbare personeelsoplossingen te leveren die verwachtingen bovenstebruiken, terwijl we langdurige relaties opbouwen op vertrouwen en kwaliteit.",
     ourValues: "Onze Waarden",
@@ -362,16 +405,16 @@ const translations = {
     
     // Additional translations for hardcoded text
     professionalCleaningStaffing: "Professionele Schoonmaak & Personeelsoplossingen",
-    aboutWJCleanforce: "Over WJ Cleanforce",
+    aboutWJCleanforce: "Over WJ Cleaning Services",
     trustedPartnersExcellence: "Vertrouwde Partners in Uitmuntendheid",
-    aboutDescription: "WJ Cleanforce is opgericht met een eenvoudige missie: het leveren van uitzonderlijke schoonmaak- en personeelsdiensten die verwachtingen overtreffen. Onze toewijding aan kwaliteit, betrouwbaarheid en klanttevredenheid heeft ons tot de eerste keuze gemaakt voor bedrijven en huiseigenaren.",
+    aboutDescription: "WJ Cleaning Services is opgericht met een eenvoudige missie: het leveren van uitzonderlijke schoonmaak- en personeelsdiensten die verwachtingen overtreffen. Onze toewijding aan kwaliteit, betrouwbaarheid en klanttevredenheid heeft ons tot de eerste keuze gemaakt voor bedrijven en huiseigenaren.",
     experienceYearsDesc: "Ons team heeft meer dan 5 jaar ervaring in de schoonmaaksector.",
     personalizedSchedulesDesc: "Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.",
     extraHygieneDesc: "Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.",
     excellenceInDetail: "Uitmuntendheid in Elk Detail",
     howItWorks: "Hoe Het Werkt",
     simpleProcessOutstanding: "Eenvoudig Proces, Uitzonderlijke Resultaten",
-    howItWorksDesc: "Beginnen met WJ Cleanforce is eenvoudig. Ons gestroomlijnde proces zorgt ervoor dat je snel en efficiënt de service krijgt die je nodig hebt.",
+    howItWorksDesc: "Beginnen met WJ Cleaning Services is eenvoudig. Ons gestroomlijnde proces zorgt ervoor dat je snel en efficiënt de service krijgt die je nodig hebt.",
     getYourQuote: "Krijg Je Offerte",
     getYourQuoteDesc: "Neem contact met ons op voor een gratis consultatie. We beoordelen je behoeften en geven een transparante, concurrerende offerte.",
     scheduleService: "Plan Service",
@@ -379,7 +422,7 @@ const translations = {
     enjoyCleanSpaces: "Geniet van Schone Ruimtes",
     enjoyCleanSpacesDesc: "Leun achterover en ontspan terwijl ons professionele team uitzonderlijke resultaten levert die je verwachtingen overtreffen.",
     readyToGetStarted: "Klaar om te Beginnen?",
-    experienceDifference: "Ervaar het WJ Cleanforce Verschil Vandaag",
+    experienceDifference: "Ervaar het WJ Cleaning Services Verschil Vandaag",
     ctaDescription: "Sluit je aan bij honderden tevreden klanten die ons vertrouwen met hun schoonmaak- en personeelsbehoeften. Krijg je gratis offerte in minuten.",
     getFreeQuoteNow: "Krijg Nu Gratis Offerte",
     whatsappUs: "WhatsApp Ons",
@@ -420,7 +463,7 @@ const translations = {
     // About page specific translations
     readyToWorkTogether: "Klaar om Samen te Werken?",
     letsBuildAmazing: "Laten We Iets Geweldigs Samen Bouwen",
-    aboutCtaDescription: "Klaar om het WJ Cleanforce verschil te ervaren? Neem vandaag contact met ons op voor een gratis consultatie en ontdek hoe we je kunnen helpen je doelen te bereiken.",
+    aboutCtaDescription: "Klaar om het WJ Cleaning Services verschil te ervaren? Neem vandaag contact met ons op voor een gratis consultatie en ontdek hoe we je kunnen helpen je doelen te bereiken.",
     getStartedToday: "Begin Vandaag",
     viewOurServices: "Bekijk Onze Diensten",
     ourMission: "Onze Missie",
@@ -449,6 +492,15 @@ const translations = {
     or: "of",
     us: "ons",
     
+    // Cleaning service items
+    dustingCleaningSurfaces: "Stoffen en reinigen van alle oppervlakken",
+    moppingSweepingFloors: "Dweilen en vegen van vloeren",
+    emptyingDustbinsWaste: "Legen van prullenbakken en afvalverwerking",
+    cleaningWipingGlass: "Reinigen en afnemen van glazen ramen en deuren",
+    bathroomToiletCleaning: "Badkamer en toilet reiniging",
+    removingEmptyCrates: "Verwijderen van lege kratten en pallets die niet nodig zijn",
+    ensuringClearPassageways: "Zorgen dat gangen en doorgangen vrij zijn van obstakels",
+    
     // Form and UI translations
     selectService: "Selecteer een service",
     serviceType: "Type Service",
@@ -462,6 +514,40 @@ const translations = {
     weekendAppointments: "Weekend afspraken beschikbaar",
     whatsapp: "WhatsApp",
     other: "Anders",
+    
+    // Contact form translations
+    cleaningServices: "Schoonmaakdiensten",
+    staffingServices: "Personeelsdiensten",
+    
+    // Industry alt text translations
+    warehouseIndustry: "Magazijn industrie",
+    officeIndustry: "Kantoor industrie",
+    restaurantIndustry: "Restaurant industrie", 
+    hotelIndustry: "Hotel industrie",
+    schoolIndustry: "School industrie",
+    
+    // Image alt text translations
+    professionalCleaningServices: "Professionele schoonmaakdiensten",
+    professionalSupportStaff: "Professioneel ondersteunend personeel",
+    wjCleaningServices: "WJ Schoonmaakdiensten",
+    professionalCleaningService: "Professionele schoonmaakservice",
+    commercialCleaningService: "Commerciële schoonmaakservice",
+    warehouseStaffingService: "Magazijn personeel service",
+    
+    // Contact page specific translations
+    quickResponseGuaranteed: "Snelle Reactie Gegarandeerd",
+    quickResponseDesc: "Wij reageren meestal binnen 2-4 uur tijdens kantooruren.",
+    contactUsProfessionalCleaning: "Contact met ons - professionele schoonmaakservice",
+    professionalCleaningTeam: "Professioneel schoonmaakteam aan het werk",
+    
+    // Additional cleaning service translations
+    warehouseCleaning: "Magazijn Schoonmaak",
+    restaurantCleaning: "Restaurant/Café Schoonmaak",
+    hotelCleaning: "Hotel Schoonmaak",
+    schoolCleaning: "School Schoonmaak",
+    
+    // Footer translations
+    footerDescription: "Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid. Gebouwd met toewijding aan uitzonderlijke service.",
   }
 }
 

@@ -43,7 +43,7 @@ export default function Navigation() {
             <div className="w-24 h-12 sm:w-32 sm:h-16 group-hover:scale-105 transition-transform duration-300">
               <img
                 src="/images/logo1.png"
-                alt="WJ Cleaning Services"
+                alt={t('wjCleaningServices')}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -119,7 +119,7 @@ export default function Navigation() {
                   <div className="w-28 h-14 sm:w-32 sm:h-16">
                     <img
                       src="/images/logo1.png"
-                      alt="WJ Cleaning Services"
+                      alt={t('wjCleaningServices')}
                       className="w-full h-full object-contain"
                     />
                   </div>

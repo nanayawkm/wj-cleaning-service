@@ -1,8 +1,8 @@
-# WJ Cleanforce - Professional Cleaning & Staffing Services
+# WJ Cleaning Services - Professional Cleaning & Staffing Services
 
-A modern, responsive website for WJ Cleanforce, a professional cleaning and staffing services company. Built with Next.js 15, TypeScript, and Tailwind CSS.
+A modern, responsive website for WJ Cleaning Services, a professional cleaning and staffing services company. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
-![WJ Cleanforce](./public/placeholder-logo.svg)
+![WJ Cleaning Services](./public/placeholder-logo.svg)
 
 ## ✨ Features
 
@@ -170,14 +170,14 @@ npm run start
 
 ## 📞 Contact Information
 
-**WJ Cleanforce**
+**WJ Cleaning Services**
 - Phone: (555) 123-4567
 - Email: info@wjcleanforce.com
 - Service Area: Greater Metro Area
 
-## 👥 About WJ Cleanforce
+## 👥 About WJ Cleaning Services
 
-WJ Cleanforce is built on the principles of trust, reliability, and excellence. The company provides both cleaning services and professional staffing solutions with a professional approach that sets us apart in the industry.
+WJ Cleaning Services is built on the principles of trust, reliability, and excellence. The company provides both cleaning services and professional staffing solutions with a professional approach that sets us apart in the industry.
 
 ## 🤝 Contributing
 
@@ -189,10 +189,10 @@ WJ Cleanforce is built on the principles of trust, reliability, and excellence. 
 
 ## 📄 License
 
-This project is proprietary and belongs to WJ Cleanforce.
+This project is proprietary and belongs to WJ Cleaning Services.
 
 ---
 
-**Built with ❤️ for WJ Cleanforce**
+**Built with ❤️ for WJ Cleaning Services**
 
 *For technical support or questions about this website, please contact the development team.* 

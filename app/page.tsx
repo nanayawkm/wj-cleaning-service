@@ -93,7 +93,7 @@ export default function HomePage() {
                 <div className="relative z-10">
                   <img
                     src="/images/logo1.png"
-                    alt="WJ Cleaning Services"
+                    alt={t('wjCleaningServices')}
                     className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto drop-shadow-lg"
                   />
                 </div>
@@ -370,7 +370,7 @@ export default function HomePage() {
               <div className="relative z-10">
                 <img
                   src="/images/pexels-tima-miroshnichenko-6197122.jpg"
-                  alt="Professional cleaning team at work"
+                  alt={t('professionalCleaningTeam')}
                   className="w-full h-auto rounded-xl sm:rounded-2xl shadow-2xl"
                 />
 
