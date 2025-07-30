@@ -500,9 +500,9 @@ export default function HomePage() {
             </div>
 
             <div className="flex justify-center scroll-animate">
-              <div className="p-4 sm:p-6 bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20">
-                <div className="text-2xl sm:text-4xl font-bold text-white mb-1 sm:mb-2">100%</div>
-                <div className="text-sm sm:text-base text-wj-light font-medium">{t('satisfactionGuaranteed')}</div>
+              <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-white/20 shadow-lg">
+                <div className="text-2xl sm:text-4xl font-bold text-wj-dark mb-1 sm:mb-2">100%</div>
+                <div className="text-sm sm:text-base text-gray-600 font-medium">{t('satisfactionGuaranteed')}</div>
               </div>
             </div>
 
