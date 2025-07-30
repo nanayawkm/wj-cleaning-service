@@ -97,7 +97,7 @@ export default function RootLayout({
               "description": "Professional cleaning and staffing services built on trust, reliability, and excellence.",
               "url": "https://wjcleanforce.com",
               "telephone": CONTACT_DETAILS.phone,
-              "email": "info@wjcleanforce.com",
+              "email": "info@wjcleaningservices.nl",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Greater Metro Area",

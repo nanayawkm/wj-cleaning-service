@@ -172,7 +172,7 @@ npm run start
 
 **WJ Cleaning Services**
 - Phone: (555) 123-4567
-- Email: info@wjcleanforce.com
+- Email: info@wjcleaningservices.nl
 - Service Area: Greater Metro Area
 
 ## 👥 About WJ Cleaning Services
