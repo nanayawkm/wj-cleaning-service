@@ -17,15 +17,24 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://wjcleanforce.com'),
-      title: "WJ Cleaning Services - Professional Cleaning & Staffing Services",
-  description:
-    "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.",
+  metadataBase: new URL('https://wjcleaningservices.nl'),
+  title: {
+    default: "WJ Cleaning Services - Professional Cleaning & Staffing Services",
+    template: "%s | WJ Cleaning Services"
+  },
+  description: "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions in Lelystad, Netherlands.",
   generator: 'Next.js',
-  keywords: ['cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleaning Services', 'cleaning company'],
-      authors: [{ name: 'WJ Cleaning Services' }],
-    creator: 'WJ Cleaning Services',
-    publisher: 'WJ Cleaning Services',
+  keywords: [
+    'cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 
+    'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleaning Services', 
+    'cleaning company', 'Lelystad', 'Netherlands', 'commercial cleaning', 'industrial cleaning',
+    'hotel cleaning', 'restaurant cleaning', 'school cleaning', 'warehouse cleaning'
+  ],
+  authors: [{ name: 'WJ Cleaning Services' }],
+  creator: 'WJ Cleaning Services',
+  publisher: 'WJ Cleaning Services',
+  category: 'Cleaning Services',
+  classification: 'Business',
   robots: {
     index: true,
     follow: true,
@@ -40,16 +49,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://wjcleanforce.com',
+    url: 'https://wjcleaningservices.nl',
     siteName: 'WJ Cleaning Services',
     title: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
-    description: 'Professional cleaning and staffing services built on trust, reliability, and excellence. Serving the greater metro area with residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.',
+    description: 'Professional cleaning and staffing services built on trust, reliability, and excellence. Serving Lelystad and surrounding areas with residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.',
     images: [
       {
         url: '/images/logo1.png',
         width: 1200,
         height: 630,
         alt: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
+        type: 'image/png',
       },
     ],
   },
@@ -58,19 +68,30 @@ export const metadata: Metadata = {
     title: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
     description: 'Professional cleaning and staffing services built on trust, reliability, and excellence.',
     images: ['/images/logo1.png'],
+    creator: '@wjcleaningservices',
   },
   verification: {
     google: 'your-google-verification-code',
   },
   alternates: {
-    canonical: 'https://wjcleanforce.com',
+    canonical: 'https://wjcleaningservices.nl',
   },
+  icons: {
+    icon: [
+      { url: '/images/logo1.png', sizes: 'any', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/images/logo1.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  themeColor: '#1f2937',
 }
 
 export default function RootLayout({
@@ -83,10 +104,14 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="canonical" href="https://wjcleanforce.com" />
+        <link rel="canonical" href="https://wjcleaningservices.nl" />
+        <link rel="icon" type="image/png" href="/images/logo1.png" />
+        <link rel="apple-touch-icon" href="/images/logo1.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
+        <meta name="theme-color" content="#1f2937" />
+        <meta name="msapplication-TileColor" content="#1f2937" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -95,23 +120,35 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "name": "WJ Cleaning Services",
               "description": "Professional cleaning and staffing services built on trust, reliability, and excellence.",
-              "url": "https://wjcleanforce.com",
+              "url": "https://wjcleaningservices.nl",
               "telephone": CONTACT_DETAILS.phone,
-              "email": "info@wjcleaningservices.nl",
+              "email": CONTACT_DETAILS.email,
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Greater Metro Area",
-                "addressCountry": "US"
+                "streetAddress": CONTACT_DETAILS.address,
+                "addressLocality": CONTACT_DETAILS.city,
+                "addressCountry": CONTACT_DETAILS.country
               },
               "foundingDate": "2020",
               "serviceType": [
                 "Residential Cleaning",
                 "Office Cleaning", 
+                "Warehouse Cleaning",
+                "Restaurant/Cafe Cleaning",
+                "Hotel Cleaning",
+                "School Cleaning",
                 "Warehouse Staffing",
-                "Event Staffing"
+                "Event Staffing",
+                "Office Support Staff",
+                "Restaurant/Cafe Personnel",
+                "Hotel Staff",
+                "School Support Staff"
               ],
-              "areaServed": "Greater Metro Area",
-              "priceRange": "$$"
+              "areaServed": "Lelystad, Netherlands",
+              "priceRange": "$$",
+              "sameAs": [
+                "https://wjcleaningservices.nl"
+              ]
             })
           }}
         />

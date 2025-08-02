@@ -1,0 +1,21 @@
+{
+  "name": "WJ Cleaning Services",
+  "short_name": "WJ Cleaning",
+  "description": "Professional cleaning and staffing services built on trust, reliability, and excellence.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1f2937",
+  "theme_color": "#1f2937",
+  "icons": [
+    {
+      "src": "/images/logo1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 

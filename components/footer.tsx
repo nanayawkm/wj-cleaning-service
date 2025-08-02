@@ -151,6 +151,24 @@ export default function Footer() {
               </Link>
             </div>
           </div>
+          {/* Designed and developed by Quube - Bottom Left */}
+          <div className="flex justify-start mt-6">
+            <a
+              href="https://www.quubetech.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 text-base flex items-center gap-3 hover:text-gray-300 transition-colors duration-300 group"
+              aria-label="Quube Technology"
+            >
+              <span>{t('designedByQuube')}</span>
+              <img
+                src="/images/Quube_logo_new.PNG"
+                alt="Quube"
+                className="h-12 w-auto group-hover:opacity-80 transition-opacity"
+                style={{ objectFit: "contain" }}
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -174,6 +174,7 @@ const translations = {
     privacyPolicy: "Privacy Policy",
     termsOfService: "Terms of Service",
     cookiePolicy: "Cookie Policy",
+    designedByQuube: "Designed and developed by",
     
     // FAQ translations
     frequentlyAskedQuestions: "Frequently Asked Questions",
@@ -412,6 +413,7 @@ const translations = {
     personalizedSchedulesDesc: "Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.",
     extraHygieneDesc: "Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.",
     excellenceInDetail: "Uitmuntendheid in Elk Detail",
+    foundersQuote: "WJ Cleaning Services",
     howItWorks: "Hoe Het Werkt",
     simpleProcessOutstanding: "Eenvoudig Proces, Uitzonderlijke Resultaten",
     howItWorksDesc: "Beginnen met WJ Cleaning Services is eenvoudig. Ons gestroomlijnde proces zorgt ervoor dat je snel en efficiënt de service krijgt die je nodig hebt.",
@@ -442,6 +444,7 @@ const translations = {
     privacyPolicy: "Privacybeleid",
     termsOfService: "Algemene voorwaarden",
     cookiePolicy: "Cookiebeleid",
+    designedByQuube: "Ontwikkeld en ontworpen door",
     
     // FAQ translations
     frequentlyAskedQuestions: "Veelgestelde Vragen",
