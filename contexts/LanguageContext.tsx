@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { CONTACT_DETAILS } from '@/components/constant'
 
 type Language = 'en' | 'nl'
@@ -193,29 +193,47 @@ const translations = {
     satisfactionGuarantee: "What is your satisfaction guarantee?",
     satisfactionGuaranteeAnswer: "We offer a 100% satisfaction guarantee. If you're not completely satisfied with our service, we'll return to fix it at no additional cost.",
     
+    // Contact page FAQ translations
+    schedulingFlexibility: "Scheduling Flexibility",
+    schedulingFlexibilityAnswer: "We offer flexible scheduling options to accommodate your needs, including early morning, evening, and weekend appointments.",
+    emergencyServices: "Emergency Services",
+    emergencyServicesAnswer: "Yes, we provide emergency cleaning services for urgent situations. Contact us immediately for rapid response.",
+    qualityGuarantee: "Quality Guarantee",
+    qualityGuaranteeAnswer: "We stand behind our work with a quality guarantee. If you're not satisfied, we'll make it right.",
+    
     // About page specific translations
     readyToWorkTogether: "Ready to Work Together?",
     letsBuildAmazing: "Let's Build Something Amazing Together",
     aboutCtaDescription: "Ready to experience the WJ Cleaning Services difference? Contact us today for a free consultation and discover how we can help you achieve your goals.",
     getStartedToday: "Get Started Today",
     viewOurServices: "View Our Services",
-    ourMission: "Our Mission",
     deliveringExcellence: "Delivering Excellence in Every Service",
-    aboutDescription: "WJ Cleaning Services is committed to providing exceptional cleaning and staffing solutions that exceed expectations. We understand that every client has unique needs, and we tailor our services to deliver the highest quality results while maintaining the utmost professionalism and reliability.",
     customerCentricApproach: "Customer-Centric Approach",
     customerCentricDesc: "We prioritize your satisfaction with personalized care and attention to every detail of your project.",
     trustedReliable: "Trusted & Reliable",
-    trustedReliableDesc: "Our reputation is built on consistent quality, reliability, and exceptional customer service.",
     excellenceInService: "Excellence in Service",
     excellenceInServiceDesc: "We go above and beyond to exceed expectations, delivering results that speak for themselves.",
     professionalExcellence: "Professional Excellence",
     qualityServiceGuaranteed: "Quality Service Guaranteed",
-    ourValues: "Our Values",
     principlesGuideUs: "The Principles That Guide Us Daily",
     valuesDescription: "Our core values shape every decision we make and every service we provide. They're the foundation of our success and the reason our customers trust us.",
     passionForExcellence: "Passion for Excellence",
     passionForExcellenceDesc: "We approach every task with dedication and attention to detail, ensuring exceptional results that exceed expectations.",
     discoverQuality: "Discover the quality and attention to detail that sets WJ Cleaning Services apart from the competition.",
+    
+    // Values section translations
+    trustReliabilityTitle: "Trust & Reliability",
+    timelyServiceTitle: "Timely Service",
+    timelyServiceDesc: "Respecting your time with punctual arrivals and efficient service delivery that fits your schedule.",
+    qualityAssuranceTitle: "Quality Assurance",
+    qualityAssuranceDesc: "Maintaining the highest standards through rigorous quality control and continuous improvement processes.",
+    customerFocusTitle: "Customer Focus",
+    customerFocusDesc: "Putting your needs first with personalized solutions and responsive support that adapts to your requirements.",
+    continuousGrowthTitle: "Continuous Growth",
+    continuousGrowthDesc: "Embracing innovation and learning to deliver cutting-edge solutions that evolve with industry standards.",
+    ourWork: "Our Work",
+    professionalExcellenceInEveryDetail: "Professional Excellence in Every Detail",
+    
     completeHomeCleaning: "Complete home cleaning solutions",
     orderPickingPacking: "Order picking and packing",
     inventoryManagement: "Inventory management",
@@ -225,14 +243,12 @@ const translations = {
     or: "or",
     us: "us",
     
-    // Cleaning service items
-    dustingCleaningSurfaces: "Dusting and cleaning of all surfaces",
-    moppingSweepingFloors: "Mopping and sweeping floors",
-    emptyingDustbinsWaste: "Emptying dustbins and waste disposal",
-    cleaningWipingGlass: "Cleaning and wiping of glass windows and doors",
-    bathroomToiletCleaning: "Bathroom and toilet cleaning",
-    removingEmptyCrates: "Removing empty crates and pallets that aren't needed",
-    ensuringClearPassageways: "Ensuring aisles and passageways are clear of obstacles",
+    // Service descriptions
+    floorCareMaintenance: "Floor care and maintenance",
+    wasteCollectionDisposal: "Waste collection and disposal",
+    restroomCleaning: "Restroom cleaning",
+    glassWindowCleaning: "Glass and window cleaning",
+    generalUpkeep: "General upkeep of workspaces and common areas",
     
     // Form and UI translations
     selectService: "Select a service",
@@ -463,29 +479,47 @@ const translations = {
     satisfactionGuarantee: "Wat is jullie tevredenheidsgarantie?",
     satisfactionGuaranteeAnswer: "We bieden een 100% tevredenheidsgarantie. Als je niet volledig tevreden bent met onze service, komen we terug om het gratis op te lossen.",
     
+    // Contact page FAQ translations
+    schedulingFlexibility: "Planning Flexibiliteit",
+    schedulingFlexibilityAnswer: "Wij bieden flexibele planningsopties om aan uw behoeften te voldoen, inclusief vroege ochtend-, avond- en weekendafspraken.",
+    emergencyServices: "Spoeddiensten",
+    emergencyServicesAnswer: "Ja, wij bieden spoedschoonmaakdiensten voor urgente situaties. Neem direct contact met ons op voor snelle reactie.",
+    qualityGuarantee: "Kwaliteitsgarantie",
+    qualityGuaranteeAnswer: "Wij staan achter ons werk met een kwaliteitsgarantie. Als u niet tevreden bent, maken wij het goed.",
+    
     // About page specific translations
     readyToWorkTogether: "Klaar om Samen te Werken?",
     letsBuildAmazing: "Laten We Iets Geweldigs Samen Bouwen",
     aboutCtaDescription: "Klaar om het WJ Cleaning Services verschil te ervaren? Neem vandaag contact met ons op voor een gratis consultatie en ontdek hoe we je kunnen helpen je doelen te bereiken.",
     getStartedToday: "Begin Vandaag",
     viewOurServices: "Bekijk Onze Diensten",
-    ourMission: "Onze Missie",
     deliveringExcellence: "Uitmuntendheid Leveren in Elke Service",
-    aboutDescription: "WJ Cleaning Services is toegewijd aan het leveren van uitzonderlijke schoonmaak- en personeelsoplossingen die verwachtingen overtreffen. Wij begrijpen dat elke klant unieke behoeften heeft en wij passen onze diensten aan om de hoogste kwaliteitsresultaten te leveren.",
     customerCentricApproach: "Klantgerichte Aanpak",
     customerCentricDesc: "Wij prioriteren uw tevredenheid met persoonlijke zorg en aandacht voor elk detail van uw project.",
     trustedReliable: "Betrouwbaar & Betrouwbaar",
-    trustedReliableDesc: "Onze reputatie is gebouwd op consistente kwaliteit, betrouwbaarheid en uitzonderlijke klantenservice.",
     excellenceInService: "Uitmuntendheid in Service",
     excellenceInServiceDesc: "Wij gaan boven en beyond om verwachtingen te overtreffen en leveren resultaten die voor zich spreken.",
     professionalExcellence: "Professionele Uitmuntendheid",
     qualityServiceGuaranteed: "Gegarandeerde Kwaliteitsservice",
-    ourValues: "Onze Waarden",
     principlesGuideUs: "De Principes Die Ons Dagelijks Leiden",
     valuesDescription: "Onze kernwaarden vormen elke beslissing die wij nemen en elke service die wij leveren. Zij zijn de basis van ons succes en de reden waarom onze klanten ons vertrouwen.",
     passionForExcellence: "Passie voor Uitmuntendheid",
     passionForExcellenceDesc: "Wij benaderen elke taak met toewijding en aandacht voor detail, waarbij wij uitzonderlijke resultaten garanderen die verwachtingen overtreffen.",
     discoverQuality: "Ontdek de kwaliteit en aandacht voor detail die WJ Cleaning Services onderscheidt van de concurrentie.",
+    
+    // Values section translations
+    trustReliabilityTitle: "Vertrouwen & Betrouwbaarheid",
+    timelyServiceTitle: "Tijdelijke Service",
+    timelyServiceDesc: "Respect voor uw tijd met stipte aankomsten en efficiënte service die past bij uw schema.",
+    qualityAssuranceTitle: "Kwaliteitsgarantie",
+    qualityAssuranceDesc: "Het handhaven van de hoogste normen door rigoureuze kwaliteitscontrole en continue verbeteringsprocessen.",
+    customerFocusTitle: "Klantgerichtheid",
+    customerFocusDesc: "Uw behoeften op de eerste plaats stellen met gepersonaliseerde oplossingen en responsieve ondersteuning die zich aanpast aan uw vereisten.",
+    continuousGrowthTitle: "Continue Groei",
+    continuousGrowthDesc: "Innovatie en leren omarmen om geavanceerde oplossingen te leveren die evolueren met industriestandaarden.",
+    ourWork: "Ons Werk",
+    professionalExcellenceInEveryDetail: "Professionele Uitmuntendheid in Elk Detail",
+    
     completeHomeCleaning: "Complete particuliere schoonmaakoplossingen",
     orderPickingPacking: "Order picking en verpakking",
     inventoryManagement: "Voorraadbeheer",
@@ -495,14 +529,12 @@ const translations = {
     or: "of",
     us: "ons",
     
-    // Cleaning service items
-    dustingCleaningSurfaces: "Stoffen en reinigen van alle oppervlakken",
-    moppingSweepingFloors: "Dweilen en vegen van vloeren",
-    emptyingDustbinsWaste: "Legen van prullenbakken en afvalverwerking",
-    cleaningWipingGlass: "Reinigen en afnemen van glazen ramen en deuren",
-    bathroomToiletCleaning: "Badkamer en toilet reiniging",
-    removingEmptyCrates: "Verwijderen van lege kratten en pallets die niet nodig zijn",
-    ensuringClearPassageways: "Zorgen dat gangen en doorgangen vrij zijn van obstakels",
+    // Service descriptions
+    floorCareMaintenance: "Vloeronderhoud en onderhoud",
+    wasteCollectionDisposal: "Afvalinzameling en -verwerking",
+    restroomCleaning: "Toilet- en badkamerreiniging",
+    glassWindowCleaning: "Glas- en raamreiniging",
+    generalUpkeep: "Algemeen onderhoud van werkruimtes en gemeenschappelijke ruimtes",
     
     // Form and UI translations
     selectService: "Selecteer een service",
@@ -557,11 +589,35 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('nl') // Default to Dutch
+  const [language, setLanguage] = useState<Language>('en')
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['en']] || key
   }
+
+  // Update HTML lang attribute and meta tags when language changes
+  useEffect(() => {
+    // Update the html lang attribute when language changes
+    document.documentElement.lang = language
+    
+    // Update meta tags for SEO
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        language === 'nl' 
+          ? 'Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid. Gebouwd met toewijding aan uitzonderlijke service.'
+          : 'Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.'
+      )
+    }
+
+    // Update title based on language
+    const title = document.querySelector('title')
+    if (title) {
+      title.textContent = language === 'nl' 
+        ? 'WJ Cleaning Services - Professionele Schoonmaak & Personeelsdiensten'
+        : 'WJ Cleaning Services - Professional Cleaning & Staffing Services'
+    }
+  }, [language])
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>

@@ -38,7 +38,7 @@ export default function HomePage() {
         {/* Abstract Decorative Blob */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-wj-light rounded-full blur-3xl opacity-20 transform translate-x-32 -translate-y-32"></div>
 
-        <div className="relative container mx-auto px-4 py-16 sm:py-20 lg:py-32">
+        <div className="relative container mx-auto px-4 sm:px-6 md:px-8 py-16 sm:py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="space-y-6 lg:space-y-8">
               <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 scroll-animate">
@@ -46,10 +46,10 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-4 lg:space-y-6">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight scroll-animate">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight scroll-animate">
                   {t('heroTitle')}
                 </h1>
-                <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 leading-relaxed font-light scroll-animate">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl text-blue-100 leading-relaxed font-light scroll-animate">
                   {t('heroSubtitle')}
                 </p>
               </div>
@@ -119,15 +119,15 @@ export default function HomePage() {
         {/* Purple decorative blob */}
         <div className="absolute top-20 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-purple-200 rounded-full blur-3xl opacity-30"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-wj-lighter/20 text-wj-dark rounded-full mb-4 sm:mb-6 scroll-animate">
               <span className="text-xs sm:text-sm font-semibold">{t('ourServices')}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight scroll-animate">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight scroll-animate leading-tight">
               {t('servicesTitle')}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 scroll-animate">
+            <p className="text-lg sm:text-xl md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6 scroll-animate">
               {t('servicesSubtitle')}
             </p>
           </div>
@@ -301,7 +301,7 @@ export default function HomePage() {
       <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
         {/* Subtle Cleaning Icons Background */}
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-0 items-center min-h-[500px] sm:min-h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
             {/* Left side - White background with content */}
             <div className="bg-white p-8 sm:p-12 lg:p-16 h-full flex flex-col justify-center">
@@ -311,10 +311,10 @@ export default function HomePage() {
                 </div>
 
                 <div className="space-y-4 sm:space-y-6">
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight scroll-animate">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight scroll-animate">
                     {t('trustedPartnersExcellence')}
                   </h2>
-                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed scroll-animate">
+                  <p className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-600 leading-relaxed scroll-animate">
                     {t('aboutDescription')}
                   </p>
                 </div>
@@ -373,8 +373,6 @@ export default function HomePage() {
                   alt={t('professionalCleaningTeam')}
                   className="w-full h-auto rounded-xl sm:rounded-2xl shadow-2xl"
                 />
-
-
               </div>
             </div>
           </div>
@@ -383,20 +381,19 @@ export default function HomePage() {
 
       {/* How It Works Section - Accent Background */}
       <section className="py-16 sm:py-20 lg:py-24 bg-wj-accent-light/10 relative overflow-hidden">
-
         
         {/* Blue decorative blob */}
         <div className="absolute bottom-20 left-0 w-80 h-80 bg-wj-light/30 rounded-full blur-3xl opacity-20"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full mb-6 scroll-animate">
               <span className="text-sm font-semibold">{t('howItWorks')}</span>
             </div>
-            <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 scroll-animate">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 scroll-animate">
               {t('simpleProcessOutstanding')}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed scroll-animate">
+            <p className="text-xl md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed scroll-animate">
               {t('howItWorksDesc')}
             </p>
           </div>
@@ -411,7 +408,7 @@ export default function HomePage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="absolute -bottom-2 right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg z-10">
                   <span className="text-lg sm:text-xl font-bold text-wj-dark">1</span>
                 </div>
               </div>
@@ -430,7 +427,7 @@ export default function HomePage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="absolute -bottom-2 right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg z-10">
                   <span className="text-lg sm:text-xl font-bold text-wj-dark">2</span>
                 </div>
               </div>
@@ -449,7 +446,7 @@ export default function HomePage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="absolute -bottom-2 right-2 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-wj-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg z-10">
                   <span className="text-lg sm:text-xl font-bold text-wj-dark">3</span>
                 </div>
               </div>
@@ -467,17 +464,17 @@ export default function HomePage() {
         {/* Blue decorative blob */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-wj-light rounded-full blur-3xl opacity-10"></div>
 
-        <div className="container mx-auto px-4 text-center relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center relative">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 scroll-animate">
               <span className="text-sm font-medium">{t('readyToGetStarted')}</span>
             </div>
 
-            <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight scroll-animate">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight scroll-animate">
               {t('experienceDifference')}
             </h2>
 
-            <p className="text-xl text-wj-light mb-12 max-w-2xl mx-auto leading-relaxed scroll-animate">
+            <p className="text-xl md:text-xl text-wj-light mb-12 sm:mb-16 max-w-2xl mx-auto leading-relaxed scroll-animate">
               {t('ctaDescription')}
             </p>
 

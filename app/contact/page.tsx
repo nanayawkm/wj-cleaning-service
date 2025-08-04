@@ -20,13 +20,13 @@ export default function ContactPage() {
       <CleaningBackground />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('contactUs')}</Badge>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight">
               {t('contactHeroTitle')}
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-wj-light leading-relaxed px-2 sm:px-4">
+            <p className="text-base sm:text-lg md:text-lg lg:text-xl text-wj-light leading-relaxed px-2 sm:px-4 md:px-6">
               {t('contactHeroSubtitle')}
             </p>
           </div>
@@ -36,7 +36,7 @@ export default function ContactPage() {
       {/* Contact Form Section */}
       <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-start">
             {/* Contact Form */}
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
@@ -257,7 +257,7 @@ export default function ContactPage() {
       {/* FAQ Section */}
       <section className="py-20 bg-gradient-to-r from-wj-light/10 to-wj-accent-light/10 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-16">
             <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('frequentlyAskedQuestions')}</Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -306,22 +306,33 @@ export default function ContactPage() {
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">{t('provideSupplies')}</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('schedulingFlexibility')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  {t('provideSuppliesAnswer')}
+                  {t('schedulingFlexibilityAnswer')}
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-900">{t('satisfactionGuarantee')}</CardTitle>
+                <CardTitle className="text-xl text-gray-900">{t('emergencyServices')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  {t('satisfactionGuaranteeAnswer')}
+                  {t('emergencyServicesAnswer')}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-xl text-gray-900">{t('qualityGuarantee')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 leading-relaxed">
+                  {t('qualityGuaranteeAnswer')}
                 </p>
               </CardContent>
             </Card>

@@ -36,7 +36,7 @@ export default function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-md shadow-sm">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Enhanced Logo */}
           <Link href="/" className="flex items-center group">

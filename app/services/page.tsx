@@ -31,13 +31,13 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-wj-dark/85 to-wj-accent/85"></div>
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="bg-white/30 text-white mb-3 sm:mb-4 lg:mb-6 backdrop-blur-md font-semibold text-xs sm:text-sm">{t('ourServices')}</Badge>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight drop-shadow-lg">
               {t('servicesTitle')}
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-white leading-relaxed drop-shadow-lg font-medium px-2 sm:px-4">
+            <p className="text-base sm:text-lg md:text-lg lg:text-xl text-white leading-relaxed drop-shadow-lg font-medium px-2 sm:px-4 md:px-6">
               {t('servicesSubtitle')}
             </p>
           </div>
@@ -47,13 +47,13 @@ export default function ServicesPage() {
       {/* Cleaning Services Section */}
       <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">{t('commercialIndustrial')}</Badge>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
               {t('comprehensiveCleaning')}
             </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4 md:px-6">
               {t('comprehensiveCleaningDesc')}
             </p>
           </div>
@@ -76,31 +76,23 @@ export default function ServicesPage() {
               <div className="space-y-2 sm:space-y-3 lg:space-y-4">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('dustingCleaningSurfaces')}</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('floorCareMaintenance')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('moppingSweepingFloors')}</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('wasteCollectionDisposal')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('emptyingDustbinsWaste')}</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('restroomCleaning')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('cleaningWipingGlass')}</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('glassWindowCleaning')}</span>
                 </div>
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('bathroomToiletCleaning')}</span>
-                </div>
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <IconCheck className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('removingEmptyCrates')}</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <IconCheck className="h-4 w-4 sm:h-5 sm:w-5 text-wj-accent flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">{t('ensuringClearPassageways')}</span>
+                  <span className="text-xs sm:text-sm lg:text-base text-gray-700">{t('generalUpkeep')}</span>
                 </div>
               </div>
             </div>
@@ -125,7 +117,7 @@ export default function ServicesPage() {
       {/* Personnel Outsourcing Section */}
       <section className="py-20 bg-wj-accent-light/10 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-16">
             <Badge className="bg-wj-accent-light/20 text-wj-accent-dark mb-4">{t('personnelOutsourcing')}</Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -238,7 +230,7 @@ export default function ServicesPage() {
       {/* Industries We Serve Section */}
       <section className="py-20 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-16">
             <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('industriesWeServe')}</Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -391,7 +383,7 @@ export default function ServicesPage() {
       {/* Service Excellence Section */}
       <section className="py-20 bg-wj-accent-light/10 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-16">
             <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('serviceExcellence')}</Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -438,7 +430,7 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-wj-dark/90 to-wj-accent/90"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl lg:text-6xl font-bold mb-8">
               {t('readyToExperience')}

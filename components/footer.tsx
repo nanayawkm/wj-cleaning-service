@@ -19,7 +19,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="container mx-auto px-4 py-20 relative">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-20 relative">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
           {/* Enhanced Company Info */}
           <div className="space-y-6">
@@ -106,35 +106,41 @@ export default function Footer() {
           {/* Contact & Newsletter */}
           <div>
             <h3 className="text-xl font-bold mb-8 text-white">{t('stayConnected')}</h3>
-            <div className="space-y-6 mb-8">
-              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark flex-shrink-0">
                   <IconPhone className="h-5 w-5 text-wj-dark" />
                 </div>
-                                  <a href={`tel:${CONTACT_DETAILS.phone}`} className="text-gray-300 text-lg">{CONTACT_DETAILS.phone}</a>
+                <a href={`tel:${CONTACT_DETAILS.phone}`} className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300">
+                  {CONTACT_DETAILS.phone}
+                </a>
               </div>
-                              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
-                    <IconMail className="h-5 w-5 text-wj-accent" />
-                  </div>
-                <a href={`mailto:${CONTACT_DETAILS.email}`} className="text-gray-300 text-lg">{CONTACT_DETAILS.email}</a>
+              
+              <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent flex-shrink-0">
+                  <IconMail className="h-5 w-5 text-wj-accent" />
+                </div>
+                <a href={`mailto:${CONTACT_DETAILS.email}`} className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300 break-all">
+                  {CONTACT_DETAILS.email}
+                </a>
               </div>
-                              <div className="flex items-center space-x-4 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
-                    <IconMapPin className="h-5 w-5 text-wj-accent" />
-                  </div>
-                    <a href={CONTACT_DETAILS.googlemap} target="_blank" className="text-gray-300 text-lg">{CONTACT_DETAILS.address}, {CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}</a>
+              
+              <div className="flex items-start space-x-3 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent flex-shrink-0 mt-1">
+                  <IconMapPin className="h-5 w-5 text-wj-accent" />
+                </div>
+                <a href={CONTACT_DETAILS.googlemap} target="_blank" className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300">
+                  {CONTACT_DETAILS.address}, {CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}
+                </a>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
 
       {/* Bottom Footer */}
       <div className="border-t border-gray-800 relative">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2">
               <p className="text-gray-400 text-lg">© {new Date().getFullYear()} WJ Cleaning Services. {t('allRightsReserved')}</p>

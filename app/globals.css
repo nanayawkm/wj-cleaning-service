@@ -82,50 +82,131 @@
   }
 }
 
-/* Scroll Animations */
+/* Responsive Improvements */
+@layer utilities {
+  /* Better text sizing for medium screens */
+  .text-responsive-xl {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .text-responsive-3xl {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  .text-responsive-4xl {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  /* Better spacing for medium screens */
+  .space-responsive-y {
+    @apply space-y-4 sm:space-y-6 md:space-y-8;
+  }
+  
+  .space-responsive-x {
+    @apply space-x-4 sm:space-x-6 md:space-x-8;
+  }
+  
+  /* Better padding for medium screens */
+  .p-responsive {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+  
+  .px-responsive {
+    @apply px-4 sm:px-6 md:px-8;
+  }
+  
+  .py-responsive {
+    @apply py-4 sm:py-6 md:py-8;
+  }
+  
+  /* Better margins for medium screens */
+  .m-responsive {
+    @apply m-4 sm:m-6 md:m-8;
+  }
+  
+  .mx-responsive {
+    @apply mx-4 sm:mx-6 md:mx-8;
+  }
+  
+  .my-responsive {
+    @apply my-4 sm:my-6 md:my-8;
+  }
+  
+  /* Better gaps for medium screens */
+  .gap-responsive {
+    @apply gap-4 sm:gap-6 md:gap-8;
+  }
+  
+  /* Ensure content doesn't touch screen edges on medium screens */
+  .safe-padding {
+    @apply px-4 sm:px-6 md:px-8 lg:px-12;
+  }
+  
+  /* Better container max-widths for different screen sizes */
+  .container-responsive {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12;
+  }
+}
+
+/* Scroll Animations - Optimized for Performance */
 @layer utilities {
   .animate-fade-in-up {
-    animation: fadeInUp 0.7s ease-out forwards;
+    animation: fadeInUp 0.6s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-1 {
-    animation: fadeInUp 0.7s ease-out 0.1s forwards;
+    animation: fadeInUp 0.6s ease-out 0.1s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-2 {
-    animation: fadeInUp 0.7s ease-out 0.2s forwards;
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-3 {
-    animation: fadeInUp 0.7s ease-out 0.3s forwards;
+    animation: fadeInUp 0.6s ease-out 0.3s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-4 {
-    animation: fadeInUp 0.7s ease-out 0.4s forwards;
+    animation: fadeInUp 0.6s ease-out 0.4s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-5 {
-    animation: fadeInUp 0.7s ease-out 0.5s forwards;
+    animation: fadeInUp 0.6s ease-out 0.5s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-6 {
-    animation: fadeInUp 0.7s ease-out 0.6s forwards;
+    animation: fadeInUp 0.6s ease-out 0.6s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-up-delay-7 {
-    animation: fadeInUp 0.7s ease-out 0.7s forwards;
+    animation: fadeInUp 0.6s ease-out 0.7s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-right {
-    animation: fadeInRight 0.7s ease-out forwards;
+    animation: fadeInRight 0.6s ease-out forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-right-delay-4 {
-    animation: fadeInRight 0.7s ease-out 0.4s forwards;
+    animation: fadeInRight 0.6s ease-out 0.4s forwards;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in-right-delay-6 {
-    animation: fadeInRight 0.7s ease-out 0.6s forwards;
+    animation: fadeInRight 0.6s ease-out 0.6s forwards;
+    will-change: transform, opacity;
   }
   
   .opacity-0 {
@@ -163,11 +244,12 @@
   }
 }
 
-/* Intersection Observer Animation Classes */
+/* Intersection Observer Animation Classes - Optimized */
 .scroll-animate {
   opacity: 0;
   transform: translateY(1rem);
-  transition: all 0.7s ease-out;
+  transition: all 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .scroll-animate.scroll-animate-in {
@@ -178,7 +260,8 @@
 .scroll-animate-right {
   opacity: 0;
   transform: translateX(1rem);
-  transition: all 0.7s ease-out;
+  transition: all 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .scroll-animate-right.scroll-animate-in {
@@ -186,7 +269,13 @@
   transform: translateX(0);
 }
 
-/* Respect reduced motion preference */
+/* Performance optimizations */
+.scroll-animate,
+.scroll-animate-right {
+  contain: layout style paint;
+}
+
+/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   .scroll-animate,
   .scroll-animate-right,
@@ -205,5 +294,147 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* Additional responsive fixes for medium screens */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Ensure text doesn't get too large on medium screens */
+  .md\:text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .md\:text-6xl {
+    font-size: 3rem;
+  }
+  
+  .md\:text-7xl {
+    font-size: 3.5rem;
+  }
+  
+  /* Better spacing for medium screens */
+  .md\:space-y-8 {
+    margin-top: 2rem;
+  }
+  
+  .md\:space-y-12 {
+    margin-top: 3rem;
+  }
+  
+  /* Ensure proper container padding */
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Ensure content doesn't overflow on smaller screens */
+@media (max-width: 767px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Prevent text from being too large on mobile */
+  .text-7xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-6xl {
+    font-size: 2rem;
+  }
+  
+  .text-5xl {
+    font-size: 1.75rem;
+  }
+}
+
+/* Additional margin fixes for all screen sizes */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Ensure minimum margins on all devices */
+.container {
+  min-width: 320px;
+  max-width: 1400px;
+}
+
+/* Better safe area handling */
+@supports (padding: max(0px)) {
+  .container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Optimize for better scrolling performance */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Reduce repaints during scroll */
+.container,
+.section {
+  contain: layout style;
+}
+
+/* Optimize images for better performance */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Reduce layout thrashing */
+.grid,
+.flex {
+  contain: layout;
+}
+
+/* Additional margin improvements for better spacing */
+@media (min-width: 768px) {
+  /* Add extra margin for medium screens and up */
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Add extra margin for large screens */
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* Add extra margin for extra large screens */
+  .container {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+/* Ensure content has minimum safe margins */
+.section {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }

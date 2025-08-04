@@ -18,13 +18,13 @@ export default function AboutPage() {
       <CleaningBackground />
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 lg:py-20 xl:py-24 2xl:py-32 bg-gradient-to-r from-wj-dark to-wj-accent text-white overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('aboutUs')}</Badge>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight">
               {t('aboutHeroTitle')}
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-wj-light leading-relaxed font-light max-w-3xl mx-auto px-2 sm:px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-wj-light leading-relaxed font-light max-w-3xl mx-auto px-2 sm:px-4 md:px-6">
               {t('aboutHeroSubtitle')}
             </p>
           </div>
@@ -34,7 +34,7 @@ export default function AboutPage() {
       {/* Our Mission Section */}
       <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <CleaningBackground />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
       <section className="py-24 bg-wj-accent-light/10 relative overflow-hidden">
         <CleaningBackground />
         <div className="absolute bottom-20 left-0 w-80 h-80 bg-wj-light/30 rounded-full blur-3xl opacity-20"></div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full mb-6">
               <span className="text-sm font-semibold">{t('ourValues')}</span>
@@ -117,10 +117,10 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                              <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
-                    <IconHeart className="h-5 w-5 text-wj-dark" />
-                  </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
+                  <IconHeart className="h-5 w-5 text-wj-dark" />
+                </div>
                 <div className="flex-1">
                   <h3 className="text-base font-semibold text-gray-900 mb-2">{t('passionForExcellence')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -131,70 +131,70 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                              <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
-                    <IconShield className="h-5 w-5 text-wj-accent" />
-                  </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
+                  <IconShield className="h-5 w-5 text-wj-accent" />
+                </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Trust & Reliability</h3>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{t('trustReliabilityTitle')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Building lasting relationships through consistent, dependable service and transparent communication.
+                    {t('trustReliabilityDesc')}
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                              <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
-                    <IconClock className="h-5 w-5 text-wj-dark" />
-                  </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
+                  <IconClock className="h-5 w-5 text-wj-dark" />
+                </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Timely Service</h3>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{t('timelyServiceTitle')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Respecting your time with punctual arrivals and efficient service delivery that fits your schedule.
+                    {t('timelyServiceDesc')}
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                              <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
-                    <IconStar className="h-5 w-5 text-wj-accent" />
-                  </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
+                  <IconStar className="h-5 w-5 text-wj-accent" />
+                </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Quality Assurance</h3>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{t('qualityAssuranceTitle')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Maintaining the highest standards through rigorous quality control and continuous improvement processes.
+                    {t('qualityAssuranceDesc')}
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                              <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
-                    <IconUsers className="h-5 w-5 text-wj-dark" />
-                  </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark">
+                  <IconUsers className="h-5 w-5 text-wj-dark" />
+                </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Customer Focus</h3>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{t('customerFocusTitle')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Putting your needs first with personalized solutions and responsive support that adapts to your requirements.
+                    {t('customerFocusDesc')}
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                              <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
-                    <IconAward className="h-5 w-5 text-wj-accent" />
-                  </div>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent">
+                  <IconAward className="h-5 w-5 text-wj-accent" />
+                </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Continuous Growth</h3>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{t('continuousGrowthTitle')}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Embracing innovation and learning to deliver cutting-edge solutions that evolve with industry standards.
+                    {t('continuousGrowthDesc')}
                   </p>
                 </div>
               </div>
@@ -209,11 +209,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-wj-light/20 text-wj-dark rounded-full mb-6">
-              <span className="text-sm font-semibold">Our Work</span>
+              <span className="text-sm font-semibold">{t('ourWork')}</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Professional Excellence
-              <span className="block text-wj-dark">in Every Detail</span>
+              {t('professionalExcellenceInEveryDetail')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               {t('discoverQuality')}
