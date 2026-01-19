@@ -41,7 +41,7 @@ export default function MobileBottomBar() {
           </Button>
           <Button
             className="flex-1 bg-wj-accent hover:bg-wj-accent-dark text-white font-semibold py-2.5 sm:py-3 px-1 sm:px-2 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm"
-            onClick={() => window.open(`mailto:${t('email')}`)}
+            onClick={() => window.open(`mailto:${t('contactEmail')}`)}
           >
             <IconMail className="h-4 w-4 sm:h-5 sm:w-5" />
             <span className="ml-1 hidden xs:inline">{t('email')}</span>

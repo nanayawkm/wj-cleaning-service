@@ -241,8 +241,8 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-white font-semibold text-lg">Commercial Cleaning</h3>
-                <p className="text-white/90 text-sm">Professional office and facility cleaning</p>
+                <h3 className="text-white font-semibold text-lg">{t('commercialCleaning')}</h3>
+                <p className="text-white/90 text-sm">{t('commercialCleaningDesc')}</p>
               </div>
             </div>
 
@@ -255,7 +255,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                   <h3 className="text-white font-semibold text-lg">{t('warehouseStaffing')}</h3>
-                <p className="text-white/90 text-sm">Reliable workforce solutions</p>
+                <p className="text-white/90 text-sm">{t('reliableWorkforce')}</p>
               </div>
             </div>
           </div>

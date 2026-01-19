@@ -134,6 +134,15 @@ const translations = {
     contactEmail: "info@wjcleaningservices.nl",
     region: "Flevoland Region",
     
+    // Mobile bottom bar
+    callNow: "Call Now",
+    whatsapp: "WhatsApp",
+    email: "Email",
+    
+    // Service tabs
+    cleaning: "Cleaning",
+    staffing: "Staffing",
+    
     // Additional translations for hardcoded text
     professionalCleaningStaffing: "Professional Cleaning & Staffing Solutions",
     aboutWJCleanforce: "About WJ Cleaning Services",
@@ -211,6 +220,7 @@ const translations = {
     customerCentricApproach: "Customer-Centric Approach",
     customerCentricDesc: "We prioritize your satisfaction with personalized care and attention to every detail of your project.",
     trustedReliable: "Trusted & Reliable",
+    trustedReliableDesc: "Building lasting relationships through consistent, dependable service delivery.",
     excellenceInService: "Excellence in Service",
     excellenceInServiceDesc: "We go above and beyond to exceed expectations, delivering results that speak for themselves.",
     professionalExcellence: "Professional Excellence",
@@ -297,6 +307,11 @@ const translations = {
     
     // Footer translations
     footerDescription: "Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.",
+    
+    // Gallery section translations
+    commercialCleaning: "Commercial Cleaning",
+    commercialCleaningDesc: "Professional office and facility cleaning",
+    reliableWorkforce: "Reliable workforce solutions",
   },
   nl: {
     // Navigation  
@@ -420,6 +435,15 @@ const translations = {
     contactEmail: "info@wjcleaningservices.nl",
     region: "Regio Flevoland",
     
+    // Mobile bottom bar
+    callNow: "Nu Bellen",
+    whatsapp: "WhatsApp",
+    email: "E-mail",
+    
+    // Service tabs
+    cleaning: "Schoonmaak",
+    staffing: "Personeel",
+    
     // Additional translations for hardcoded text
     professionalCleaningStaffing: "Professionele Schoonmaak & Personeelsoplossingen",
     aboutWJCleanforce: "Over WJ Cleaning Services",
@@ -496,7 +520,8 @@ const translations = {
     deliveringExcellence: "Uitmuntendheid Leveren in Elke Service",
     customerCentricApproach: "Klantgerichte Aanpak",
     customerCentricDesc: "Wij prioriteren uw tevredenheid met persoonlijke zorg en aandacht voor elk detail van uw project.",
-    trustedReliable: "Betrouwbaar & Betrouwbaar",
+    trustedReliable: "Betrouwbaar & Vertrouwd",
+    trustedReliableDesc: "Langdurige relaties opbouwen door consistente, betrouwbare dienstverlening.",
     excellenceInService: "Uitmuntendheid in Service",
     excellenceInServiceDesc: "Wij gaan boven en beyond om verwachtingen te overtreffen en leveren resultaten die voor zich spreken.",
     professionalExcellence: "Professionele Uitmuntendheid",
@@ -583,16 +608,36 @@ const translations = {
     
     // Footer translations
     footerDescription: "Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid. Gebouwd met toewijding aan uitzonderlijke service.",
+    
+    // Gallery section translations
+    commercialCleaning: "Commerciële Schoonmaak",
+    commercialCleaningDesc: "Professionele kantoor- en faciliteitsreiniging",
+    reliableWorkforce: "Betrouwbare personeelsoplossingen",
   }
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en')
+  const [language, setLanguage] = useState<Language>(() => {
+    // Check if we're in the browser and get saved language
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('wj-language')
+      return (saved === 'nl' || saved === 'en') ? saved as Language : 'en'
+    }
+    return 'en'
+  })
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['en']] || key
+  }
+
+  // Save language preference to localStorage
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('wj-language', lang)
+    }
   }
 
   // Update HTML lang attribute and meta tags when language changes
@@ -620,7 +665,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [language])
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   )

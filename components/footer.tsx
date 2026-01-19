@@ -130,7 +130,7 @@ export default function Footer() {
                   <IconMapPin className="h-5 w-5 text-wj-accent" />
                 </div>
                 <a href={CONTACT_DETAILS.googlemap} target="_blank" className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300">
-                  {CONTACT_DETAILS.address}, {CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}
+                  {CONTACT_DETAILS.address ? `${CONTACT_DETAILS.address}, ` : ''}{CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}
                 </a>
               </div>
             </div>

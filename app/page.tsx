@@ -143,7 +143,7 @@ export default function HomePage() {
                     : 'bg-transparent text-gray-700 hover:text-gray-900 hover:bg-gray-200'
                 }`}
               >
-                Cleaning
+                {t('cleaning')}
               </button>
               <button
                 onClick={() => setActiveTab('staffing')}
@@ -153,7 +153,7 @@ export default function HomePage() {
                     : 'bg-transparent text-gray-700 hover:text-gray-900 hover:bg-gray-200'
                 }`}
               >
-                Staffing
+                {t('staffing')}
               </button>
             </div>
           </div>
