@@ -26,7 +26,7 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-wj-cream">
-      <section className="relative overflow-hidden bg-wj-dark py-16 text-white sm:py-20">
+      <section className="relative overflow-hidden bg-wj-dark pb-16 pt-32 text-white sm:pb-20 sm:pt-40">
         <Image
           src="/images/services/services-hero.webp"
           alt={t("professionalCleaningServices")}

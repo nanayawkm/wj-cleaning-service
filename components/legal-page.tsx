@@ -14,7 +14,7 @@ interface LegalPageProps {
 export function LegalPage({ title, lastUpdated, children }: LegalPageProps) {
   return (
     <div className="min-h-screen bg-wj-cream">
-      <section className="bg-wj-dark py-12 text-white sm:py-16">
+      <section className="bg-wj-dark pb-12 pt-28 text-white sm:pb-16 sm:pt-36">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="mx-auto max-w-3xl">
             <h1 className="text-3xl tracking-tight sm:text-4xl">{title}</h1>

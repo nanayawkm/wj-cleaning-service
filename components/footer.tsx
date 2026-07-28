@@ -174,9 +174,9 @@ export default function Footer() {
             <Image
               src="/images/quube-logo.webp"
               alt="Quube"
-              width={64}
-              height={20}
-              className="h-5 w-auto object-contain"
+              width={40}
+              height={40}
+              className="h-5 w-5 object-contain"
             />
           </a>
         </div>

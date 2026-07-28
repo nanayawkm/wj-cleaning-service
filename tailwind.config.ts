@@ -2,6 +2,12 @@ import type { Config } from "tailwindcss"
 
 const config = {
   darkMode: ["class"],
+  // Without this, `hover:` styles also fire on tap and then stay stuck until
+  // the next tap elsewhere — which is why a menu item stayed highlighted after
+  // the sheet opened. Gates every hover behind @media (hover: hover).
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',

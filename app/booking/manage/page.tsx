@@ -24,7 +24,7 @@ export default async function ManageBookingPage({
 
   if (!result.ok) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white pt-16 sm:pt-20">
         <div className="container mx-auto px-4 py-16 sm:px-6 sm:py-24 md:px-8">
           <div className="mx-auto max-w-md border border-gray-200 bg-white p-8 text-center">
             <Warning weight="fill" className="mx-auto h-10 w-10 text-amber-500" />
@@ -63,7 +63,7 @@ export default async function ManageBookingPage({
   const b = result.booking
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16 sm:pt-20">
       <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 md:px-8">
         <div className="mx-auto max-w-2xl">
           <ManagePanel

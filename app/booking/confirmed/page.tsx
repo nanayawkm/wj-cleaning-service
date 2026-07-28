@@ -17,7 +17,7 @@ export default async function ConfirmedPage({
   const { ref } = await searchParams
 
   return (
-    <div className="min-h-screen bg-wj-cream">
+    <div className="min-h-screen bg-wj-cream pt-16 sm:pt-20">
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="mx-auto max-w-lg rounded-xl border border-wj-cream-deep bg-white p-8 text-center">

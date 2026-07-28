@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-wj-cream">
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-wj-dark text-white relative overflow-hidden">
+      <section className="pb-12 pt-28 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-40 bg-wj-dark text-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-3xl">
             <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('contactUs')}</Badge>

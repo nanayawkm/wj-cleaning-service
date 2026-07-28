@@ -62,7 +62,7 @@ export default async function BookPage() {
           className="absolute inset-0 hidden bg-[radial-gradient(105%_95%_at_2%_50%,rgba(10,28,36,0.42)_0%,rgba(10,28,36,0.18)_42%,transparent_70%)] lg:block"
         />
 
-        <div className="container relative z-10 mx-auto px-4 py-14 sm:px-6 sm:py-20 md:px-8">
+        <div className="container relative z-10 mx-auto px-4 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 md:px-8">
           <div className="max-w-xl">
             <BookHeroCopy />
           </div>

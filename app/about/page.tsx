@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-wj-cream">
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 lg:py-20 xl:py-24 bg-wj-dark text-white overflow-hidden">
+      <section className="relative pb-12 pt-28 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-40 xl:pb-24 bg-wj-dark text-white overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-3xl">
             <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('aboutUs')}</Badge>
@@ -86,6 +86,7 @@ export default function AboutPage() {
                   width={800}
                   height={600}
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ height: "auto" }}
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>

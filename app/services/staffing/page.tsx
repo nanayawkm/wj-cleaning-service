@@ -43,13 +43,14 @@ export default function StaffingServicesPage() {
 
   return (
     <div className="min-h-screen bg-wj-cream">
-      <section className="relative overflow-hidden bg-wj-dark py-16 text-white sm:py-20">
+      <section className="relative overflow-hidden bg-wj-dark pb-16 pt-32 text-white sm:pb-20 sm:pt-40">
         <Image
           src="/images/services/warehouse-staffing.webp"
           alt={t("professionalSupportStaff")}
           fill
           sizes="100vw"
           quality={90}
+          priority
           className="object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(44,95,112,0.94)_0%,rgba(44,95,112,0.88)_50%,rgba(44,95,112,0.55)_100%)]" />
