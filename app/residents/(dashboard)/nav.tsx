@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation"
 import { CalendarBlank, ClipboardText, SignOut, Sliders } from "@phosphor-icons/react"
 
 const NAV = [
-  { href: "/admin", label: "Bookings", Icon: ClipboardText },
-  { href: "/admin/availability", label: "Availability", Icon: CalendarBlank },
-  { href: "/admin/pricing", label: "Pricing", Icon: Sliders },
+  { href: "/residents", label: "Bookings", Icon: ClipboardText },
+  { href: "/residents/availability", label: "Availability", Icon: CalendarBlank },
+  { href: "/residents/pricing", label: "Pricing", Icon: Sliders },
 ]
 
 /**
@@ -20,9 +20,9 @@ const NAV = [
 export function AdminNav({ email, signOut }: { email: string; signOut: () => Promise<void> }) {
   const pathname = usePathname()
 
-  // /admin must not light up for every child route, so it matches exactly.
+  // /residents must not light up for every child route, so it matches exactly.
   const isActive = (href: string) =>
-    href === "/admin" ? pathname === "/admin" : pathname.startsWith(href)
+    href === "/residents" ? pathname === "/residents" : pathname.startsWith(href)
 
   return (
     <>

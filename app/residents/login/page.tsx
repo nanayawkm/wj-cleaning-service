@@ -10,7 +10,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client"
 
 /**
  * `next` arrives in the URL, so it is attacker-controlled. Left unchecked,
- * /admin/login?next=https://evil.example would land Jackie on someone else's
+ * /residents/login?next=https://evil.example would land Jackie on someone else's
  * page immediately after a successful sign-in — the ideal moment to ask her to
  * "confirm" her password. Only in-app admin paths are honoured.
  *
@@ -18,8 +18,8 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client"
  * second test rather than a bare startsWith.
  */
 function safeNext(raw: string | null): string {
-  if (!raw || !raw.startsWith("/") || raw.startsWith("//")) return "/admin"
-  return raw === "/admin" || raw.startsWith("/admin/") ? raw : "/admin"
+  if (!raw || !raw.startsWith("/") || raw.startsWith("//")) return "/residents"
+  return raw === "/residents" || raw.startsWith("/residents/") ? raw : "/residents"
 }
 
 function AdminLoginForm() {

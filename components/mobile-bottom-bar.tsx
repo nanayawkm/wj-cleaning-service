@@ -21,7 +21,7 @@ export default function MobileBottomBar() {
 
   // Nor on the dashboard — a customer-facing "Book Now" bar sat over Jackie's
   // own tools, covering the bottom of every table on a phone.
-  if (pathname?.startsWith("/admin")) return null
+  if (pathname?.startsWith("/residents")) return null
 
   /*
     Context-aware, matching the header. Staffing cannot be priced from a form —

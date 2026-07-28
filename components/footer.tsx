@@ -13,7 +13,7 @@ export default function Footer() {
 
   // Not on the dashboard: a marketing footer under an admin table is noise,
   // and it pushed the real content up into a narrow strip. See Navigation.
-  if (pathname?.startsWith("/admin")) return null
+  if (pathname?.startsWith("/residents")) return null
 
   const serviceLinks = [
     // these are enquiry entry points, so they go straight to contact

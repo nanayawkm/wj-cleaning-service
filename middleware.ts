@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 /**
- * Gate for /admin.
+ * Gate for /residents.
  *
  * This runs before any admin page renders, so an unauthenticated request never
  * reaches code that could read a customer record. It is the first of three
@@ -13,7 +13,7 @@ import { NextResponse, type NextRequest } from "next/server"
  *   3. Row Level Security refuses the rows regardless of what the app asks
  *
  * The route itself is not secret and cannot be. Every Shopify store has
- * /admin. What matters is that finding it gets you a login form.
+ * /residents. What matters is that finding it gets you a login form.
  */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -57,18 +57,18 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const isLogin = pathname === "/admin/login"
+  const isLogin = pathname === "/residents/login"
 
   if (!user && !isLogin) {
     const url = request.nextUrl.clone()
-    url.pathname = "/admin/login"
+    url.pathname = "/residents/login"
     url.searchParams.set("next", pathname)
     return NextResponse.redirect(url)
   }
 
   if (user && isLogin) {
     const url = request.nextUrl.clone()
-    url.pathname = "/admin"
+    url.pathname = "/residents"
     url.search = ""
     return NextResponse.redirect(url)
   }
@@ -83,5 +83,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/booking/manage"],
+  matcher: ["/residents/:path*", "/booking/manage"],
 }

@@ -38,7 +38,7 @@ export async function updateBandPrice(
   // The booking page reads prices on every load, so this is what makes the
   // change visible to customers immediately.
   revalidatePath("/book")
-  revalidatePath("/admin/pricing")
+  revalidatePath("/residents/pricing")
   return { ok: true }
 }
 
@@ -52,6 +52,6 @@ export async function updateAddonPrice(addonId: string, euros: string): Promise<
   if (error) return { ok: false, error: "Could not save. Please try again." }
 
   revalidatePath("/book")
-  revalidatePath("/admin/pricing")
+  revalidatePath("/residents/pricing")
   return { ok: true }
 }

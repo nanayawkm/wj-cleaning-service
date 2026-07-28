@@ -271,9 +271,9 @@ export async function POST(request: Request) {
     })
 
     const confirmation = customerConfirmation(emailData, input.language)
-    // /admin is the bookings list itself — there is no /admin/bookings, and
+    // /residents is the bookings list itself — there is no /residents/bookings, and
     // linking to one 404s Jackie straight out of her own notification email.
-    const alert = ownerAlert(emailData, `${siteUrl}/admin`)
+    const alert = ownerAlert(emailData, `${siteUrl}/residents`)
 
     await Promise.allSettled([
       sendEmail({

@@ -68,7 +68,7 @@ issue and expire them without a developer.
 
 ### Availability is set by Jackie, not hardcoded ✅
 
-Nothing about the working week is baked into the code. She controls it from `/admin`,
+Nothing about the working week is baked into the code. She controls it from `/residents`,
 which is what keeps the calendar honest and cuts the reschedule calls.
 
 **Weekly template** — the normal week, set once:
@@ -108,7 +108,7 @@ offered and the database constraint prevents doubles, so the confirmation email 
 and the calendar is blocked immediately — which is what "plan direct" promises.
 
 Jackie's step is a **notification, not a gate**. If she cannot make it she phones the
-customer, reschedules in `/admin`, and the customer gets a *Booking rescheduled* email
+customer, reschedules in `/residents`, and the customer gets a *Booking rescheduled* email
 with the new time. Status goes `confirmed → rescheduled → completed`.
 
 The version deliberately avoided: showing "confirmed" while a booking is really pending
@@ -145,7 +145,7 @@ competitor's "request a quote" form.
 ```
 
 **After submit:** "Request received — we confirm within 4 working hours", plus a receipt
-email to the customer and an alert to Jackie. She approves in `/admin`, which fires the
+email to the customer and an alert to Jackie. She approves in `/residents`, which fires the
 **Booking confirmed** email with an `.ics` attachment and a manage link (cancel /
 reschedule / rebook via signed token).
 

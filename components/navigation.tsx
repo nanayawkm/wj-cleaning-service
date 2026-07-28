@@ -14,15 +14,20 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
-  // The dashboard is a tool, not a page of the marketing site. Rendering the
-  // public nav above it put "Book Now" and the services menu on top of
-  // Jackie's admin, which is both confusing and a way to lose her session by
-  // wandering off into the public site.
-  if (pathname?.startsWith("/admin")) return null
   const { language, setLanguage, t } = useLanguage()
   const handleLanguageToggle = () => {
     setLanguage(language === 'en' ? 'nl' : 'en')
   }
+
+  // The dashboard is a tool, not a page of the marketing site. Rendering the
+  // public nav above it put "Book Now" and the services menu on top of
+  // Jackie's admin, which is both confusing and a way to lose her session by
+  // wandering off into the public site.
+  //
+  // This must sit below every hook: returning earlier changes the hook count
+  // between routes, and React throws "rendered fewer hooks than expected" the
+  // moment anyone navigates client-side from a public page into the dashboard.
+  if (pathname?.startsWith("/residents")) return null
 
   const navItems: {
     href: string

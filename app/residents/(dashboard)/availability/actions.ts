@@ -33,7 +33,7 @@ export async function toggleSlot(weekday: number, time: string, enable: boolean)
       .eq("start_time", `${time}:00`)
   }
 
-  revalidatePath("/admin/availability")
+  revalidatePath("/residents/availability")
 }
 
 export async function addOverride(onDate: string, reason: string) {
@@ -45,11 +45,11 @@ export async function addOverride(onDate: string, reason: string) {
     kind: "block",
     reason: reason.trim() || null,
   })
-  revalidatePath("/admin/availability")
+  revalidatePath("/residents/availability")
 }
 
 export async function removeOverride(id: string) {
   const supabase = await requireSession()
   await supabase.from("availability_overrides").delete().eq("id", id)
-  revalidatePath("/admin/availability")
+  revalidatePath("/residents/availability")
 }
