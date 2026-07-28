@@ -7,26 +7,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { IconPhone, IconMail, IconMapPin, IconClock, IconShieldCheck, IconUsers, IconStar, IconAward, IconHeart, IconDroplet, IconSparkles, IconCheck, IconBuilding, IconHome, IconBriefcase, IconBuildingWarehouse, IconSend, IconMessage } from '@tabler/icons-react'
+import { Buildings, Certificate, Check, Clock, Drop, Envelope, Heart, HouseLine, MapPin, PaperPlaneTilt, Phone, ShieldCheck, Sparkle, Star, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
 import { useLanguage } from '@/contexts/LanguageContext'
-import { CleaningBackground } from '@/components/cleaning-background'
+import Image from 'next/image'
 import { CONTACT_DETAILS } from '@/components/constant'
 
 export default function ContactPage() {
   const { t } = useLanguage()
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-wj-light/10 via-white to-wj-accent-light/10">
-      <CleaningBackground />
+    <div className="min-h-screen bg-wj-cream">
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 bg-wj-dark text-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-3xl">
             <Badge className="bg-white/20 text-white mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm">{t('contactUs')}</Badge>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl tracking-tight mb-4 leading-tight">
               {t('contactHeroTitle')}
             </h1>
-            <p className="text-base sm:text-lg md:text-lg lg:text-xl text-wj-light leading-relaxed px-2 sm:px-4 md:px-6">
+            <p className="text-lg text-white/85 leading-relaxed max-w-2xl">
               {t('contactHeroSubtitle')}
             </p>
           </div>
@@ -35,14 +34,13 @@ export default function ContactPage() {
 
       {/* Contact Form Section */}
       <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-        <CleaningBackground />
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-start [&>*]:min-w-0">
             {/* Contact Form */}
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div>
                 <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">{t('getInTouch')}</Badge>
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
+                <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
                   {t('sendMessage')}
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
@@ -50,8 +48,8 @@ export default function ContactPage() {
                 </p>
               </div>
 
-                             <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-3 sm:p-4 lg:p-6 bg-wj-light/10 rounded-lg sm:rounded-xl lg:rounded-2xl">
-                 <IconShieldCheck className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-wj-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
+                             <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-3 sm:p-4 lg:p-6 bg-wj-light/10 rounded-xl">
+                 <ShieldCheck className="h-8 w-8 flex-shrink-0 text-wj-accent" />
                  <div>
                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900">{t('quickResponseGuaranteed')}</h3>
                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('quickResponseDesc')}</p>
@@ -59,61 +57,56 @@ export default function ContactPage() {
                </div>
 
               <form className="space-y-3 sm:space-y-4 lg:space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
-                  <div className="space-y-1 sm:space-y-2">
-                    <Label htmlFor="firstName" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
-                      {t('name')} *
-                    </Label>
-                    <Input
-                      id="firstName"
-                      placeholder={t('name')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
-                    />
-                  </div>
-                  <div className="space-y-1 sm:space-y-2">
-                    <Label htmlFor="lastName" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
-                      {t('name')} *
-                    </Label>
-                    <Input
-                      id="lastName"
-                      placeholder={t('name')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
-                    />
-                  </div>
+                <div className="space-y-1 sm:space-y-2">
+                  <Label htmlFor="fullName" className="text-gray-700 font-medium text-sm">
+                    {t('fullName')} *
+                  </Label>
+                  <Input
+                    id="fullName"
+                    name="fullName"
+                    autoComplete="name"
+                    placeholder={t('fullNamePlaceholder')}
+                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
+                  />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                   <div className="space-y-1 sm:space-y-2">
-                    <Label htmlFor="email" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
+                    <Label htmlFor="email" className="text-gray-700 font-medium text-sm">
                       {t('email')} *
                     </Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
                       placeholder={t('email')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
+                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
                   <div className="space-y-1 sm:space-y-2">
-                    <Label htmlFor="phone" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
+                    <Label htmlFor="phone" className="text-gray-700 font-medium text-sm">
                       {t('phone')}
                     </Label>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
+                      autoComplete="tel"
                       placeholder={t('phone')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
+                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1 sm:space-y-2">
-                  <Label htmlFor="service" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
+                  <Label htmlFor="service" className="text-gray-700 font-medium text-sm">
                     {t('serviceType')} *
                   </Label>
                   <select
                     id="service"
-                    className="w-full px-3 sm:px-4 pr-8 sm:pr-10 py-2 sm:py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:border-wj-dark focus:ring-wj-dark/20 bg-white text-xs sm:text-sm lg:text-base"
+                    name="service"
+                    className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 pr-10 text-base focus:border-wj-dark focus:ring-wj-dark/20"
                   >
                     <option value="">{t('selectService')}</option>
                                          {/* Cleaning Services */}
@@ -138,22 +131,23 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-1 sm:space-y-2">
-                  <Label htmlFor="message" className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base">
+                  <Label htmlFor="message" className="text-gray-700 font-medium text-sm">
                     {t('message')} *
                   </Label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder={t('messagePlaceholder')}
                     rows={4}
-                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20 text-xs sm:text-sm lg:text-base"
+                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-wj-dark to-wj-accent hover:from-wj-darker hover:to-wj-accent-dark text-white font-semibold py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base lg:text-lg"
+                  size="lg" className="w-full"
                 >
-                  <IconSend className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <PaperPlaneTilt className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   {t('sendMessage')}
                 </Button>
               </form>
@@ -163,10 +157,10 @@ export default function ContactPage() {
                 <div className="text-center">
                   <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{t('or')}</p>
                   <Button
-                    onClick={() => window.open(`https://wa.me/${CONTACT_DETAILS.phone.replace(/\D/g, '')}`)}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base lg:text-lg"
+                    onClick={() => window.open(`https://wa.me/${CONTACT_DETAILS.phoneWa}`)}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg"
                   >
-                    <IconMessage className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    <WhatsappLogo className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     {t('whatsapp')} {t('us')}
                   </Button>
                 </div>
@@ -176,17 +170,20 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-6 sm:space-y-8">
               <div className="mb-6 sm:mb-8">
-                <div className="w-full h-24 sm:h-32 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden bg-white border-2 border-gray-100">
-                                     <img
-                     src="/images/contact us.jpg"
-                     alt={t('contactUsProfessionalCleaning')}
-                     className="w-full h-full object-cover"
-                   />
+                <div className="w-full h-24 sm:h-32 rounded-xl overflow-hidden bg-white border border-gray-200">
+                  <Image
+                    src="/images/contact-us.webp"
+                    alt={t('contactUsProfessionalCleaning')}
+                    width={800}
+                    height={200}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               <div>
                 <Badge className="bg-wj-accent-light/20 text-wj-accent-dark mb-3 sm:mb-4">{t('contactInfo')}</Badge>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
                   {t('getInTouch')}
                 </h2>
                 <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
@@ -195,9 +192,9 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100">
+                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <IconPhone className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('phone')}</h3>
@@ -205,9 +202,9 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100">
+                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-accent">
-                    <IconMail className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
+                    <Envelope className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('email')}</h3>
@@ -216,9 +213,9 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100">
+                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-accent">
-                    <IconMapPin className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('serviceArea')}</h3>
@@ -227,9 +224,9 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100">
+                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <IconClock className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('businessHours')}</h3>
@@ -239,14 +236,16 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="p-6 sm:p-8 bg-gradient-to-r from-wj-dark to-wj-accent rounded-xl sm:rounded-2xl text-white">
+              <div className="p-6 sm:p-8 bg-wj-dark rounded-xl text-white">
                 <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('needImmediateAssistance')}</h3>
-                <p className="text-sm sm:text-base text-wj-light mb-4 sm:mb-6">
+                <p className="text-sm sm:text-base text-white/85 mb-4 sm:mb-6">
                   {t('immediateAssistanceDesc')}
                 </p>
-                <Button className="w-full bg-white text-wj-dark hover:bg-wj-light/10 justify-start text-sm sm:text-base">
-                  <IconPhone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  {t('callNow')}: {CONTACT_DETAILS.phone}
+                <Button asChild variant="onDark" className="w-full justify-start">
+                  <a href={`tel:${CONTACT_DETAILS.phoneTel}`}>
+                    <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    {t('callNow')}: {CONTACT_DETAILS.phone}
+                  </a>
                 </Button>
               </div>
             </div>
@@ -255,21 +254,20 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gradient-to-r from-wj-light/10 to-wj-accent-light/10 relative overflow-hidden">
-        <CleaningBackground />
+      <section className="py-20 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-          <div className="text-center mb-16">
+          <div className="max-w-2xl mb-12">
             <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('frequentlyAskedQuestions')}</Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
               {t('commonQuestionsAnswered')}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-600 leading-relaxed">
               {t('faqDescription')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <Card className="border-0 shadow-lg rounded-2xl">
+            <Card className="border border-wj-cream-deep rounded-xl">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-900">{t('whatAreasServe')}</CardTitle>
               </CardHeader>
@@ -282,7 +280,7 @@ export default function ContactPage() {
 
 
 
-            <Card className="border-0 shadow-lg rounded-2xl">
+            <Card className="border border-wj-cream-deep rounded-xl">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-900">{t('staffInsuredBonded')}</CardTitle>
               </CardHeader>
@@ -293,7 +291,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg rounded-2xl">
+            <Card className="border border-wj-cream-deep rounded-xl">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-900">{t('cleaningProducts')}</CardTitle>
               </CardHeader>
@@ -304,7 +302,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg rounded-2xl">
+            <Card className="border border-wj-cream-deep rounded-xl">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-900">{t('schedulingFlexibility')}</CardTitle>
               </CardHeader>
@@ -315,7 +313,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg rounded-2xl">
+            <Card className="border border-wj-cream-deep rounded-xl">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-900">{t('emergencyServices')}</CardTitle>
               </CardHeader>
@@ -326,7 +324,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg rounded-2xl">
+            <Card className="border border-wj-cream-deep rounded-xl">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-900">{t('qualityGuarantee')}</CardTitle>
               </CardHeader>
@@ -341,28 +339,25 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-wj-dark to-wj-accent text-white relative overflow-hidden">
+      <section className="py-20 bg-wj-dark text-white relative overflow-hidden">
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl lg:text-6xl font-bold mb-8">
+            <h2 className="text-3xl sm:text-4xl tracking-tight mb-4">
               {t('readyToGetStarted')}
             </h2>
-            <p className="text-xl text-wj-light mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-white/85 mb-8 max-w-2xl">
               {t('ctaDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-wj-dark hover:bg-wj-light/10 font-semibold"
-              >
-                <a href={`tel:${CONTACT_DETAILS.phone}`}>{t('callNow')}</a>
+              <Button asChild size="lg" variant="onDark">
+                <a href={`tel:${CONTACT_DETAILS.phoneTel}`}>{t('callNow')}</a>
               </Button>
               <Button
+                asChild
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-wj-dark bg-transparent"
+                variant="onDarkOutline"
               >
-                <a href={`mailto:${CONTACT_DETAILS.email}`}>{t('email')} Us</a>
+                <a href={`mailto:${CONTACT_DETAILS.email}`}>{t('emailUs')}</a>
               </Button>
             </div>
           </div>

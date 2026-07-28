@@ -1,180 +1,184 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { IconSparkles, IconPhone, IconMail, IconMapPin, IconBrandFacebook, IconBrandTwitter, IconBrandLinkedin, IconHeart, IconDroplet, IconShieldCheck } from "@tabler/icons-react"
+import { Clock, Envelope, MapPin, Phone } from "@phosphor-icons/react"
 import Link from "next/link"
 import Image from "next/image"
-import { CONTACT_DETAILS } from "./constant"
+import { usePathname } from "next/navigation"
+import { BUSINESS_DETAILS, CONTACT_DETAILS, OPENING_HOURS } from "./constant"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Footer() {
   const { t } = useLanguage()
-  
-  return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:50px_50px]"></div>
-      </div>
+  const pathname = usePathname()
 
-      {/* Main Footer */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-20 relative">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
-          {/* Enhanced Company Info */}
-          <div className="space-y-6">
-            <Link href="/" className="flex items-center space-x-3 group">
-                              <div className="w-10 h-10 group-hover:scale-105 transition-transform duration-300 shadow-lg">
-                  <img
-                    src="/images/logo1.png"
-                    alt={t('wjCleaningServices')}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                              <span className="text-2xl font-bold">WJ Cleaning Services</span>
+  // Not on the dashboard: a marketing footer under an admin table is noise,
+  // and it pushed the real content up into a narrow strip. See Navigation.
+  if (pathname?.startsWith("/admin")) return null
+
+  const serviceLinks = [
+    // these are enquiry entry points, so they go straight to contact
+    { href: "/contact", label: t('residentialCleaning') },
+    { href: "/contact", label: t('officeCleaning') },
+    { href: "/contact", label: t('warehouseStaffing') },
+    { href: "/contact", label: t('eventStaffing') },
+  ]
+
+  const pageLinks = [
+    { href: "/", label: t('home') },
+    { href: "/about", label: t('about') },
+    { href: "/services", label: t('services') },
+    { href: "/contact", label: t('contact') },
+  ]
+
+  return (
+    <footer className="bg-gray-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-14">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {/* Company */}
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src="/images/logo1.png"
+                alt={t('wjCleaningServices')}
+                width={80}
+                height={80}
+                quality={90}
+                className="h-10 w-10 object-contain"
+              />
+              <span className="text-lg font-semibold">WJ Cleaning Services</span>
             </Link>
-                          <p className="text-gray-300 leading-relaxed text-lg">
-                {t('footerDescription')}
-              </p>
-            <div className="flex space-x-4">
-              {/* Social media buttons removed */}
-            </div>
+            <p className="text-sm leading-relaxed text-gray-400">
+              {t('footerDescription')}
+            </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h3 className="text-xl font-bold mb-8 text-white">{t('quickLinks')}</h3>
-            <div className="space-y-4">
-              <Link
-                href="/"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('home')}
-              </Link>
-              <Link
-                href="/about"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('about')}
-              </Link>
-              <Link
-                href="/services"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('services')}
-              </Link>
-              <Link
-                href="/contact"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('contact')}
-              </Link>
-            </div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-500">
+              {t('quickLinks')}
+            </h3>
+            <ul className="space-y-2.5">
+              {pageLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="-my-1.5 inline-block py-2.5 text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-xl font-bold mb-8 text-white">{t('services')}</h3>
-            <div className="space-y-4">
-              <Link
-                href="/services"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('residentialCleaning')}
-              </Link>
-              <Link
-                href="/services"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('officeCleaning')}
-              </Link>
-              <Link
-                href="/services"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('warehouseStaffing')}
-              </Link>
-              <Link
-                href="/services"
-                className="block text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 text-lg"
-              >
-                {t('eventStaffing')}
-              </Link>
-            </div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-500">
+              {t('services')}
+            </h3>
+            <ul className="space-y-2.5">
+              {serviceLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="-my-1.5 inline-block py-2.5 text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Contact & Newsletter */}
+          {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-8 text-white">{t('stayConnected')}</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-dark flex-shrink-0">
-                  <IconPhone className="h-5 w-5 text-wj-dark" />
-                </div>
-                <a href={`tel:${CONTACT_DETAILS.phone}`} className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-500">
+              {t('contact')}
+            </h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-wj-light" />
+                <a
+                  href={`tel:${CONTACT_DETAILS.phoneTel}`}
+                  className="text-gray-300 transition-colors hover:text-white"
+                >
                   {CONTACT_DETAILS.phone}
                 </a>
-              </div>
-              
-              <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent flex-shrink-0">
-                  <IconMail className="h-5 w-5 text-wj-accent" />
-                </div>
-                <a href={`mailto:${CONTACT_DETAILS.email}`} className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300 break-all">
+              </li>
+              <li className="flex items-start gap-3">
+                <Envelope className="mt-0.5 h-4 w-4 flex-shrink-0 text-wj-light" />
+                <a
+                  href={`mailto:${CONTACT_DETAILS.email}`}
+                  className="break-all text-gray-300 transition-colors hover:text-white"
+                >
                   {CONTACT_DETAILS.email}
                 </a>
-              </div>
-              
-              <div className="flex items-start space-x-3 p-3 bg-white/5 rounded-xl backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border-2 border-wj-accent flex-shrink-0 mt-1">
-                  <IconMapPin className="h-5 w-5 text-wj-accent" />
-                </div>
-                <a href={CONTACT_DETAILS.googlemap} target="_blank" className="text-gray-300 text-sm sm:text-base hover:text-white transition-colors duration-300">
-                  {CONTACT_DETAILS.address ? `${CONTACT_DETAILS.address}, ` : ''}{CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-wj-light" />
+                <a
+                  href={CONTACT_DETAILS.googlemap}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 transition-colors hover:text-white"
+                >
+                  {CONTACT_DETAILS.address ? `${CONTACT_DETAILS.address}, ` : ''}
+                  {CONTACT_DETAILS.city}, {CONTACT_DETAILS.country}
                 </a>
-              </div>
-            </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-wj-light" />
+                <span className="text-gray-300">{OPENING_HOURS.weekdays}</span>
+              </li>
+            </ul>
           </div>
         </div>
+
+        {/* Statutory business details — required on Dutch commercial sites */}
+        {(BUSINESS_DETAILS.kvk || BUSINESS_DETAILS.btw) && (
+          <p className="mt-10 border-t border-gray-800 pt-6 text-xs text-gray-500">
+            {BUSINESS_DETAILS.kvk && <>KVK {BUSINESS_DETAILS.kvk}</>}
+            {BUSINESS_DETAILS.kvk && BUSINESS_DETAILS.btw && <span className="mx-2">·</span>}
+            {BUSINESS_DETAILS.btw && <>BTW {BUSINESS_DETAILS.btw}</>}
+          </p>
+        )}
       </div>
 
-      {/* Bottom Footer */}
-      <div className="border-t border-gray-800 relative">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2">
-              <p className="text-gray-400 text-lg">© {new Date().getFullYear()} WJ Cleaning Services. {t('allRightsReserved')}</p>
-            </div>
-            <div className="flex space-x-8 text-lg">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-                {t('privacyPolicy')}
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-                {t('termsOfService')}
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-                {t('cookiePolicy')}
-              </Link>
-            </div>
-          </div>
-          {/* Designed and developed by Quube - Bottom Left */}
-          <div className="flex justify-start mt-6">
-            <a
-              href="https://www.quubetech.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 text-base flex items-center gap-3 hover:text-gray-300 transition-colors duration-300 group"
-              aria-label="Quube Technology"
-            >
-              <span>{t('designedByQuube')}</span>
-              <img
-                src="/images/Quube_logo_new.PNG"
-                alt="Quube"
-                className="h-12 w-auto group-hover:opacity-80 transition-opacity"
-                style={{ objectFit: "contain" }}
-              />
-            </a>
-          </div>
+      {/* Bottom bar */}
+      <div className="border-t border-gray-800">
+        <div className="container mx-auto flex flex-col gap-5 px-4 py-6 sm:px-6 md:px-8 lg:flex-row lg:items-center lg:justify-between">
+          <p className="text-xs text-gray-500">
+            © {new Date().getFullYear()} WJ Cleaning Services. {t('allRightsReserved')}
+          </p>
+
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs">
+            <Link href="/privacy" className="-my-1.5 inline-block py-2.5 text-gray-400 transition-colors hover:text-white">
+              {t('privacyPolicy')}
+            </Link>
+            <Link href="/terms" className="-my-1.5 inline-block py-2.5 text-gray-400 transition-colors hover:text-white">
+              {t('termsOfService')}
+            </Link>
+            <Link href="/cookies" className="-my-1.5 inline-block py-2.5 text-gray-400 transition-colors hover:text-white">
+              {t('cookiePolicy')}
+            </Link>
+          </nav>
+
+          <a
+            href="https://quube.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-xs text-gray-500 transition-colors hover:text-gray-300"
+            aria-label="Quube Technology"
+          >
+            <span>{t('designedByQuube')}</span>
+            <Image
+              src="/images/quube-logo.webp"
+              alt="Quube"
+              width={64}
+              height={20}
+              className="h-5 w-auto object-contain"
+            />
+          </a>
         </div>
       </div>
     </footer>

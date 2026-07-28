@@ -1,14 +1,18 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+import React, { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from 'react'
 import { CONTACT_DETAILS } from '@/components/constant'
 
 type Language = 'en' | 'nl'
 
+// Keys are derived from the English dictionary, so a typo in t('...') is a
+// compile error instead of silently rendering the key name to the customer.
+export type TranslationKey = keyof (typeof translations)['en']
+
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: TranslationKey) => string
 }
 
 const translations = {
@@ -18,18 +22,18 @@ const translations = {
     about: "About",
     services: "Services", 
     contact: "Contact",
-    getQuote: "Get Quote",
+    getQuote: "Book Now",
     
     // Hero Section
-    heroTitle: "Clean Spaces, Reliable Staff",
-    heroSubtitle: "WJ Cleaning Services delivers exceptional cleaning services and professional staffing solutions. From residential homes to corporate offices, we ensure spotless results and dependable workforce.",
-    getFreeQuote: "Get Free Quote",
+    heroTitle: "Professional Cleaning and Staffing in Lelystad",
+    heroSubtitle: "Cleaning for homes and offices, plus vetted staff for warehouses, hotels and events. Based in Lelystad, serving Flevoland and the surrounding region.",
+    getFreeQuote: "Book Now",
     hireStaff: "Hire Staff Today",
     
     // Services Section
     ourServices: "Our Services",
     servicesTitle: "Complete Cleaning & Staffing Solutions",
-    servicesSubtitle: "From sparkling clean spaces to reliable workforce solutions, we deliver excellence in every service with unmatched quality and professionalism.",
+    servicesSubtitle: "Cleaning for homes, offices and commercial spaces — plus qualified personnel when you need extra hands.",
     
     // Service Cards
     residentialCleaning: "Residential Cleaning",
@@ -79,27 +83,26 @@ const translations = {
     qualityAssuredDesc: "Every service is backed by our quality guarantee and attention to detail.",
     fullyInsured: "Fully Insured",
     fullyInsuredDesc: "Complete coverage for your peace of mind and protection.",
-    support247: "24/7 Support",
-    support247Desc: "Round-the-clock availability for emergencies and urgent needs.",
-    readyToExperience: "Ready to Experience the Difference?",
-    readyToExperienceDesc: "Get your free quote today and discover why hundreds of customers trust WJ Cleaning Services for their cleaning and staffing needs.",
-    callNow: "Call Now",
+    flexibleScheduling: "Flexible scheduling",
+    flexibleSchedulingDesc: "Cleaning schedules arranged around your routine.",
+    readyToExperience: "Get a price for your space",
+    readyToExperienceDesc: "Tell us the size of the space and what you need. You get a price and a time, usually the same working day.",
     
     // About Page - Updated with meaningful content
     aboutUs: "Who We Are",
-    aboutHeroTitle: "Committed to Clean Spaces, Driven by Excellence",
-    aboutHeroSubtitle: "WJ Cleaning Services is committed to delivering exceptional cleaning and staffing services. We've built our reputation on trust, reliability, and exceptional service that transforms spaces and exceeds expectations.",
+    aboutHeroTitle: "A small cleaning company from Lelystad",
+    aboutHeroSubtitle: "We clean homes, offices and commercial spaces in Lelystad and across Flevoland.",
     ourStory: "Our Journey",
-    ourStoryDesc: "WJ Cleaning Services was established with a clear understanding of the importance of trust, reliability, and attention to detail. What started as a small business has grown into a trusted partner for hundreds of satisfied customers.",
+    ourStoryDesc: "WJ Cleaning Services started small and stayed close to the people it works for, in Lelystad and the wider Flevoland region.",
     ourMission: "Our Mission",
-    ourMissionDesc: "To provide exceptional cleaning services and reliable staffing solutions that exceed expectations, while building lasting relationships based on trust and quality.",
+    ourMissionDesc: "Reliable cleaning and staffing for Lelystad and Flevoland, at a price you are told up front, on a schedule that holds.",
     ourValues: "Our Core Values",
     trustReliability: "Trust & Reliability",
     trustReliabilityDesc: "We build lasting relationships through consistent, dependable service delivery.",
     qualityExcellence: "Quality & Excellence",
     qualityExcellenceDesc: "Every service is delivered with attention to detail and commitment to excellence.",
     customerSatisfaction: "Customer Satisfaction",
-    customerSatisfactionDesc: "Your satisfaction is our priority, and we go above and beyond to meet your needs.",
+    customerSatisfactionDesc: "Your satisfaction is our priority, and we work to your preferences.",
     satisfiedCustomers: "Satisfied Customers",
     satisfiedCustomersDesc: "Hundreds of happy customers who trust us with their cleaning and staffing needs.",
     professionalTeam: "Professional Team",
@@ -109,16 +112,15 @@ const translations = {
     contactUs: "Get in Touch",
     contactHeroTitle: "Ready to Transform Your Space?",
     contactHeroSubtitle: "Let's discuss how we can help you achieve spotless results and reliable staffing solutions. Contact us today for a personalized consultation.",
-    getInTouch: "Start Your Project",
+    getInTouch: "Get in touch",
     getInTouchDesc: "We're here to help with all your cleaning and staffing needs. Contact us today for a free consultation.",
     contactInfo: "Contact Information",
-    contactInfoDesc: "Reach out to us through any of these channels. We're here to help 24/7.",
+    contactInfoDesc: "Reach us by phone, WhatsApp or email. We answer within 4 working hours, Monday to Saturday.",
     businessHours: "Business Hours",
     businessHoursDesc: "We're available during these hours for consultations and support.",
     sendMessage: "Send Your Message",
     sendMessageDesc: "Fill out the form below and we'll get back to you within 24 hours with a personalized solution.",
     name: "Full Name",
-    email: "Email Address",
     phone: "Phone Number",
     message: "Tell Us About Your Needs",
     submit: "Send Message",
@@ -136,7 +138,6 @@ const translations = {
     
     // Mobile bottom bar
     callNow: "Call Now",
-    whatsapp: "WhatsApp",
     email: "Email",
     
     // Service tabs
@@ -147,25 +148,25 @@ const translations = {
     professionalCleaningStaffing: "Professional Cleaning & Staffing Solutions",
     aboutWJCleanforce: "About WJ Cleaning Services",
     trustedPartnersExcellence: "Trusted Partners in Excellence",
-    aboutDescription: "WJ Cleaning Services was established with a simple mission: to provide exceptional cleaning and staffing services that exceed expectations. Our commitment to quality, reliability, and customer satisfaction has made us the go-to choice for businesses and homeowners alike.",
+    aboutDescription: "WJ Cleaning Services provides cleaning and staffing for homes and businesses in Lelystad and across Flevoland, built on quality, reliability and customer satisfaction.",
     experienceYearsDesc: "Our team has over 5 years of experience in the cleaning industry.",
     personalizedSchedulesDesc: "Customized cleaning schedules that perfectly match your preferences.",
     extraHygieneDesc: "Extra attention to hygiene for a completely clean and healthy environment.",
     excellenceInDetail: "Excellence in Every Detail",
     foundersQuote: "Winfred & Jackie, Founders",
     howItWorks: "How It Works",
-    simpleProcessOutstanding: "Simple Process, Outstanding Results",
-    howItWorksDesc: "Getting started with WJ Cleaning Services is easy. Our streamlined process ensures you get the service you need quickly and efficiently.",
+    simpleProcessOutstanding: "How it works",
+    howItWorksDesc: "Three steps from first contact to a clean space. No long forms, no waiting days for a quote.",
     getYourQuote: "Get Your Quote",
-    getYourQuoteDesc: "Contact us for a free consultation. We'll assess your needs and provide a transparent, competitive quote.",
+    getYourQuoteDesc: "Tell us the size of the space and what you need. You get an actual price, not ‘contact us for pricing’.",
     scheduleService: "Schedule Service",
     scheduleServiceDesc: "Choose a time that works for you. We offer flexible scheduling to fit your busy lifestyle and business needs.",
     enjoyCleanSpaces: "Enjoy Clean Spaces",
-    enjoyCleanSpacesDesc: "Sit back and relax while our professional team delivers exceptional results that exceed your expectations.",
+    enjoyCleanSpacesDesc: "Sit back while our team delivers professional results.",
     readyToGetStarted: "Ready to Get Started?",
-    experienceDifference: "Experience the WJ Cleaning Services Difference Today",
-    ctaDescription: "Join hundreds of satisfied customers who trust us with their cleaning and staffing needs. Get your free quote in minutes.",
-    getFreeQuoteNow: "Get Free Quote Now",
+    experienceDifference: "Ready for a clean you don’t have to chase?",
+    ctaDescription: "Send us the details and we’ll confirm your slot. Most requests get an answer the same working day.",
+    getFreeQuoteNow: "Book Now",
     whatsappUs: "WhatsApp Us",
     satisfactionGuaranteed: "Satisfaction Guaranteed",
     
@@ -212,24 +213,24 @@ const translations = {
     
     // About page specific translations
     readyToWorkTogether: "Ready to Work Together?",
-    letsBuildAmazing: "Let's Build Something Amazing Together",
-    aboutCtaDescription: "Ready to experience the WJ Cleaning Services difference? Contact us today for a free consultation and discover how we can help you achieve your goals.",
+    letsBuildAmazing: "Let us take cleaning off your list",
+    aboutCtaDescription: "Tell us what you need cleaned and how often. We reply within 4 working hours with a price and the slots we have free.",
     getStartedToday: "Get Started Today",
     viewOurServices: "View Our Services",
-    deliveringExcellence: "Delivering Excellence in Every Service",
+    deliveringExcellence: "What we do",
     customerCentricApproach: "Customer-Centric Approach",
     customerCentricDesc: "We prioritize your satisfaction with personalized care and attention to every detail of your project.",
     trustedReliable: "Trusted & Reliable",
     trustedReliableDesc: "Building lasting relationships through consistent, dependable service delivery.",
     excellenceInService: "Excellence in Service",
-    excellenceInServiceDesc: "We go above and beyond to exceed expectations, delivering results that speak for themselves.",
+    excellenceInServiceDesc: "We go the extra step to deliver results that speak for themselves.",
     professionalExcellence: "Professional Excellence",
     qualityServiceGuaranteed: "Quality Service Guaranteed",
-    principlesGuideUs: "The Principles That Guide Us Daily",
-    valuesDescription: "Our core values shape every decision we make and every service we provide. They're the foundation of our success and the reason our customers trust us.",
+    principlesGuideUs: "How we work",
+    valuesDescription: "Six things we hold ourselves to on every job, whether it is a weekly home clean or a warehouse shift.",
     passionForExcellence: "Passion for Excellence",
-    passionForExcellenceDesc: "We approach every task with dedication and attention to detail, ensuring exceptional results that exceed expectations.",
-    discoverQuality: "Discover the quality and attention to detail that sets WJ Cleaning Services apart from the competition.",
+    passionForExcellenceDesc: "We approach every task with dedication and attention to detail.",
+    discoverQuality: "Homes, offices and commercial spaces across Lelystad and the wider Flevoland region.",
     
     // Values section translations
     trustReliabilityTitle: "Trust & Reliability",
@@ -242,7 +243,7 @@ const translations = {
     continuousGrowthTitle: "Continuous Growth",
     continuousGrowthDesc: "Embracing innovation and learning to deliver cutting-edge solutions that evolve with industry standards.",
     ourWork: "Our Work",
-    professionalExcellenceInEveryDetail: "Professional Excellence in Every Detail",
+    professionalExcellenceInEveryDetail: "The kind of work we do",
     
     completeHomeCleaning: "Complete home cleaning solutions",
     orderPickingPacking: "Order picking and packing",
@@ -306,12 +307,56 @@ const translations = {
     schoolCleaning: "School Cleaning",
     
     // Footer translations
-    footerDescription: "Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.",
+    footerDescription: "Cleaning and staffing services based in Lelystad. Homes, offices, warehouses, hotels and schools across Flevoland.",
     
     // Gallery section translations
     commercialCleaning: "Commercial Cleaning",
     commercialCleaningDesc: "Professional office and facility cleaning",
     reliableWorkforce: "Reliable workforce solutions",
+    // Trust strip + form labels
+    fullName: "Full name",
+    fullNamePlaceholder: "e.g. Anna de Vries",
+    emailUs: "Email us",
+    trustInsured: "Fully insured",
+    trustInsuredDesc: "Liability cover on every job.",
+    trustLocal: "Lelystad based",
+    trustLocalDesc: "Serving Flevoland and nearby.",
+    trustResponse: "Fast reply",
+    trustResponseDesc: "Answer within 4 working hours.",
+    // hero booking card
+    heroCardTitle: "Book online in 2 minutes",
+    heroCardBody: "Fixed price by the size of your home.",
+    from: "from",
+
+    // services split
+    cleaningServicesNav: "Cleaning",
+    staffingServicesNav: "Staffing",
+    allServices: "All services",
+    cleaningPageTitle: "Cleaning for homes and businesses",
+    cleaningPageLead: "Fixed prices by the size of your home, booked online in two minutes. For offices and commercial spaces we quote per site.",
+    staffingPageTitle: "Staff when you need extra hands",
+    staffingPageLead: "Vetted personnel for warehouses, hotels, restaurants, schools and events. Tell us what you need and we'll match people to it.",
+    whatsIncluded: "What's included",
+    homeCleaningTitle: "Home cleaning",
+    homeCleaningLead: "Priced by the size of your home. Book online and pick your own slot.",
+    addDeepClean: "Add a deep clean",
+    addDeepCleanDesc: "Descaling, inside cupboards and appliances, windows inside and out, behind and under furniture.",
+    commercialTitle: "Offices and commercial",
+    commercialLead: "Priced per site rather than per m², because no two are the same. Tell us the space and how often.",
+    bookOnline: "Book online",
+    requestQuote: "Request a quote",
+    talkToUs: "Talk to us",
+    staffingHowTitle: "How staffing works",
+    staffingStep1: "Tell us the role, the hours and the site.",
+    staffingStep2: "We match vetted people and confirm availability.",
+    staffingStep3: "They start. You deal with us, not paperwork.",
+    whyBookOnline: "Why book online",
+    priceUpFront: "Price up front",
+    priceUpFrontDesc: "See the cost before you enter a single detail.",
+    pickYourSlot: "Pick your own slot",
+    pickYourSlotDesc: "Real availability, confirmed straight away.",
+    changeAnytime: "Change it easily",
+    changeAnytimeDesc: "Reschedule or cancel from a link in your email.",
   },
   nl: {
     // Navigation  
@@ -319,18 +364,18 @@ const translations = {
     about: "Over Ons",
     services: "Diensten",
     contact: "Contact", 
-    getQuote: "Offerte",
+    getQuote: "Nu Boeken",
     
     // Hero Section
-    heroTitle: "Schone Ruimtes, Betrouwbaar Personeel",
-    heroSubtitle: "WJ Cleaning Services levert uitzonderlijke schoonmaakdiensten en professionele personeelsoplossingen. Van particuliere woningen tot kantoren, wij zorgen voor vlekkeloze resultaten.",
-    getFreeQuote: "Gratis Offerte",
+    heroTitle: "Professionele Schoonmaak en Personeel in Lelystad",
+    heroSubtitle: "Schoonmaak voor woningen en kantoren, plus gescreend personeel voor magazijnen, hotels en evenementen. Gevestigd in Lelystad, actief in Flevoland en omgeving.",
+    getFreeQuote: "Nu Boeken",
     hireStaff: "Personeel Inhuren",
     
     // Services Section
     ourServices: "Onze Diensten", 
     servicesTitle: "Volledige Schoonmaak- en Personeelsdiensten",
-    servicesSubtitle: "Van glanzende schone ruimtes tot betrouwbare personeelsdiensten - wij leveren uitmuntende kwaliteit in elke service.",
+    servicesSubtitle: "Schoonmaak voor woningen, kantoren en bedrijfsruimtes — plus gekwalificeerd personeel wanneer u extra handen nodig heeft.",
     
     // Service Cards
     residentialCleaning: "Particuliere Reiniging",
@@ -380,18 +425,17 @@ const translations = {
     qualityAssuredDesc: "Elke service wordt ondersteund door onze kwaliteitsgarantie en aandacht voor detail.",
     fullyInsured: "Volledig Verzekerd",
     fullyInsuredDesc: "Volledige dekking voor uw gemoedsrust en bescherming.",
-    support247: "24/7 Ondersteuning",
-    support247Desc: "Rond-de-klok beschikbaarheid voor noodgevallen en urgente behoeften.",
-    readyToExperience: "Klaar om het Verschil te Ervaren?",
-    readyToExperienceDesc: "Krijg vandaag nog uw gratis offerte en ontdek waarom honderden klanten WJ Cleaning Services vertrouwen voor hun schoonmaak- en personeelsbehoeften.",
-    callNow: "Nu Bellen",
+    flexibleScheduling: "Flexibele planning",
+    flexibleSchedulingDesc: "Schoonmaakschema’s afgestemd op uw routine.",
+    readyToExperience: "Vraag een prijs voor uw ruimte",
+    readyToExperienceDesc: "Vertel ons de grootte van de ruimte en wat u nodig heeft. U krijgt een prijs en een tijd, meestal dezelfde werkdag.",
     
     // About Page
     aboutUs: "Over Ons",
-    aboutHeroTitle: "Vertrouwen en Uitmuntendheid in Elke Service",
-    aboutHeroSubtitle: "WJ Cleaning Services is uw betrouwbare partner voor professionele schoonmaak- en personeelsdiensten. Wij leveren uitmuntende resultaten die uw verwachtingen overtreffen.",
+    aboutHeroTitle: "Een klein schoonmaakbedrijf uit Lelystad",
+    aboutHeroSubtitle: "Wij maken woningen, kantoren en bedrijfsruimtes schoon in Lelystad en heel Flevoland.",
     ourStory: "Onze Geschiedenis",
-    ourStoryDesc: "WJ Cleaning Services is opgericht met een duidelijk begrip van het belang van vertrouwen, betrouwbaarheid en aandacht voor detail. Wat begon als een klein bedrijf is uitgegroeid tot een vertrouwde partner.",
+    ourStoryDesc: "WJ Cleaning Services begon klein en bleef dicht bij de mensen voor wie het werkt, in Lelystad en de rest van Flevoland.",
     ourMission: "Onze Missie",
     ourMissionDesc: "Om uitmuntende schoonmaakdiensten en betrouwbare personeelsoplossingen te leveren die verwachtingen bovenstebruiken, terwijl we langdurige relaties opbouwen op vertrouwen en kwaliteit.",
     ourValues: "Onze Waarden",
@@ -400,7 +444,7 @@ const translations = {
     qualityExcellence: "Kwaliteit & Uitmuntendheid",
     qualityExcellenceDesc: "Elke dienst wordt geleverd met aandacht voor detail en een verplichting tot uitmuntendheid.",
     customerSatisfaction: "Klanttevredenheid",
-    customerSatisfactionDesc: "Uw tevredenheid is ons prioriteit, en we gaan boven en buiten de noden van u.",
+    customerSatisfactionDesc: "Uw tevredenheid staat voorop en wij werken naar uw voorkeuren.",
     satisfiedCustomers: "Tevreden Klanten",
     satisfiedCustomersDesc: "Honderden tevreden klanten die ons vertrouwen met hun schoonmaak- en personeelsbehoeften.",
     professionalTeam: "Professionele Team",
@@ -410,16 +454,15 @@ const translations = {
     contactUs: "Contact",
     contactHeroTitle: "Bel Ons",
     contactHeroSubtitle: "Klaar om het verschil te ervaren? Neem vandaag contact met ons op voor een gratis offerte of bespreek uw schoonmaak- en personeelsbehoeften.",
-          getInTouch: "Bel Ons",
+    getInTouch: "Neem contact op",
     getInTouchDesc: "Wij zijn hier om u te helpen met al uw schoonmaak- en personeelsbehoeften. Neem vandaag contact met ons op voor een gratis consultatie.",
     contactInfo: "Contact Informatie",
-    contactInfoDesc: "Stuur ons een bericht via een van deze kanalen. Wij zijn hier om u te helpen 24/7.",
+    contactInfoDesc: "Bereik ons via telefoon, WhatsApp of e-mail. Wij reageren binnen 4 werkuren, maandag tot en met zaterdag.",
     businessHours: "Bedrijfsuren",
     businessHoursDesc: "Wij zijn beschikbaar tijdens deze uren voor consultaties en ondersteuning.",
     sendMessage: "Stuur Bericht",
     sendMessageDesc: "Vul het formulier hieronder in en wij nemen binnen 24 uur contact met u op.",
     name: "Naam",
-    email: "E-mail",
     phone: "Telefoon",
     message: "Bericht",
     submit: "Indienen",
@@ -437,7 +480,6 @@ const translations = {
     
     // Mobile bottom bar
     callNow: "Nu Bellen",
-    whatsapp: "WhatsApp",
     email: "E-mail",
     
     // Service tabs
@@ -448,25 +490,25 @@ const translations = {
     professionalCleaningStaffing: "Professionele Schoonmaak & Personeelsoplossingen",
     aboutWJCleanforce: "Over WJ Cleaning Services",
     trustedPartnersExcellence: "Vertrouwde Partners in Uitmuntendheid",
-    aboutDescription: "WJ Cleaning Services is opgericht met een eenvoudige missie: het leveren van uitzonderlijke schoonmaak- en personeelsdiensten die verwachtingen overtreffen. Onze toewijding aan kwaliteit, betrouwbaarheid en klanttevredenheid heeft ons tot de eerste keuze gemaakt voor bedrijven en huiseigenaren.",
+    aboutDescription: "WJ Cleaning Services levert schoonmaak en personeel voor woningen en bedrijven in Lelystad en heel Flevoland, gebouwd op kwaliteit, betrouwbaarheid en klanttevredenheid.",
     experienceYearsDesc: "Ons team heeft meer dan 5 jaar ervaring in de schoonmaaksector.",
     personalizedSchedulesDesc: "Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.",
     extraHygieneDesc: "Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.",
     excellenceInDetail: "Uitmuntendheid in Elk Detail",
     foundersQuote: "WJ Cleaning Services",
     howItWorks: "Hoe Het Werkt",
-    simpleProcessOutstanding: "Eenvoudig Proces, Uitzonderlijke Resultaten",
-    howItWorksDesc: "Beginnen met WJ Cleaning Services is eenvoudig. Ons gestroomlijnde proces zorgt ervoor dat je snel en efficiënt de service krijgt die je nodig hebt.",
+    simpleProcessOutstanding: "Zo werkt het",
+    howItWorksDesc: "Drie stappen van eerste contact tot een schone ruimte. Geen lange formulieren, geen dagen wachten op een offerte.",
     getYourQuote: "Krijg Je Offerte",
-    getYourQuoteDesc: "Neem contact met ons op voor een gratis consultatie. We beoordelen je behoeften en geven een transparante, concurrerende offerte.",
+    getYourQuoteDesc: "Vertel ons de grootte van de ruimte en wat u nodig heeft. U krijgt een echte prijs, geen ‘neem contact op voor tarieven’.",
     scheduleService: "Plan Service",
     scheduleServiceDesc: "Kies een tijd die voor jou werkt. We bieden flexibele planning die past bij je drukke levensstijl en zakelijke behoeften.",
     enjoyCleanSpaces: "Geniet van Schone Ruimtes",
-    enjoyCleanSpacesDesc: "Leun achterover en ontspan terwijl ons professionele team uitzonderlijke resultaten levert die je verwachtingen overtreffen.",
+    enjoyCleanSpacesDesc: "Leun achterover terwijl ons team professionele resultaten levert.",
     readyToGetStarted: "Klaar om te Beginnen?",
-    experienceDifference: "Ervaar het WJ Cleaning Services Verschil Vandaag",
-    ctaDescription: "Sluit je aan bij honderden tevreden klanten die ons vertrouwen met hun schoonmaak- en personeelsbehoeften. Krijg je gratis offerte in minuten.",
-    getFreeQuoteNow: "Krijg Nu Gratis Offerte",
+    experienceDifference: "Klaar voor schoonmaak waar u niet achteraan hoeft te bellen?",
+    ctaDescription: "Stuur ons de details en wij bevestigen uw moment. De meeste aanvragen krijgen dezelfde werkdag antwoord.",
+    getFreeQuoteNow: "Nu Boeken",
     whatsappUs: "WhatsApp Ons",
     satisfactionGuaranteed: "Tevredenheid Gegarandeerd",
     
@@ -513,24 +555,24 @@ const translations = {
     
     // About page specific translations
     readyToWorkTogether: "Klaar om Samen te Werken?",
-    letsBuildAmazing: "Laten We Iets Geweldigs Samen Bouwen",
-    aboutCtaDescription: "Klaar om het WJ Cleaning Services verschil te ervaren? Neem vandaag contact met ons op voor een gratis consultatie en ontdek hoe we je kunnen helpen je doelen te bereiken.",
+    letsBuildAmazing: "Wij nemen de schoonmaak van uw lijst",
+    aboutCtaDescription: "Vertel ons wat er schoongemaakt moet worden en hoe vaak. Wij reageren binnen 4 werkuren met een prijs en de momenten die vrij zijn.",
     getStartedToday: "Begin Vandaag",
     viewOurServices: "Bekijk Onze Diensten",
-    deliveringExcellence: "Uitmuntendheid Leveren in Elke Service",
+    deliveringExcellence: "Wat wij doen",
     customerCentricApproach: "Klantgerichte Aanpak",
     customerCentricDesc: "Wij prioriteren uw tevredenheid met persoonlijke zorg en aandacht voor elk detail van uw project.",
     trustedReliable: "Betrouwbaar & Vertrouwd",
     trustedReliableDesc: "Langdurige relaties opbouwen door consistente, betrouwbare dienstverlening.",
     excellenceInService: "Uitmuntendheid in Service",
-    excellenceInServiceDesc: "Wij gaan boven en beyond om verwachtingen te overtreffen en leveren resultaten die voor zich spreken.",
+    excellenceInServiceDesc: "Wij zetten die extra stap voor resultaten die voor zich spreken.",
     professionalExcellence: "Professionele Uitmuntendheid",
     qualityServiceGuaranteed: "Gegarandeerde Kwaliteitsservice",
-    principlesGuideUs: "De Principes Die Ons Dagelijks Leiden",
-    valuesDescription: "Onze kernwaarden vormen elke beslissing die wij nemen en elke service die wij leveren. Zij zijn de basis van ons succes en de reden waarom onze klanten ons vertrouwen.",
+    principlesGuideUs: "Hoe wij werken",
+    valuesDescription: "Zes dingen waar wij ons aan houden bij elke opdracht, of het een wekelijkse schoonmaak thuis is of een dienst in een magazijn.",
     passionForExcellence: "Passie voor Uitmuntendheid",
-    passionForExcellenceDesc: "Wij benaderen elke taak met toewijding en aandacht voor detail, waarbij wij uitzonderlijke resultaten garanderen die verwachtingen overtreffen.",
-    discoverQuality: "Ontdek de kwaliteit en aandacht voor detail die WJ Cleaning Services onderscheidt van de concurrentie.",
+    passionForExcellenceDesc: "Wij benaderen elke taak met toewijding en aandacht voor detail.",
+    discoverQuality: "Woningen, kantoren en bedrijfsruimtes in Lelystad en de rest van Flevoland.",
     
     // Values section translations
     trustReliabilityTitle: "Vertrouwen & Betrouwbaarheid",
@@ -543,7 +585,7 @@ const translations = {
     continuousGrowthTitle: "Continue Groei",
     continuousGrowthDesc: "Innovatie en leren omarmen om geavanceerde oplossingen te leveren die evolueren met industriestandaarden.",
     ourWork: "Ons Werk",
-    professionalExcellenceInEveryDetail: "Professionele Uitmuntendheid in Elk Detail",
+    professionalExcellenceInEveryDetail: "Het werk dat wij doen",
     
     completeHomeCleaning: "Complete particuliere schoonmaakoplossingen",
     orderPickingPacking: "Order picking en verpakking",
@@ -607,68 +649,105 @@ const translations = {
     schoolCleaning: "School Schoonmaak",
     
     // Footer translations
-    footerDescription: "Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid. Gebouwd met toewijding aan uitzonderlijke service.",
+    footerDescription: "Schoonmaak- en personeelsdiensten vanuit Lelystad. Woningen, kantoren, magazijnen, hotels en scholen in heel Flevoland.",
     
     // Gallery section translations
     commercialCleaning: "Commerciële Schoonmaak",
     commercialCleaningDesc: "Professionele kantoor- en faciliteitsreiniging",
     reliableWorkforce: "Betrouwbare personeelsoplossingen",
+    // Trust strip + form labels
+    fullName: "Volledige naam",
+    fullNamePlaceholder: "bijv. Anna de Vries",
+    emailUs: "E-mail ons",
+    trustInsured: "Volledig verzekerd",
+    trustInsuredDesc: "Aansprakelijkheidsdekking bij elke opdracht.",
+    trustLocal: "Gevestigd in Lelystad",
+    trustLocalDesc: "Actief in Flevoland en omgeving.",
+    trustResponse: "Snel antwoord",
+    trustResponseDesc: "Reactie binnen 4 werkuren.",
+    // hero booking card
+    heroCardTitle: "Boek online in 2 minuten",
+    heroCardBody: "Vaste prijs op basis van uw woningoppervlak.",
+    from: "vanaf",
+
+    // services split
+    cleaningServicesNav: "Schoonmaak",
+    staffingServicesNav: "Personeel",
+    allServices: "Alle diensten",
+    cleaningPageTitle: "Schoonmaak voor huis en bedrijf",
+    cleaningPageLead: "Vaste prijzen op basis van uw woningoppervlak, online geboekt in twee minuten. Voor kantoren en bedrijfsruimtes maken wij een offerte per locatie.",
+    staffingPageTitle: "Personeel wanneer u extra handen nodig heeft",
+    staffingPageLead: "Gescreend personeel voor magazijnen, hotels, restaurants, scholen en evenementen. Vertel ons wat u nodig heeft en wij zoeken de juiste mensen.",
+    whatsIncluded: "Wat is inbegrepen",
+    homeCleaningTitle: "Schoonmaak thuis",
+    homeCleaningLead: "Prijs op basis van uw woningoppervlak. Boek online en kies zelf uw moment.",
+    addDeepClean: "Dieptereiniging toevoegen",
+    addDeepCleanDesc: "Ontkalken, binnenkant kasten en apparatuur, ramen binnen en buiten, achter en onder meubels.",
+    commercialTitle: "Kantoren en bedrijfsruimtes",
+    commercialLead: "Prijs per locatie in plaats van per m², omdat geen twee hetzelfde zijn. Vertel ons de ruimte en hoe vaak.",
+    bookOnline: "Online boeken",
+    requestQuote: "Offerte aanvragen",
+    talkToUs: "Neem contact op",
+    staffingHowTitle: "Zo werkt personeel inhuren",
+    staffingStep1: "Vertel ons de functie, de uren en de locatie.",
+    staffingStep2: "Wij zoeken gescreende mensen en bevestigen beschikbaarheid.",
+    staffingStep3: "Zij beginnen. U regelt het met ons, niet met papierwerk.",
+    whyBookOnline: "Waarom online boeken",
+    priceUpFront: "Vooraf de prijs",
+    priceUpFrontDesc: "U ziet de kosten voordat u één gegeven invult.",
+    pickYourSlot: "Kies zelf uw moment",
+    pickYourSlotDesc: "Echte beschikbaarheid, direct bevestigd.",
+    changeAnytime: "Eenvoudig wijzigen",
+    changeAnytimeDesc: "Verzetten of annuleren via een link in uw e-mail.",
   }
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
+const STORAGE_KEY = 'wj-language'
+
+const isLanguage = (value: unknown): value is Language => value === 'en' || value === 'nl'
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    // Check if we're in the browser and get saved language
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('wj-language')
-      return (saved === 'nl' || saved === 'en') ? saved as Language : 'en'
-    }
-    return 'en'
-  })
+  // Always start on 'en' so the server render and the first client render
+  // agree. Reading localStorage during initial state caused a hydration
+  // mismatch for anyone whose saved language was 'nl'.
+  const [language, setLanguage] = useState<Language>('en')
 
-  const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['en']] || key
-  }
-
-  // Save language preference to localStorage
-  const handleSetLanguage = (lang: Language) => {
-    setLanguage(lang)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('wj-language', lang)
-    }
-  }
-
-  // Update HTML lang attribute and meta tags when language changes
   useEffect(() => {
-    // Update the html lang attribute when language changes
-    document.documentElement.lang = language
-    
-    // Update meta tags for SEO
-    const metaDescription = document.querySelector('meta[name="description"]')
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        language === 'nl' 
-          ? 'Professionele schoonmaak- en personeelsdiensten gebouwd op vertrouwen, betrouwbaarheid en uitmuntendheid. Gebouwd met toewijding aan uitzonderlijke service.'
-          : 'Professional cleaning and staffing services built on trust, reliability, and excellence. Built with dedication to exceptional service.'
-      )
-    }
+    const saved = window.localStorage.getItem(STORAGE_KEY)
+    if (isLanguage(saved)) setLanguage(saved)
+  }, [])
 
-    // Update title based on language
-    const title = document.querySelector('title')
-    if (title) {
-      title.textContent = language === 'nl' 
-        ? 'WJ Cleaning Services - Professionele Schoonmaak & Personeelsdiensten'
-        : 'WJ Cleaning Services - Professional Cleaning & Staffing Services'
-    }
+  const t = useCallback(
+    (key: TranslationKey): string => {
+      const value = translations[language][key]
+      if (value === undefined) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(`[i18n] missing "${key}" for language "${language}"`)
+        }
+        return translations.en[key] ?? key
+      }
+      return value
+    },
+    [language],
+  )
+
+  const handleSetLanguage = useCallback((lang: Language) => {
+    setLanguage(lang)
+    window.localStorage.setItem(STORAGE_KEY, lang)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.lang = language
   }, [language])
 
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
+  const value = useMemo(
+    () => ({ language, setLanguage: handleSetLanguage, t }),
+    [language, handleSetLanguage, t],
   )
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {
@@ -677,4 +756,4 @@ export function useLanguage() {
     throw new Error('useLanguage must be used within a LanguageProvider')
   }
   return context
-} 
+}

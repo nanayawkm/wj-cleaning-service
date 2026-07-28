@@ -29,6 +29,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       screens: {
         'xs': '475px',
       },
@@ -80,6 +83,12 @@ const config = {
         'wj-darker': '#1E4A5A',
         'wj-light': '#84B4C7',
         'wj-lighter': '#A3C5D6',
+        // Warm page ground. White cards sit on this and read as panels.
+        'wj-cream': '#F5F0E8',
+        'wj-cream-deep': '#EDE6DA',
+        // Button hover. wj-darker sits only 1.36:1 from wj-dark, which is not a
+        // perceptible state change; this is deliberately further apart.
+        'wj-hover': '#173741',
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -4,14 +4,17 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 40 33% 94%;  /* wj-cream #F5F0E8 */
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    /* Brand teal (#2C5F70). These were still shadcn's default blue, which is
+       why every Button on the site carried a hand-written bg-wj-dark override
+       and every focus ring drew blue on a teal design. */
+    --primary: 195 43.6% 30.6%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
@@ -22,13 +25,17 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 195 43.6% 30.6%;
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+
+    /* WJ Cleaning brand colours, derived from the logo */
+    --wj-blue-light: #84b4c7;
+    --wj-blue-dark: #2c5f70;
+    --wj-blue-lighter: #a3c5d6;
+    --wj-blue-darker: #1e4a5a;
+    --wj-accent: #5a7d8c;
+    --wj-accent-light: #7a9dac;
+    --wj-accent-dark: #4a6d7c;
   }
 
   .dark {
@@ -51,11 +58,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
 }
 
@@ -63,378 +65,114 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    /*
+     * Reveal animations translate elements before they settle, which can push
+     * past the viewport edge and create horizontal scroll — the -right variant
+     * did exactly that at 390px. `clip` prevents it without creating a scroll
+     * container, so the sticky header keeps working (`hidden` would break it).
+     */
+    overflow-x: clip;
+  }
+
+  /*
+   * One typeface throughout. Headings separate from body by weight and
+   * tracking, not by a second family.
+   */
+  h1,
+  h2 {
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+    font-weight: 600;
+  }
+
+  h3,
+  h4 {
+    letter-spacing: -0.012em;
+    font-weight: 600;
+  }
+
+  /* Clear the fixed mobile action bar so it never covers page content. */
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
+    }
   }
 }
 
-@layer base {
-  :root {
-    /* WJ Cleaning Logo Colors */
-    --wj-blue-light: #84B4C7;
-    --wj-blue-dark: #2C5F70;
-    --wj-blue-lighter: #A3C5D6;
-    --wj-blue-darker: #1E4A5A;
-    /* WJ Cleaning Accent - Harmonious teal-gray */
-    --wj-accent: #5A7D8C;
-    --wj-accent-light: #7A9DAC;
-    --wj-accent-dark: #4A6D7C;
-  }
+/*
+ * Hero copy sits over bare photography rather than a scrim, so each glyph
+ * carries its own contrast. Two stacked shadows: a tight dark one for edge
+ * definition and a wide soft one that darkens the pixels immediately around
+ * the letterforms. Invisible as an effect, but it is what keeps white type
+ * legible when the image is showing at full strength.
+ */
+.hero-copy {
+  text-shadow:
+    0 1px 2px rgba(23, 55, 65, 0.55),
+    0 2px 14px rgba(23, 55, 65, 0.75);
 }
 
-/* Responsive Improvements */
-@layer utilities {
-  /* Better text sizing for medium screens */
-  .text-responsive-xl {
-    @apply text-xl md:text-2xl lg:text-3xl;
-  }
-  
-  .text-responsive-2xl {
-    @apply text-2xl md:text-3xl lg:text-4xl;
-  }
-  
-  .text-responsive-3xl {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
-  
-  .text-responsive-4xl {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-  }
-  
-  /* Better spacing for medium screens */
-  .space-responsive-y {
-    @apply space-y-4 sm:space-y-6 md:space-y-8;
-  }
-  
-  .space-responsive-x {
-    @apply space-x-4 sm:space-x-6 md:space-x-8;
-  }
-  
-  /* Better padding for medium screens */
-  .p-responsive {
-    @apply p-4 sm:p-6 md:p-8;
-  }
-  
-  .px-responsive {
-    @apply px-4 sm:px-6 md:px-8;
-  }
-  
-  .py-responsive {
-    @apply py-4 sm:py-6 md:py-8;
-  }
-  
-  /* Better margins for medium screens */
-  .m-responsive {
-    @apply m-4 sm:m-6 md:m-8;
-  }
-  
-  .mx-responsive {
-    @apply mx-4 sm:mx-6 md:mx-8;
-  }
-  
-  .my-responsive {
-    @apply my-4 sm:my-6 md:my-8;
-  }
-  
-  /* Better gaps for medium screens */
-  .gap-responsive {
-    @apply gap-4 sm:gap-6 md:gap-8;
-  }
-  
-  /* Ensure content doesn't touch screen edges on medium screens */
-  .safe-padding {
-    @apply px-4 sm:px-6 md:px-8 lg:px-12;
-  }
-  
-  /* Better container max-widths for different screen sizes */
-  .container-responsive {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12;
-  }
-}
-
-/* Scroll Animations - Optimized for Performance */
-@layer utilities {
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-1 {
-    animation: fadeInUp 0.6s ease-out 0.1s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-2 {
-    animation: fadeInUp 0.6s ease-out 0.2s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-3 {
-    animation: fadeInUp 0.6s ease-out 0.3s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-4 {
-    animation: fadeInUp 0.6s ease-out 0.4s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-5 {
-    animation: fadeInUp 0.6s ease-out 0.5s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-6 {
-    animation: fadeInUp 0.6s ease-out 0.6s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-up-delay-7 {
-    animation: fadeInUp 0.6s ease-out 0.7s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-right {
-    animation: fadeInRight 0.6s ease-out forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-right-delay-4 {
-    animation: fadeInRight 0.6s ease-out 0.4s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .animate-fade-in-right-delay-6 {
-    animation: fadeInRight 0.6s ease-out 0.6s forwards;
-    will-change: transform, opacity;
-  }
-  
-  .opacity-0 {
-    opacity: 0;
-  }
-  
-  .translate-y-4 {
-    transform: translateY(1rem);
-  }
-  
-  .translate-x-4 {
-    transform: translateX(1rem);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Intersection Observer Animation Classes - Optimized */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: all 0.6s ease-out;
-  will-change: transform, opacity;
-}
-
-.scroll-animate.scroll-animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-animate-right {
-  opacity: 0;
-  transform: translateX(1rem);
-  transition: all 0.6s ease-out;
-  will-change: transform, opacity;
-}
-
-.scroll-animate-right.scroll-animate-in {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Performance optimizations */
+/*
+ * Scroll-reveal.
+ *
+ * Content is VISIBLE by default. Hiding only happens once <ScrollReveal/> has
+ * mounted and set data-reveal="on" on <html>, which guarantees an observer is
+ * running to reveal it again. Previously these rules hid content unconditionally
+ * and relied on a script that could — and did — fail to run, leaving whole
+ * sections of the homepage permanently invisible.
+ */
 .scroll-animate,
 .scroll-animate-right {
-  contain: layout style paint;
+  /* Slightly overshooting ease-out: arrives quickly then settles, which reads
+     as responsive. A plain 0.6s ease-out felt like the page was lagging. */
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Reduce motion for users who prefer it */
+[data-reveal="on"] .scroll-animate:not(.scroll-animate-in) {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+/*
+ * Also translates on Y, not X. A horizontal reveal offset pushes past the
+ * viewport edge and creates page-wide horizontal scroll on narrow screens —
+ * it did exactly that at 390px. Vertical offsets cannot, because the page
+ * already scrolls that way.
+ */
+[data-reveal="on"] .scroll-animate-right:not(.scroll-animate-in) {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+/*
+ * Stagger direct children so a row of cards cascades instead of appearing as
+ * one block. Delays are small on purpose — past ~200ms the last card feels
+ * late rather than choreographed.
+ */
+[data-reveal="on"] .scroll-stagger > *:nth-child(2) { transition-delay: 70ms }
+[data-reveal="on"] .scroll-stagger > *:nth-child(3) { transition-delay: 140ms }
+[data-reveal="on"] .scroll-stagger > *:nth-child(4) { transition-delay: 70ms }
+[data-reveal="on"] .scroll-stagger > *:nth-child(5) { transition-delay: 140ms }
+[data-reveal="on"] .scroll-stagger > *:nth-child(6) { transition-delay: 210ms }
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .scroll-animate,
-  .scroll-animate-right,
-  .animate-fade-in-up,
-  .animate-fade-in-up-delay-1,
-  .animate-fade-in-up-delay-2,
-  .animate-fade-in-up-delay-3,
-  .animate-fade-in-up-delay-4,
-  .animate-fade-in-up-delay-5,
-  .animate-fade-in-up-delay-6,
-  .animate-fade-in-up-delay-7,
-  .animate-fade-in-right,
-  .animate-fade-in-right-delay-4,
-  .animate-fade-in-right-delay-6 {
-    animation: none;
-    opacity: 1;
-    transform: none;
+  .scroll-animate-right {
+    opacity: 1 !important;
+    transform: none !important;
     transition: none;
-  }
-}
-
-/* Additional responsive fixes for medium screens */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Ensure text doesn't get too large on medium screens */
-  .md\:text-5xl {
-    font-size: 2.5rem;
-  }
-  
-  .md\:text-6xl {
-    font-size: 3rem;
-  }
-  
-  .md\:text-7xl {
-    font-size: 3.5rem;
-  }
-  
-  /* Better spacing for medium screens */
-  .md\:space-y-8 {
-    margin-top: 2rem;
-  }
-  
-  .md\:space-y-12 {
-    margin-top: 3rem;
-  }
-  
-  /* Ensure proper container padding */
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Ensure content doesn't overflow on smaller screens */
-@media (max-width: 767px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  /* Prevent text from being too large on mobile */
-  .text-7xl {
-    font-size: 2.5rem;
-  }
-  
-  .text-6xl {
-    font-size: 2rem;
-  }
-  
-  .text-5xl {
-    font-size: 1.75rem;
-  }
-}
-
-/* Additional margin fixes for all screen sizes */
-@media (min-width: 1024px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Ensure minimum margins on all devices */
-.container {
-  min-width: 320px;
-  max-width: 1400px;
-}
-
-/* Better safe area handling */
-@supports (padding: max(0px)) {
-  .container {
-    padding-left: max(1rem, env(safe-area-inset-left));
-    padding-right: max(1rem, env(safe-area-inset-right));
-  }
-}
-
-/* Optimize for better scrolling performance */
-* {
-  scroll-behavior: smooth;
-}
-
-/* Reduce repaints during scroll */
-.container,
-.section {
-  contain: layout style;
-}
-
-/* Optimize images for better performance */
-img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-/* Reduce layout thrashing */
-.grid,
-.flex {
-  contain: layout;
-}
-
-/* Additional margin improvements for better spacing */
-@media (min-width: 768px) {
-  /* Add extra margin for medium screens and up */
-  .container {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  /* Add extra margin for large screens */
-  .container {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  /* Add extra margin for extra large screens */
-  .container {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-  }
-}
-
-/* Ensure content has minimum safe margins */
-.section {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 }
