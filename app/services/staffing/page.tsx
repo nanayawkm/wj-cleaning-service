@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Buildings, Check, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
+import { ArrowRight, Buildings, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
 
 import { Button } from "@/components/ui/button"
 import { FeatureCard, tintFor } from "@/components/feature-card"
@@ -20,20 +20,43 @@ const whatsappHref = `https://wa.me/${CONTACT_DETAILS.phoneWa}`
 export default function StaffingServicesPage() {
   const { t } = useLanguage()
 
-  const warehouseTasks = [
-    t("orderPickingPacking"),
-    t("inventoryManagement"),
-    t("loadingUnloading"),
-    t("qualityControlSupport"),
-    t("forkliftOperation"),
-  ]
-
   const staffSlides = [
-    { title: t("officeSupportStaff"), description: t("staffOfficeDesc"), image: "/images/services/industry-office.webp" },
-    { title: t("restaurantCafePersonnel"), description: t("staffRestaurantDesc"), image: "/images/services/industry-restaurant.webp" },
-    { title: t("hotelStaff"), description: t("staffHotelDesc"), image: "/images/services/industry-hotel.webp" },
-    { title: t("schoolSupportStaff"), description: t("staffSchoolDesc"), image: "/images/services/industry-school.webp" },
-    { title: t("eventStaffingText"), description: t("staffEventDesc"), image: "/images/services/event-staffing.webp" },
+    {
+      title: t("warehouseStaffingTitle"),
+      description: t("warehouseStaffingDesc"),
+      image: "/images/services/industry-warehouse.webp",
+      bullets: [t("orderPickingPacking"), t("inventoryManagement"), t("loadingUnloading")],
+    },
+    {
+      title: t("officeSupportStaff"),
+      description: t("staffOfficeDesc"),
+      image: "/images/services/industry-office.webp",
+      bullets: [t("staffOfficeB1"), t("staffOfficeB2"), t("staffOfficeB3")],
+    },
+    {
+      title: t("restaurantCafePersonnel"),
+      description: t("staffRestaurantDesc"),
+      image: "/images/services/industry-restaurant.webp",
+      bullets: [t("staffRestaurantB1"), t("staffRestaurantB2"), t("staffRestaurantB3")],
+    },
+    {
+      title: t("hotelStaff"),
+      description: t("staffHotelDesc"),
+      image: "/images/services/industry-hotel.webp",
+      bullets: [t("staffHotelB1"), t("staffHotelB2"), t("staffHotelB3")],
+    },
+    {
+      title: t("schoolSupportStaff"),
+      description: t("staffSchoolDesc"),
+      image: "/images/services/industry-school.webp",
+      bullets: [t("staffSchoolB1"), t("staffSchoolB2"), t("staffSchoolB3")],
+    },
+    {
+      title: t("eventStaffingText"),
+      description: t("staffEventDesc"),
+      image: "/images/services/event-staffing.webp",
+      bullets: [t("staffEventB1"), t("staffEventB2"), t("staffEventB3")],
+    },
   ]
 
   const steps = [
@@ -81,46 +104,14 @@ export default function StaffingServicesPage() {
         </div>
       </section>
 
-      {/* warehouse — the specialism */}
-      <section className="border-b border-wj-cream-deep bg-white py-16 sm:py-20">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-            <div className="relative order-first aspect-[4/3] overflow-hidden rounded-xl lg:order-last lg:aspect-auto">
-              <Image
-                src="/images/services/industry-warehouse.webp"
-                alt={t("warehouseIndustry")}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={90}
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
-                {t("warehouseStaffingTitle")}
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                {t("warehouseStaffingDesc")}
-              </p>
-              <ul className="mt-6 space-y-2.5">
-                {warehouseTasks.map((task) => (
-                  <li key={task} className="flex items-start gap-3">
-                    <Check weight="bold" className="mt-1 h-4 w-4 flex-shrink-0 text-wj-dark" />
-                    <span className="text-gray-700">{task}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/*
-        Replaces the flat list of role names. Each role now gets its own slide
-        with a sentence and a photograph, which says far more about what Jackie
-        actually supplies than six words in a box did.
+        Every staffing role in one carousel, warehouse first because it is the
+        specialism. It replaced both a flat list of role names and a separate
+        warehouse block — six slides in the same copy-left, image-right shape
+        say more than two static sections did, and the page stops repeating
+        itself.
       */}
-      <section className="py-16 sm:py-20">
+      <section className="border-b border-wj-cream-deep bg-white py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-10 max-w-2xl">
             <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">

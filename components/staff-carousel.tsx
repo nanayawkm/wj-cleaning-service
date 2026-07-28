@@ -2,12 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { CaretLeft, CaretRight } from "@phosphor-icons/react"
+import { CaretLeft, CaretRight, Check } from "@phosphor-icons/react"
 
 export interface StaffSlide {
   title: string
   description: string
   image: string
+  /** What these staff actually do. Every slide carries the same number so the
+   *  block does not change height as the carousel advances. */
+  bullets: string[]
 }
 
 const INTERVAL_MS = 6000
@@ -67,12 +70,21 @@ export function StaffCarousel({ slides, label }: { slides: StaffSlide[]; label: 
     >
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
         {/* copy — aria-live so a screen reader hears the change */}
-        <div aria-live="polite" aria-atomic="true" className="order-last lg:order-first">
+        <div aria-live="polite" aria-atomic="true" className="order-last lg:order-first lg:min-h-[26rem]">
           <p className="text-sm font-semibold uppercase tracking-wide text-wj-dark">
             {index + 1} / {slides.length}
           </p>
           <h3 className="mt-2 text-2xl tracking-tight text-gray-900 sm:text-3xl">{active.title}</h3>
           <p className="mt-4 text-lg leading-relaxed text-gray-600">{active.description}</p>
+
+          <ul className="mt-5 space-y-2.5">
+            {active.bullets.map((b) => (
+              <li key={b} className="flex items-start gap-3">
+                <Check weight="bold" className="mt-1 h-4 w-4 flex-shrink-0 text-wj-dark" />
+                <span className="text-gray-700">{b}</span>
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-7 flex items-center gap-3">
             <button
