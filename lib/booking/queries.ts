@@ -18,7 +18,7 @@ export async function getPricingBands(): Promise<PricingBand[]> {
   const db = createSupabaseAdminClient()
   const { data, error } = await db
     .from("pricing_bands")
-    .select("id, min_m2, max_m2, label_nl, label_en, base_cents, deep_cents, sort_order")
+    .select("id, min_m2, max_m2, label_nl, label_en, base_cents, deep_cents, base_duration_min, sort_order")
     .eq("active", true)
     .order("sort_order")
   if (error) throw new Error(`pricing_bands: ${error.message}`)
@@ -80,22 +80,17 @@ export async function getDiscountCode(code: string) {
   const db = createSupabaseAdminClient()
   const { data } = await db
     .from("discount_codes")
-    .select("id, code, percent_off, active, first_booking_only, expires_at")
+    .select("id, code, percent_off, active, expires_at, max_uses, times_used")
     .ilike("code", code.trim())
     .maybeSingle()
 
   if (!data || !data.active) return null
   if (data.expires_at && new Date(data.expires_at) < new Date()) return null
+  // Reuse is controlled by the cap rather than by a new-customer rule: the
+  // customer's email is not known when the code is typed, so a rule that
+  // depends on it could only be applied after they had already been told the
+  // discount was accepted.
+  if (data.max_uses !== null && data.times_used >= data.max_uses) return null
   return data
 }
 
-/** Used to enforce `first_booking_only` on a discount code. */
-export async function hasBookedBefore(email: string): Promise<boolean> {
-  const db = createSupabaseAdminClient()
-  const { data } = await db
-    .from("customers")
-    .select("id, bookings(id)")
-    .ilike("email", email.trim())
-    .limit(1)
-  return Boolean(data?.[0]?.bookings?.length)
-}

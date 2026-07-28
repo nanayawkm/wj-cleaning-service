@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Buildings, Certificate, Check, Clock, Drop, Envelope, Heart, HouseLine, MapPin, PaperPlaneTilt, Phone, ShieldCheck, Sparkle, Star, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
+import { Buildings, CaretDown, Certificate, Check, Clock, Drop, Envelope, Heart, HouseLine, MapPin, PaperPlaneTilt, Phone, ShieldCheck, Sparkle, Star, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
 import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import { CONTACT_DETAILS } from '@/components/constant'
@@ -66,7 +66,7 @@ export default function ContactPage() {
                     name="fullName"
                     autoComplete="name"
                     placeholder={t('fullNamePlaceholder')}
-                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
+                    className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
                   />
                 </div>
 
@@ -81,7 +81,7 @@ export default function ContactPage() {
                       type="email"
                       autoComplete="email"
                       placeholder={t('email')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
+                      className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
                   <div className="space-y-1 sm:space-y-2">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                       type="tel"
                       autoComplete="tel"
                       placeholder={t('phone')}
-                      className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
+                      className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
                     />
                   </div>
                 </div>
@@ -103,10 +103,17 @@ export default function ContactPage() {
                   <Label htmlFor="service" className="text-gray-700 font-medium text-sm">
                     {t('serviceType')} *
                   </Label>
+                  {/*
+                    pr-10 reserved room for an arrow that was never drawn, so
+                    the browser's own arrow sat past the gap and looked
+                    detached. appearance-none removes the native one; ours is
+                    positioned against that same padding.
+                  */}
+                  <div className="relative">
                   <select
                     id="service"
                     name="service"
-                    className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 pr-10 text-base focus:border-wj-dark focus:ring-wj-dark/20"
+                    className="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 pr-10 text-base focus:border-wj-dark focus:ring-wj-dark/20"
                   >
                     <option value="">{t('selectService')}</option>
                                          {/* Cleaning Services */}
@@ -128,6 +135,11 @@ export default function ContactPage() {
                       <option value="school">{t('schoolSupportStaff')}</option>
                     </optgroup>
                   </select>
+                  <CaretDown
+                    aria-hidden
+                    className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
+                  />
+                  </div>
                 </div>
 
                 <div className="space-y-1 sm:space-y-2">
@@ -139,7 +151,7 @@ export default function ContactPage() {
                     name="message"
                     placeholder={t('messagePlaceholder')}
                     rows={4}
-                    className="border-gray-300 focus:border-wj-dark focus:ring-wj-dark/20"
+                    className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
                   />
                 </div>
 

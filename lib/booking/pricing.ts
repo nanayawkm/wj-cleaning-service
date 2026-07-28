@@ -8,6 +8,8 @@ export interface PricingBand {
   label_en: string
   base_cents: number
   deep_cents: number
+  /** How long this size of home takes before add-ons. Varies by band. */
+  base_duration_min: number
   sort_order: number
 }
 
@@ -62,7 +64,8 @@ export function calculateQuote({
     },
   ]
 
-  let durationMin = BASE_DURATION_MIN
+  // Per band, not a constant: a 65-99 m2 flat is a two-hour job.
+  let durationMin = band.base_duration_min ?? BASE_DURATION_MIN
 
   if (deepCleaning) {
     const meta = addons.find((a) => a.slug === "deep-cleaning")

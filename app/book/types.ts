@@ -20,6 +20,8 @@ export interface BookingDraft {
   washingUp: boolean
   startsAt: string | null
   endsAt: string | null
+  /** null until answered — the form will not submit while it is null. */
+  hasPets: boolean | null
   discountCode: string
   customer: CustomerDetails
   notes: string
@@ -32,6 +34,7 @@ export const emptyDraft: BookingDraft = {
   washingUp: false,
   startsAt: null,
   endsAt: null,
+  hasPets: null,
   discountCode: "",
   customer: { name: "", email: "", phone: "", street: "", postcode: "", city: "" },
   notes: "",

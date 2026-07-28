@@ -15,6 +15,7 @@ interface Band {
   label_en: string
   base_cents: number
   deep_cents: number
+  base_duration_min: number
 }
 
 /**
@@ -48,7 +49,7 @@ export function ManualBookingForm({
 
   const band = bands.find((b) => b.id === bandId) ?? null
   const total = band ? band.base_cents + (deep ? band.deep_cents : 0) + (wash ? washPriceCents : 0) : 0
-  const duration = BASE_DURATION_MIN + (deep ? 60 : 0) + (wash ? washDurationMin : 0)
+  const duration = (band?.base_duration_min ?? BASE_DURATION_MIN) + (deep ? 60 : 0) + (wash ? washDurationMin : 0)
 
   const ready = Boolean(band && startsAt && f.name.trim() && f.street.trim() && f.phone.trim())
 
@@ -140,6 +141,7 @@ export function ManualBookingForm({
           <SlotPicker
             deepCleaning={deep}
             washingUp={wash}
+            bandId={bandId}
             value={startsAt}
             onSelect={(iso) => setStartsAt(iso)}
           />

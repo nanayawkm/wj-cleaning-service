@@ -10,6 +10,7 @@ import {
   Clock,
   Drop,
   House,
+  Info,
   Sparkle,
   Tag,
 } from "@phosphor-icons/react"
@@ -44,6 +45,17 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
 
+  /*
+    Checked as they type so the discount shows in the running total straight
+    away. This is a courtesy only — the price is recalculated from the database
+    when the booking is created, so nothing here can be used to pay less.
+  */
+  const [confirming, setConfirming] = useState(false)
+
+  const [codeState, setCodeState] = useState<
+    { status: "idle" | "checking" } | { status: "valid"; percentOff: number } | { status: "invalid" }
+  >({ status: "idle" })
+
   const band = catalogue.bands.find((b) => b.id === draft.bandId) ?? null
 
   const quote = useMemo(() => {
@@ -53,8 +65,12 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
       deepCleaning: draft.deepCleaning,
       addonSlugs: draft.washingUp ? ["washing-up"] : [],
       addons: catalogue.addons,
+      discount:
+        codeState.status === "valid"
+          ? { code: draft.discountCode.trim(), percent_off: codeState.percentOff }
+          : null,
     })
-  }, [band, draft.deepCleaning, draft.washingUp, catalogue.addons])
+  }, [band, draft.deepCleaning, draft.washingUp, catalogue.addons, codeState, draft.discountCode])
 
   const copy = nl
     ? {
@@ -68,7 +84,10 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
         deepName: "Dieptereiniging", deepDesc: "Ontkalken, binnenkant kasten, ramen binnen & buiten",
         washName: "Afwas doen", washDesc: "Wij doen de afwas voor u",
         code: "Kortingscode", codePlaceholder: "bijv. WELKOM20",
-        codeHint: "Van uw flyer. Wordt verrekend bij bevestiging.",
+        codeHint: "Van uw flyer of folder.",
+        codeChecking: "Controleren…",
+        codeInvalid: "Deze code is niet geldig.",
+        codeValid: "korting toegepast",
         whenQ: "Kies uw moment",
         whenHint: "Alle tijden zijn Nederlandse tijd.",
         detailsQ: "Uw gegevens",
@@ -76,7 +95,10 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
         contactGroup: "Contactgegevens", addressGroup: "Waar komen we schoonmaken?",
         name: "Volledige naam", email: "E-mailadres", phone: "Telefoonnummer",
         street: "Straat en huisnummer", postcode: "Postcode", city: "Plaats",
-        notes: "Opmerkingen", notesPlaceholder: "Toegang, parkeren, huisdieren…",
+        notes: "Opmerkingen", notesPlaceholder: "Toegang, parkeren, waar de sleutel is…",
+        petsQ: "Zijn er huisdieren in huis?",
+        petsHint: "We nemen dan andere middelen mee en houden er rekening mee.",
+        petsYes: "Ja", petsNo: "Nee",
         notesHint: "Geen medische of gevoelige informatie, alstublieft.",
         consent: "Stuur mij aanbiedingen en kortingen",
         consentHint: "Optioneel. U kunt zich altijd afmelden.",
@@ -89,6 +111,11 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
         failed: "Er ging iets mis. Probeer het opnieuw.",
         step: "Stap", of: "van",
         noPrice: "Kies een grootte",
+        vat: "Alle prijzen zijn inclusief btw. U betaalt pas na afloop van de schoonmaak — nu wordt er niets afgeschreven.",
+        reviewTitle: "Klopt alles?",
+        reviewLead: "Controleer het even. Hierna staat de afspraak vast en krijgt u een bevestiging per e-mail.",
+        reviewPay: "U betaalt na afloop, niet nu.",
+        reviewBack: "Terug", reviewConfirm: "Ja, boek dit",
       }
     : {
         size: "Size", extras: "Extras", when: "When", details: "Details",
@@ -101,7 +128,10 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
         deepName: "Deep cleaning", deepDesc: "Descaling, inside cupboards, windows inside & out",
         washName: "Washing up", washDesc: "We'll do the washing up for you",
         code: "Discount code", codePlaceholder: "e.g. WELKOM20",
-        codeHint: "From your flyer. Applied when you confirm.",
+        codeHint: "From your flyer.",
+        codeChecking: "Checking…",
+        codeInvalid: "That code isn’t valid.",
+        codeValid: "discount applied",
         whenQ: "Choose your time",
         whenHint: "All times are Netherlands time.",
         detailsQ: "Your details",
@@ -109,7 +139,10 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
         contactGroup: "Contact details", addressGroup: "Where are we cleaning?",
         name: "Full name", email: "Email address", phone: "Phone number",
         street: "Street and number", postcode: "Postcode", city: "City",
-        notes: "Notes", notesPlaceholder: "Access, parking, pets…",
+        notes: "Notes", notesPlaceholder: "Access, parking, where the key is…",
+        petsQ: "Are there pets at the property?",
+        petsHint: "We bring different products and plan around them.",
+        petsYes: "Yes", petsNo: "No",
         notesHint: "Please don't include medical or sensitive information.",
         consent: "Send me offers and discounts",
         consentHint: "Optional. You can unsubscribe at any time.",
@@ -122,6 +155,11 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
         failed: "Something went wrong. Please try again.",
         step: "Step", of: "of",
         noPrice: "Pick a size",
+        vat: "All prices include VAT. You pay after the clean — nothing is charged now.",
+        reviewTitle: "Does this look right?",
+        reviewLead: "Have a quick check. After this the slot is yours and we'll email you a confirmation.",
+        reviewPay: "You pay after the clean, not now.",
+        reviewBack: "Go back", reviewConfirm: "Yes, book it",
       }
 
   const stepLabel: Record<StepId, string> = {
@@ -137,6 +175,9 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
     : false
 
   const detailsComplete =
+    // Pets is a required answer, not an optional note — Jackie needs to know
+    // before she packs the van, and a free-text hint was easy to skip.
+    draft.hasPets !== null &&
     draft.customer.name.trim().length >= 2 &&
     /\S+@\S+\.\S+/.test(draft.customer.email) &&
     draft.customer.phone.trim().length >= 6 &&
@@ -147,6 +188,30 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
   const go = (dir: 1 | -1) => {
     const next = STEP_ORDER[stepIndex + dir]
     if (next) setStep(next)
+  }
+
+  /** Asks the server whether a code is redeemable. Blur and Enter only, so it
+   *  is not fired on every keystroke. */
+  const checkCode = async (raw: string) => {
+    const code = raw.trim()
+    if (!code) {
+      setCodeState({ status: "idle" })
+      return
+    }
+    setCodeState({ status: "checking" })
+    try {
+      const res = await fetch("/api/discount", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      })
+      const body = await res.json()
+      setCodeState(body?.valid ? { status: "valid", percentOff: body.percentOff } : { status: "invalid" })
+    } catch {
+      // A network failure is not the customer's fault, and the server applies
+      // the discount regardless — so stay quiet rather than claiming it failed.
+      setCodeState({ status: "idle" })
+    }
   }
 
   const setCustomer = (patch: Partial<BookingDraft["customer"]>) =>
@@ -200,6 +265,7 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
           language,
           customer: draft.customer,
           notes: draft.notes.trim() || null,
+          hasPets: draft.hasPets,
           marketingConsent: draft.marketingConsent,
           website: "", // honeypot
         }),
@@ -212,6 +278,7 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
       }
       if (body?.code === "SLOT_TAKEN") {
         // Send them back to pick again; the picker refetches on mount.
+        setConfirming(false)
         setFormError(copy.taken)
         setDraft((d) => ({ ...d, startsAt: null, endsAt: null }))
         setStep("when")
@@ -393,12 +460,14 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
                       </span>
                       <span className="mt-2 flex items-center gap-1 text-xs text-gray-500">
                         <Clock className="h-3 w-3" />
-                        {copy.approx} {formatDuration(BASE_DURATION_MIN)}
+                        {copy.approx} {formatDuration(b.base_duration_min ?? BASE_DURATION_MIN)}
                       </span>
                     </button>
                   )
                 })}
               </div>
+
+              <VatNotice text={copy.vat} />
 
               <p className="mt-4 text-sm text-gray-600">
                 {copy.outside}{" "}
@@ -443,12 +512,38 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
                 <Input
                   id="code"
                   value={draft.discountCode}
-                  onChange={(e) => setDraft((d) => ({ ...d, discountCode: e.target.value }))}
+                  onChange={(e) => {
+                    setDraft((d) => ({ ...d, discountCode: e.target.value }))
+                    setCodeState({ status: "idle" })
+                  }}
+                  onBlur={(e) => checkCode(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && checkCode((e.target as HTMLInputElement).value)}
                   placeholder={copy.codePlaceholder}
                   autoCapitalize="characters"
+                  aria-describedby="code-status"
                   className="mt-2 h-11 max-w-xs rounded-none border-gray-300 bg-white uppercase tracking-wide placeholder:normal-case placeholder:tracking-normal"
                 />
-                <p className="mt-2 text-xs text-gray-500">{copy.codeHint}</p>
+                {/*
+                  One message for every failure. Saying "expired" or "used up"
+                  would let someone map out which promotions exist and how far
+                  through a campaign is.
+                */}
+                <p id="code-status" aria-live="polite" className="mt-2 text-xs">
+                  {codeState.status === "checking" && (
+                    <span className="text-gray-500">{copy.codeChecking}</span>
+                  )}
+                  {codeState.status === "invalid" && (
+                    <span className="font-medium text-red-700">{copy.codeInvalid}</span>
+                  )}
+                  {codeState.status === "valid" && (
+                    <span className="font-medium text-emerald-700">
+                      −{codeState.percentOff}% {copy.codeValid}
+                    </span>
+                  )}
+                  {codeState.status === "idle" && (
+                    <span className="text-gray-500">{copy.codeHint}</span>
+                  )}
+                </p>
               </div>
             </section>
           )}
@@ -460,6 +555,7 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
               <SlotPicker
                 deepCleaning={draft.deepCleaning}
                 washingUp={draft.washingUp}
+                bandId={draft.bandId}
                 value={draft.startsAt}
                 onSelect={(startsAt, endsAt) => setDraft((d) => ({ ...d, startsAt, endsAt }))}
               />
@@ -490,6 +586,34 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
                       value={draft.customer.postcode} onChange={(v) => setCustomer({ postcode: v })} required />
                     <Field id="city" label={copy.city} autoComplete="address-level2"
                       value={draft.customer.city} onChange={(v) => setCustomer({ city: v })} required />
+
+                    <fieldset className="sm:col-span-2">
+                      <legend className="text-sm font-medium text-gray-700">
+                        {copy.petsQ} <span className="text-gray-400" aria-hidden>*</span>
+                      </legend>
+                      <p className="mt-0.5 text-xs text-gray-500">{copy.petsHint}</p>
+                      <div className="mt-2 flex gap-2">
+                        {([true, false] as const).map((v) => (
+                          <label
+                            key={String(v)}
+                            className={`flex h-11 flex-1 cursor-pointer items-center justify-center gap-2 border text-sm font-semibold transition-colors sm:flex-none sm:px-8 ${
+                              draft.hasPets === v
+                                ? "border-wj-dark bg-wj-dark text-white"
+                                : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="hasPets"
+                              className="sr-only"
+                              checked={draft.hasPets === v}
+                              onChange={() => setDraft((d) => ({ ...d, hasPets: v }))}
+                            />
+                            {v ? copy.petsYes : copy.petsNo}
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
 
                     <div className="sm:col-span-2">
                       <Label htmlFor="notes" className="text-sm font-medium text-gray-700">{copy.notes}</Label>
@@ -553,6 +677,9 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
                       <Clock className="h-3 w-3" />
                       {copy.duration}: {copy.approx} {formatDuration(quote.durationMin)}
                     </p>
+                    <p className="mt-3 border-t border-gray-100 pt-3 text-xs leading-relaxed text-gray-500">
+                      {copy.vat}
+                    </p>
                   </aside>
                 )}
               </div>
@@ -581,7 +708,7 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
           </button>
 
           {step === "details" ? (
-            <PrimaryAction onClick={submit} disabled={submitting || !detailsComplete} busy={submitting}>
+            <PrimaryAction onClick={() => setConfirming(true)} disabled={submitting || !detailsComplete} busy={submitting}>
               {copy.confirm}
             </PrimaryAction>
           ) : (
@@ -591,6 +718,136 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
           )}
         </div>
       </div>
+
+      {/*
+        A last look before the slot is taken. Booking is not reversible from
+        the customer's side without following a link in an email, so one
+        deliberate confirmation is worth the extra tap.
+      */}
+      {confirming && quote && band && draft.startsAt && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4">
+          <button
+            type="button"
+            aria-label={copy.reviewBack}
+            onClick={() => setConfirming(false)}
+            className="absolute inset-0 bg-gray-900/45 backdrop-blur-[2px]"
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="confirm-title"
+            className="relative w-full max-w-md border border-gray-200 bg-white shadow-2xl"
+          >
+            <div className="border-b border-gray-200 px-5 py-4">
+              <h2 id="confirm-title" className="text-lg font-semibold tracking-tight text-gray-900">
+                {copy.reviewTitle}
+              </h2>
+              <p className="mt-1 text-sm text-gray-500">{copy.reviewLead}</p>
+            </div>
+
+            <div className="max-h-[60vh] overflow-y-auto">
+              <dl className="divide-y divide-gray-100 px-5">
+                <Row label={copy.when}>
+                  <span className="font-medium text-gray-900 first-letter:uppercase">
+                    {slotLabel(draft.startsAt)}
+                  </span>
+                  <span className="mt-0.5 block text-gray-500">
+                    {copy.approx} {formatDuration(quote.durationMin)}
+                  </span>
+                </Row>
+
+                <Row label={copy.size}>
+                  {nl ? band.label_nl : band.label_en}
+                  {(draft.deepCleaning || draft.washingUp) && (
+                    <span className="mt-1 flex flex-wrap gap-1.5">
+                      {draft.deepCleaning && <Chip>{copy.deepName}</Chip>}
+                      {draft.washingUp && <Chip>{copy.washName}</Chip>}
+                    </span>
+                  )}
+                </Row>
+
+                <Row label={copy.addressGroup}>
+                  {draft.customer.street}
+                  <span className="block">
+                    {draft.customer.postcode} {draft.customer.city}
+                  </span>
+                </Row>
+
+                <Row label={copy.contactGroup}>
+                  {draft.customer.name}
+                  <span className="block text-gray-500">{draft.customer.phone}</span>
+                  <span className="block break-all text-gray-500">{draft.customer.email}</span>
+                </Row>
+
+                <Row label={copy.petsQ.replace(/[?？]$/, "")}>
+                  {draft.hasPets ? copy.petsYes : copy.petsNo}
+                </Row>
+
+                {draft.notes.trim() && (
+                  <Row label={copy.notes}>
+                    <span className="italic text-gray-600">{draft.notes.trim()}</span>
+                  </Row>
+                )}
+              </dl>
+
+              {/* Full breakdown, not just the total — this is the last chance
+                  to notice a discount did or did not land. */}
+              <div className="mx-5 mt-4 border-t border-gray-200 pt-4">
+                <ul className="space-y-2">
+                  {quote.lines.map((l) => (
+                    <li key={l.label_en} className="flex justify-between gap-3 text-sm">
+                      <span className="text-gray-600">{nl ? l.label_nl : l.label_en}</span>
+                      <span className="whitespace-nowrap text-gray-900 tabular-nums">
+                        {formatCents(l.cents, language)}
+                      </span>
+                    </li>
+                  ))}
+                  {quote.discountCents > 0 && (
+                    <li className="flex justify-between gap-3 text-sm">
+                      <span className="text-emerald-700">
+                        {copy.code} {draft.discountCode.trim().toUpperCase()}
+                      </span>
+                      <span className="whitespace-nowrap text-emerald-700 tabular-nums">
+                        −{formatCents(quote.discountCents, language)}
+                      </span>
+                    </li>
+                  )}
+                </ul>
+                <div className="mt-3 flex items-baseline justify-between border-t border-gray-200 pt-3">
+                  <span className="text-sm font-medium text-gray-700">{copy.total}</span>
+                  <span className="text-2xl font-semibold text-wj-dark tabular-nums">
+                    {formatCents(quote.totalCents, language)}
+                  </span>
+                </div>
+              </div>
+
+              <p className="mx-5 mb-4 mt-4 flex items-start gap-2 border border-gray-200 bg-gray-50/70 p-3 text-sm text-gray-600">
+                <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+                {copy.reviewPay}
+              </p>
+            </div>
+
+            <div className="flex flex-col-reverse gap-2 border-t border-gray-200 px-5 py-4 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setConfirming(false)}
+                disabled={submitting}
+                className="inline-flex h-11 items-center justify-center border border-gray-300 px-5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+              >
+                {copy.reviewBack}
+              </button>
+              <button
+                type="button"
+                onClick={submit}
+                disabled={submitting}
+                className="inline-flex h-11 min-w-[9rem] items-center justify-center bg-wj-dark px-5 text-sm font-semibold text-white transition-colors hover:bg-wj-hover disabled:opacity-70"
+              >
+                {submitting ? <CircleNotch className="h-5 w-5 animate-spin" /> : copy.reviewConfirm}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* mobile: total pinned above the thumb, so it survives a long form */}
       {quote && (
@@ -613,6 +870,38 @@ export function BookingFlow({ catalogue }: { catalogue: BookingCatalogue }) {
 }
 
 /* ------------------------------------------------------------------ pieces */
+
+/**
+ * Dutch consumer law requires prices offered to consumers to be shown
+ * inclusive of VAT — the ACM treats an exclusive price as an unfair commercial
+ * practice. Deliberately no rate is named: cleaning inside a home is 9% while
+ * commercial work and outside windows are 21%, and since 1 July 2025 a mixed
+ * property has to be split between the two. Naming a single figure would be
+ * wrong for some jobs.
+ */
+const Chip = ({ children }: { children: React.ReactNode }) => (
+  <span className="inline-flex bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700">
+    {children}
+  </span>
+)
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex gap-4 py-3">
+      <dt className="w-28 flex-shrink-0 text-sm text-gray-500">{label}</dt>
+      <dd className="min-w-0 flex-1 text-sm text-gray-800">{children}</dd>
+    </div>
+  )
+}
+
+function VatNotice({ text }: { text: string }) {
+  return (
+    <div className="mt-5 flex items-start gap-2.5 border border-gray-200 bg-white p-3.5">
+      <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+      <p className="text-sm leading-relaxed text-gray-600">{text}</p>
+    </div>
+  )
+}
 
 function StepHeading({ title, hint }: { title: string; hint: string }) {
   return (

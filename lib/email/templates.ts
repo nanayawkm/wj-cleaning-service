@@ -15,6 +15,8 @@ export interface BookingEmailData {
   totalCents: number
   customer: { name: string; email: string; phone: string; street: string; postcode: string; city: string }
   notes?: string | null
+  /** Echoed back so the customer can see their answer was recorded. */
+  hasPets?: boolean | null
   manageUrl: string
 }
 
@@ -86,8 +88,8 @@ const shell = (title: string, body: string, footerNote: string) => `
 
 const detailRows = (d: BookingEmailData, lang: Lang) => {
   const t = lang === "nl"
-    ? { when: "Wanneer", what: "Wat", where: "Waar", ref: "Referentie" }
-    : { when: "When", what: "What", where: "Where", ref: "Reference" }
+    ? { when: "Wanneer", what: "Wat", where: "Waar", ref: "Referentie", notes: "Uw opmerkingen", pets: "Huisdieren", yes: "Ja", no: "Nee" }
+    : { when: "When", what: "What", where: "Where", ref: "Reference", notes: "Your notes", pets: "Pets", yes: "Yes", no: "No" }
 
   const row = (label: string, value: string) => `
     <tr>
@@ -95,10 +97,17 @@ const detailRows = (d: BookingEmailData, lang: Lang) => {
       <td style="padding:6px 0;font-size:14px;color:#111827;font-weight:500">${value}</td>
     </tr>`
 
+  /*
+    Notes and the pets answer are echoed back to the customer, not just sent to
+    Jackie. If someone wrote "key is with the neighbour at no. 14" they need to
+    see it was received — otherwise the only way to check is to ring up and ask.
+  */
   return `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 20px">
     ${row(t.when, `${esc(dateLine(d.startsAt, lang))}<br>${timeOnly(d.startsAt)} – ${timeOnly(d.endsAt)}`)}
     ${row(t.what, esc(d.bandLabel))}
     ${row(t.where, `${esc(d.customer.street)}<br>${esc(d.customer.postcode)} ${esc(d.customer.city)}`)}
+    ${typeof d.hasPets === "boolean" ? row(t.pets, d.hasPets ? esc(t.yes) : esc(t.no)) : ""}
+    ${d.notes ? row(t.notes, esc(d.notes).replace(/\n/g, "<br>")) : ""}
     ${row(t.ref, `<code style="font-size:13px">${esc(d.reference)}</code>`)}
   </table>`
 }

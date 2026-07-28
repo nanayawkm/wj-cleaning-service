@@ -31,6 +31,12 @@ interface Props {
   /** Must match exactly what will be booked, or the finish time shown is wrong. */
   deepCleaning: boolean
   washingUp: boolean
+  /**
+   * Size band. The base length differs per band — a 65-99 m2 home is two
+   * hours, the rest are three — so without this the offered slots would be
+   * sized for the wrong job. Sent as an id; the server resolves the duration.
+   */
+  bandId?: string | null
   value: string | null
   onSelect: (startsAt: string, endsAt: string) => void
 }
@@ -46,7 +52,7 @@ const BANDS: { id: BandId; Icon: typeof Sun; tint: string; from: number; to: num
   { id: "evening", Icon: MoonStars, tint: "bg-indigo-50 text-indigo-500", from: 17, to: 23 },
 ]
 
-export function SlotPicker({ deepCleaning, washingUp, value, onSelect }: Props) {
+export function SlotPicker({ deepCleaning, washingUp, bandId, value, onSelect }: Props) {
   const { language } = useLanguage()
   const nl = language === "nl"
 
@@ -63,7 +69,9 @@ export function SlotPicker({ deepCleaning, washingUp, value, onSelect }: Props) 
     setError(false)
 
     const addons = washingUp ? "washing-up" : ""
-    const url = `/api/availability?days=60&deep=${deepCleaning}&addons=${addons}`
+    const url =
+      `/api/availability?days=60&deep=${deepCleaning}&addons=${addons}` +
+      (bandId ? `&band=${encodeURIComponent(bandId)}` : "")
 
     fetch(url)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error("failed"))))
@@ -82,7 +90,7 @@ export function SlotPicker({ deepCleaning, washingUp, value, onSelect }: Props) 
     }
     // Re-fetching when the add-ons change is the point: a longer job has fewer
     // places it can fit, so the offered slots genuinely differ.
-  }, [deepCleaning, washingUp, reloadKey])
+  }, [deepCleaning, washingUp, bandId, reloadKey])
 
   const byDate = useMemo(() => new Map(days.map((d) => [d.date, d])), [days])
 

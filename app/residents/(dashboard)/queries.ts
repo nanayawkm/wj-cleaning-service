@@ -21,7 +21,9 @@ const shape = (b: Row): AdminBooking => ({
   id: b.id,
   reference: b.reference,
   startsAt: b.starts_at,
-  endsAt: b.ends_at,
+  // ends_at includes the 30-minute travel buffer, which is Jackie's journey
+  // home rather than part of the job. Show when the work actually finishes.
+  endsAt: new Date(new Date(b.starts_at).getTime() + b.duration_min * 60_000).toISOString(),
   status: b.status,
   m2Label: b.m2_label ?? "",
   deepCleaning: Boolean(b.deep_cleaning),

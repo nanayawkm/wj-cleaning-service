@@ -10,7 +10,7 @@ export default async function NewBookingPage() {
   const [{ data: bands }, { data: addons }] = await Promise.all([
     supabase
       .from("pricing_bands")
-      .select("id, label_en, base_cents, deep_cents")
+      .select("id, label_en, base_cents, deep_cents, base_duration_min")
       .eq("active", true)
       .order("sort_order")
       .order("min_m2"),

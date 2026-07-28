@@ -45,6 +45,7 @@ export default function CleaningServicesPage() {
           fill
           sizes="100vw"
           quality={90}
+          priority
           className="object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(44,95,112,0.94)_0%,rgba(44,95,112,0.88)_50%,rgba(44,95,112,0.55)_100%)]" />
@@ -66,8 +67,31 @@ export default function CleaningServicesPage() {
         </div>
       </section>
 
+      {/*
+        Offices and commercial first. It leads the page because commercial work
+        is the larger contract and the one that needs a conversation; home
+        cleaning follows and can be booked outright.
+      */}
+      <section className="py-16 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
+              {t("commercialTitle")}
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("commercialLead")}</p>
+            {/* deliberately /contact, not /book — commercial is not priced by m² */}
+            <Button size="lg" variant="outline" className="mt-7" asChild>
+              <Link href="/contact">
+                {t("requestQuote")}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* home cleaning — the bookable product */}
-      <section className="border-b border-wj-cream-deep bg-white py-16 sm:py-20">
+      <section className="border-y border-wj-cream-deep bg-white py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -133,25 +157,6 @@ export default function CleaningServicesPage() {
                 description={r.description}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* commercial — quote, not booking */}
-      <section className="border-y border-wj-cream-deep bg-white py-16 sm:py-20">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
-              {t("commercialTitle")}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("commercialLead")}</p>
-            {/* deliberately /contact, not /book — commercial is not priced by m² */}
-            <Button size="lg" variant="outline" className="mt-7" asChild>
-              <Link href="/contact">
-                {t("requestQuote")}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>

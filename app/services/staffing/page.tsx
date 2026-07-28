@@ -6,6 +6,7 @@ import { ArrowRight, Buildings, Check, Users, Warehouse, WhatsappLogo } from "@p
 
 import { Button } from "@/components/ui/button"
 import { FeatureCard, tintFor } from "@/components/feature-card"
+import { StaffCarousel } from "@/components/staff-carousel"
 import { CONTACT_DETAILS } from "@/components/constant"
 import { useLanguage } from "@/contexts/LanguageContext"
 
@@ -27,12 +28,12 @@ export default function StaffingServicesPage() {
     t("forkliftOperation"),
   ]
 
-  const supportRoles = [
-    t("officeSupportStaff"),
-    t("restaurantCafePersonnel"),
-    t("hotelStaff"),
-    t("schoolSupportStaff"),
-    t("eventStaffingText"),
+  const staffSlides = [
+    { title: t("officeSupportStaff"), description: t("staffOfficeDesc"), image: "/images/services/industry-office.webp" },
+    { title: t("restaurantCafePersonnel"), description: t("staffRestaurantDesc"), image: "/images/services/industry-restaurant.webp" },
+    { title: t("hotelStaff"), description: t("staffHotelDesc"), image: "/images/services/industry-hotel.webp" },
+    { title: t("schoolSupportStaff"), description: t("staffSchoolDesc"), image: "/images/services/industry-school.webp" },
+    { title: t("eventStaffingText"), description: t("staffEventDesc"), image: "/images/services/event-staffing.webp" },
   ]
 
   const steps = [
@@ -114,26 +115,20 @@ export default function StaffingServicesPage() {
         </div>
       </section>
 
-      {/* support staff */}
+      {/*
+        Replaces the flat list of role names. Each role now gets its own slide
+        with a sentence and a photograph, which says far more about what Jackie
+        actually supplies than six words in a box did.
+      */}
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
-          <div className="max-w-2xl">
+          <div className="mb-10 max-w-2xl">
             <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
-              {t("supportStaffTitle")}
+              {t("staffRolesTitle")}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("supportStaffDesc")}</p>
+            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("staffRolesLead")}</p>
           </div>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {supportRoles.map((role) => (
-              <li
-                key={role}
-                className="flex items-center gap-3 rounded-xl border border-wj-cream-deep bg-white p-4"
-              >
-                <Check weight="bold" className="h-4 w-4 flex-shrink-0 text-wj-dark" />
-                <span className="text-gray-800">{role}</span>
-              </li>
-            ))}
-          </ul>
+          <StaffCarousel slides={staffSlides} label={t("staffRolesTitle")} />
         </div>
       </section>
 

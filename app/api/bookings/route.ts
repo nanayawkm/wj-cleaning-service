@@ -11,7 +11,6 @@ import {
   getBusyIntervals,
   getDiscountCode,
   getPricingBands,
-  hasBookedBefore,
 } from "@/lib/booking/queries"
 import { clientKey, rateLimit } from "@/lib/booking/rate-limit"
 import { generateReference, signToken } from "@/lib/booking/tokens"
@@ -55,6 +54,8 @@ const bookingSchema = z.object({
     city: z.string().trim().min(2).max(100),
   }),
   notes: z.string().trim().max(1000).optional().nullable(),
+  // Required: the form cannot submit without an answer either way.
+  hasPets: z.boolean(),
   marketingConsent: z.boolean().default(false),
   /**
    * Hidden field. Real people leave it empty; naive bots fill it in.
@@ -98,14 +99,10 @@ export async function POST(request: Request) {
     // ---- discount, validated server-side --------------------------------
     let discount: { code: string; percent_off: number } | null = null
     if (input.discountCode) {
+      // getDiscountCode already rejects inactive, expired and fully-used
+      // codes, so anything returned here is genuinely redeemable.
       const found = await getDiscountCode(input.discountCode)
-      if (found) {
-        const returning = found.first_booking_only && (await hasBookedBefore(input.customer.email))
-        if (!returning) discount = { code: found.code, percent_off: found.percent_off }
-      }
-      // An invalid or already-used code is silently ignored rather than
-      // rejected: telling a caller "this email has booked before" would turn
-      // the endpoint into a customer-enumeration oracle.
+      if (found) discount = { code: found.code, percent_off: found.percent_off }
     }
 
     const quote = calculateQuote({
@@ -183,6 +180,7 @@ export async function POST(request: Request) {
         discount_code: discount?.code ?? null,
         language: input.language,
         notes: input.notes || null,
+        has_pets: input.hasPets,
         manage_token: manageToken,
       })
       .select("id")
@@ -256,6 +254,7 @@ export async function POST(request: Request) {
       totalCents: quote.totalCents,
       customer: input.customer,
       notes: input.notes,
+      hasPets: input.hasPets,
       manageUrl: `${siteUrl}/booking/manage?token=${encodeURIComponent(realToken)}`,
     }
 
@@ -295,7 +294,8 @@ export async function POST(request: Request) {
       reference,
       token: realToken,
       startsAt: slot.startsAtISO,
-      endsAt: slot.endsAtISO,
+      // Same rule as the email: the job's finish, not the blocked range.
+      endsAt: emailData.endsAt.toISOString(),
       totalCents: quote.totalCents,
     })
   } catch (err) {

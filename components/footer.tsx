@@ -16,8 +16,9 @@ export default function Footer() {
   if (pathname?.startsWith("/residents")) return null
 
   const serviceLinks = [
-    // these are enquiry entry points, so they go straight to contact
-    { href: "/contact", label: t('residentialCleaning') },
+    // residential is the one bookable product, so it goes to the flow; the
+    // rest are quote-by-enquiry and go to contact
+    { href: "/book", label: t('residentialCleaning') },
     { href: "/contact", label: t('officeCleaning') },
     { href: "/contact", label: t('warehouseStaffing') },
     { href: "/contact", label: t('eventStaffing') },

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Buildings, Clock, HouseLine, MapPin, ShieldCheck, Sparkle, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
+import { ArrowRight, Buildings, Clock, HouseLine, MapPin, ShieldCheck, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import Link from "next/link"
 import Image from "next/image"
@@ -11,7 +11,7 @@ import { FeatureCard } from "@/components/feature-card"
 
 const whatsappHref = `https://wa.me/${CONTACT_DETAILS.phoneWa}`
 
-export default function HomePage({ fromPrice }: { fromPrice: string }) {
+export default function HomePage() {
   const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState<'cleaning' | 'staffing'>('cleaning')
 
@@ -77,13 +77,16 @@ export default function HomePage({ fromPrice }: { fromPrice: string }) {
           than a vertical band. Radial means there is no straight edge anywhere
           — it fades out in every direction — and it only has to be dense enough
           where the text actually is, so the rest of the photograph stays open.
-          Centred and wider on mobile, where the copy spans the full width;
-          pulled left on larger screens, where it does not.
+          The switch is at xl, not sm. The copy is max-w-2xl (672px), so it
+          still spans ~87% of a 768px viewport — a left-pulled ellipse left the
+          tail of the sentence sitting on bare white tile, measured at 1.58:1.
+          Only from 1280px does the copy occupy the left half, which is where a
+          left-weighted scrim can work without burying the photograph.
         */}
         <div className="absolute inset-0 bg-wj-dark/18" />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_135%_80%_at_50%_42%,rgba(44,95,112,0.93)_0%,rgba(44,95,112,0.82)_40%,rgba(44,95,112,0.42)_66%,rgba(44,95,112,0)_90%)]
-                     sm:bg-[radial-gradient(ellipse_85%_125%_at_20%_50%,rgba(44,95,112,0.94)_0%,rgba(44,95,112,0.82)_38%,rgba(44,95,112,0.40)_62%,rgba(44,95,112,0)_86%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_150%_95%_at_45%_45%,rgba(44,95,112,0.95)_0%,rgba(44,95,112,0.90)_45%,rgba(44,95,112,0.66)_72%,rgba(44,95,112,0.30)_92%)]
+                     xl:bg-[radial-gradient(ellipse_85%_125%_at_18%_50%,rgba(44,95,112,0.95)_0%,rgba(44,95,112,0.86)_38%,rgba(44,95,112,0.46)_62%,rgba(44,95,112,0)_86%)]"
         />
 
         <div className="container relative z-10 mx-auto px-4 py-16 sm:px-6 sm:py-20 md:px-8">
@@ -114,39 +117,6 @@ export default function HomePage({ fromPrice }: { fromPrice: string }) {
           </div>
         </div>
 
-        {/*
-          Floating product card, per the Airtasker reference. Now that prices
-          are live it carries a real one — the "from" figure is the lowest
-          band's base price, read at build time from the same table the booking
-          flow uses, so it cannot drift out of step with what people are
-          actually charged.
-        */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-6 z-10 hidden sm:bottom-10 sm:block">
-          <div className="container mx-auto flex justify-end px-4 sm:px-6 md:px-8">
-            <Link
-              href="/book"
-              className="pointer-events-auto block w-64 rounded-xl border border-wj-cream-deep bg-white p-4 shadow-lg transition-shadow hover:shadow-xl"
-            >
-              <div className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-wj-cream">
-                  <Sparkle weight="fill" className="h-4 w-4 text-wj-dark" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-gray-900">{t('heroCardTitle')}</p>
-                  <p className="mt-0.5 text-xs leading-snug text-gray-600">{t('heroCardBody')}</p>
-                </div>
-              </div>
-              <p className="mt-3 flex items-baseline gap-1.5">
-                <span className="text-xs text-gray-500">{t('from')}</span>
-                <span className="text-2xl font-semibold text-wj-dark">{fromPrice}</span>
-              </p>
-              <span className="mt-2 inline-flex items-center text-sm font-semibold text-wj-dark">
-                {t('getFreeQuote')}
-                <ArrowRight className="ml-1.5 h-4 w-4" />
-              </span>
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* Trust strip */}

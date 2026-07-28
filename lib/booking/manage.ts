@@ -109,7 +109,8 @@ export async function loadBookingByToken(token: string | undefined): Promise<Loa
       id: data.id,
       reference: data.reference,
       startsAt: new Date(data.starts_at),
-      endsAt: new Date(data.ends_at),
+      // Job end, not the blocked end — ends_at includes the travel buffer.
+      endsAt: new Date(new Date(data.starts_at).getTime() + data.duration_min * 60_000),
       durationMin: data.duration_min,
       status: data.status,
       m2Label: bandLabel,

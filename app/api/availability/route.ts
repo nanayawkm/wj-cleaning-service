@@ -8,6 +8,7 @@ import {
   getAvailabilityOverrides,
   getAvailabilityRules,
   getBusyIntervals,
+  getPricingBands,
 } from "@/lib/booking/queries"
 import { addDaysISO, todayISO } from "@/lib/booking/time"
 
@@ -26,6 +27,10 @@ const querySchema = z.object({
   days: z.coerce.number().int().min(1).max(90).optional(),
   deep: z.enum(["true", "false"]).optional(),
   addons: z.string().optional(), // comma-separated slugs
+  // Which size band, so the base length is right. Sent as an id rather than a
+  // duration: the client says which product it wants, the server decides how
+  // long that takes.
+  band: z.string().uuid().optional(),
 })
 
 export async function GET(request: Request) {
@@ -46,17 +51,19 @@ export async function GET(request: Request) {
   }
 
   try {
-    const [rules, overrides, busy, addons] = await Promise.all([
+    const [rules, overrides, busy, addons, bands] = await Promise.all([
       getAvailabilityRules(),
       getAvailabilityOverrides(from, to),
       getBusyIntervals(from, to),
       getAddons(),
+      getPricingBands(),
     ])
 
     const wantedSlugs = (parsed.data.addons ?? "").split(",").filter(Boolean)
     const deepCleaning = parsed.data.deep === "true"
 
-    let durationMin = BASE_DURATION_MIN
+    const band = bands.find((b) => b.id === parsed.data.band)
+    let durationMin = band?.base_duration_min ?? BASE_DURATION_MIN
     if (deepCleaning) durationMin += addons.find((a) => a.slug === "deep-cleaning")?.duration_min ?? 60
     for (const slug of wantedSlugs) {
       if (slug === "deep-cleaning") continue
