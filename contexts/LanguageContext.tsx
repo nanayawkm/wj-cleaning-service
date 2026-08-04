@@ -152,7 +152,7 @@ const translations = {
     professionalCleaningStaffing: "Professional Cleaning & Staffing Solutions",
     aboutWJCleanforce: "About WJ Cleaning Services",
     trustedPartnersExcellence: "Trusted Partners in Excellence",
-    aboutDescription: "WJ Cleaning Services provides cleaning and staffing for homes and businesses in Lelystad and across Flevoland, built on quality, reliability and customer satisfaction.",
+    aboutDescription: "WJ Cleaning Services provides cleaning and staffing for homes and businesses in Lelystad and across Flevoland and surrounding areas, built on quality, reliability and customer satisfaction.",
     experienceYearsDesc: "Our team has over 5 years of experience in the cleaning industry.",
     personalizedSchedulesDesc: "Customized cleaning schedules that perfectly match your preferences.",
     extraHygieneDesc: "Extra attention to hygiene for a completely clean and healthy environment.",
@@ -333,7 +333,7 @@ const translations = {
     schoolCleaning: "School Cleaning",
     
     // Footer translations
-    footerDescription: "Cleaning and staffing services based in Lelystad. Homes, offices, warehouses, hotels and schools across Flevoland.",
+    footerDescription: "Cleaning and staffing services based in Lelystad. Homes, offices, warehouses, hotels and schools across Flevoland and surrounding areas.",
     
     // Gallery section translations
     commercialCleaning: "Commercial Cleaning",
