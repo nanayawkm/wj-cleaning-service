@@ -22,12 +22,14 @@ const translations = {
     about: "About",
     services: "Services",
     contact: "Contact",
-    careers: "Work with us",
-    careersNavHint: "Open application for cleaners",
+    // Short on purpose: this sits in the top bar, where a long label pushes
+    // the row into the phone/CTA cluster. "Vacancies" is also what people
+    // scan for on a careers link.
+    careers: "Vacancies",
     getQuote: "Book Now",
     
     // Hero Section
-    heroTitle: "Professional Cleaning and Staffing in Lelystad",
+    heroTitle: "Professional Cleaning and Staffing in Flevoland and surrounding areas",
     heroSubtitle: "Cleaning for homes and offices, plus vetted staff for warehouses, hotels and events. Based in Lelystad, serving Flevoland and the surrounding region.",
     getFreeQuote: "Book Now",
     hireStaff: "Hire Staff Today",
@@ -388,8 +390,7 @@ const translations = {
     about: "Over Ons",
     services: "Diensten",
     contact: "Contact",
-    careers: "Werken bij ons",
-    careersNavHint: "Open sollicitatie voor schoonmakers",
+    careers: "Vacatures",
     getQuote: "Nu Boeken",
     
     // Hero Section

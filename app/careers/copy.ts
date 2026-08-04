@@ -26,14 +26,15 @@ const copy = {
     // expects a start date next week should know before they write anything.
     openNoticeTitle: "This is an open application",
     openNotice:
-      "We don't have one specific vacancy open right now, but we're building a pool of candidates we can call on as soon as work becomes available. Apply now and we'll be in touch when something suits you.",
+      "We don't have one specific vacancy open right now, but we do have ongoing work. Apply now and we'll be in touch to discuss when you can start with us.",
 
     aboutTitle: "About us",
     aboutBody:
       "WJ Cleaning Services provides professional cleaning, not only for private homes but also for businesses across various sectors. We're a small, personal team with short communication lines — you'll always know who you're working for.",
 
     dutiesTitle: "What will you do?",
-    dutiesLead: "General and deep cleaning of private homes, and commercial premises when the work is there.",
+    dutiesLead:
+      "General and deep cleaning of private homes and commercial premises. We have ongoing work — new team members start with us right away.",
     duties: [
       "Vacuuming and mopping floors",
       "Cleaning bathrooms and sanitary areas",
@@ -133,7 +134,7 @@ const copy = {
     // ---- outcomes --------------------------------------------------------
     successTitle: "Thanks — we've got your application",
     successBody:
-      "A confirmation is on its way to your inbox. Jackie reads every application personally and will contact you as soon as there's work that fits.",
+      "A confirmation is on its way to your inbox. Jackie reads every application personally and will contact you to discuss when you can start.",
     successReference: "Your reference",
     successCvNote:
       "Want to send a CV as well? Just reply to the confirmation email and attach it — it reaches us directly.",
@@ -148,8 +149,8 @@ const copy = {
     // ---- closing ---------------------------------------------------------
     directTitle: "Rather write your own letter?",
     directBody:
-      "Send your open application — motivation plus a short introduction — straight to our inbox, or call and ask for Jackie.",
-    callCta: "Call us",
+      "Send your open application — motivation plus a short introduction — straight to our inbox, or contact us by telephone.",
+    callCta: "Contact us by telephone",
   },
 
   nl: {
@@ -162,14 +163,15 @@ const copy = {
 
     openNoticeTitle: "Dit is een open sollicitatie",
     openNotice:
-      "Op dit moment hebben wij geen specifieke vacature openstaan, maar wij bouwen aan een groep kandidaten die wij kunnen benaderen zodra er werk beschikbaar komt. Solliciteer nu, dan nemen wij contact op zodra er iets past.",
+      "Op dit moment hebben wij geen specifieke vacature openstaan, maar wij hebben wel doorlopend werk. Solliciteer nu — wij nemen contact op om te bespreken wanneer u kunt starten.",
 
     aboutTitle: "Over ons",
     aboutBody:
       "WJ Cleaning Services levert professionele schoonmaak, niet alleen voor particuliere woningen maar ook voor bedrijven in verschillende sectoren. Wij zijn een klein, persoonlijk team met korte lijnen — u weet altijd voor wie u werkt.",
 
     dutiesTitle: "Wat ga je doen?",
-    dutiesLead: "Algemene schoonmaak en dieptereiniging van particuliere woningen, en bedrijfspanden wanneer dat werk er is.",
+    dutiesLead:
+      "Algemene schoonmaak en dieptereiniging van particuliere woningen en bedrijfspanden. Wij hebben doorlopend werk — nieuwe teamleden gaan direct met ons mee aan de slag.",
     duties: [
       "Stofzuigen en dweilen",
       "Badkamers en sanitair reinigen",
@@ -267,7 +269,7 @@ const copy = {
 
     successTitle: "Bedankt — wij hebben uw sollicitatie ontvangen",
     successBody:
-      "Er is een bevestiging onderweg naar uw inbox. Jackie leest elke sollicitatie persoonlijk en neemt contact op zodra er passend werk is.",
+      "Er is een bevestiging onderweg naar uw inbox. Jackie leest elke sollicitatie persoonlijk en neemt contact op om te bespreken wanneer u kunt starten.",
     successReference: "Uw referentie",
     successCvNote:
       "Wilt u ook een cv sturen? Beantwoord de bevestigingsmail en voeg deze toe — die komt rechtstreeks bij ons binnen.",
@@ -281,8 +283,8 @@ const copy = {
 
     directTitle: "Liever uw eigen brief schrijven?",
     directBody:
-      "Stuur uw open sollicitatie — motivatie plus een korte introductie — rechtstreeks naar onze inbox, of bel en vraag naar Jackie.",
-    callCta: "Bel ons",
+      "Stuur uw open sollicitatie — motivatie plus een korte introductie — rechtstreeks naar onze inbox, of neem telefonisch contact op en vraag naar Jackie.",
+    callCta: "Neem telefonisch contact op",
   },
 } as const
 

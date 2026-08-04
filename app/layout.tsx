@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: "WJ Cleaning Services - Professional Cleaning & Staffing Services",
     template: "%s | WJ Cleaning Services"
   },
-  description: "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions in Lelystad, Netherlands.",
+  description: "Professional cleaning and staffing services built on trust, reliability, and excellence. Residential cleaning, office cleaning, warehouse staffing, and event staffing solutions in Flevoland and surrounding areas.",
   generator: 'Next.js',
   keywords: [
     'cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 
