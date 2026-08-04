@@ -20,8 +20,10 @@ const translations = {
     // Navigation
     home: "Home",
     about: "About",
-    services: "Services", 
+    services: "Services",
     contact: "Contact",
+    careers: "Work with us",
+    careersNavHint: "Open application for cleaners",
     getQuote: "Book Now",
     
     // Hero Section
@@ -385,7 +387,9 @@ const translations = {
     home: "Home",
     about: "Over Ons",
     services: "Diensten",
-    contact: "Contact", 
+    contact: "Contact",
+    careers: "Werken bij ons",
+    careersNavHint: "Open sollicitatie voor schoonmakers",
     getQuote: "Nu Boeken",
     
     // Hero Section

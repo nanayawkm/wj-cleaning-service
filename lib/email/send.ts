@@ -32,11 +32,18 @@ export async function sendEmail({
   subject,
   html,
   attachments,
+  replyTo,
 }: {
   to: string
   subject: string
   html: string
   attachments?: { filename: string; content: string }[]
+  /**
+   * Overrides the default office address. Used by the applicant alert, where
+   * hitting reply should open a message to the applicant rather than send
+   * Jackie a note to herself.
+   */
+  replyTo?: string
 }): Promise<SendResult> {
   try {
     const { data, error } = await resend().emails.send({
@@ -47,7 +54,7 @@ export async function sendEmail({
       // bookings@ is a send-only address — DNS verification enables sending,
       // not receiving. Without this, a customer replying "can you come at 10
       // instead?" would be talking to nobody.
-      replyTo: CONTACT_DETAILS.email,
+      replyTo: replyTo ?? CONTACT_DETAILS.email,
       attachments: attachments?.map((a) => ({
         filename: a.filename,
         content: Buffer.from(a.content).toString("base64"),

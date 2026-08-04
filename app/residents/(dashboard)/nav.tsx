@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { CalendarBlank, ClipboardText, SignOut, Sliders, Sun, Tag, Users } from "@phosphor-icons/react"
+import { CalendarBlank, ClipboardText, SignOut, Sliders, Sun, Tag, UserPlus, Users } from "@phosphor-icons/react"
 
 const NAV = [
   // Today first: it is the screen Jackie opens most, and on a phone the first
@@ -10,6 +10,9 @@ const NAV = [
   { href: "/residents/today", label: "Today", Icon: Sun },
   { href: "/residents", label: "Bookings", Icon: ClipboardText },
   { href: "/residents/customers", label: "Customers", Icon: Users },
+  // Next to Customers because it is the same kind of screen — people, not
+  // settings. Everything below this line is configuration she sets once.
+  { href: "/residents/applications", label: "Applications", Icon: UserPlus },
   { href: "/residents/availability", label: "Availability", Icon: CalendarBlank },
   { href: "/residents/pricing", label: "Pricing", Icon: Sliders },
   { href: "/residents/discounts", label: "Discounts", Icon: Tag },

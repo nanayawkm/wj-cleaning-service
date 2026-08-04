@@ -229,6 +229,191 @@ export function rescheduleNotice(d: BookingEmailData, lang: Lang, previousStart:
   }
 }
 
+/* ========================================================================
+   Job applications
+   ======================================================================== */
+
+export interface ApplicationEmailData {
+  reference: string
+  name: string
+  email: string
+  phone: string
+  city: string
+  availability: string
+  experience: string
+  transport: string
+  /** Option keys, resolved to readable labels below. */
+  languages: string[]
+  motivation: string
+  submittedAt: Date
+}
+
+/**
+ * The form posts option keys, not prose, so the labels live here — one place
+ * that serves both the applicant's confirmation (in their language) and
+ * Jackie's alert (always English, because she triages in one language).
+ */
+const APPLICATION_LABELS = {
+  en: {
+    availability: {
+      fulltime: "Full-time",
+      parttime: "Part-time",
+      flexible: "Flexible / on call",
+      weekends: "Weekends only",
+    },
+    experience: {
+      none: "No experience yet",
+      lessThanOne: "Less than a year",
+      oneToThree: "One to three years",
+      threePlus: "More than three years",
+    },
+    transport: {
+      ownCarLicence: "Own car and driving licence",
+      licenceNoCar: "Driving licence, no car",
+      bicycle: "Bicycle or scooter",
+      publicTransport: "Public transport",
+    },
+    languages: { nl: "Dutch", en: "English", other: "Another language" },
+  },
+  nl: {
+    availability: {
+      fulltime: "Fulltime",
+      parttime: "Parttime",
+      flexible: "Flexibel / oproepbasis",
+      weekends: "Alleen weekenden",
+    },
+    experience: {
+      none: "Nog geen ervaring",
+      lessThanOne: "Minder dan een jaar",
+      oneToThree: "Eén tot drie jaar",
+      threePlus: "Meer dan drie jaar",
+    },
+    transport: {
+      ownCarLicence: "Eigen auto en rijbewijs",
+      licenceNoCar: "Rijbewijs, geen auto",
+      bicycle: "Fiets of scooter",
+      publicTransport: "Openbaar vervoer",
+    },
+    languages: { nl: "Nederlands", en: "Engels", other: "Een andere taal" },
+  },
+} as const
+
+/** Falls back to the raw key rather than an empty cell — a blank row in
+ *  Jackie's email would look like the applicant skipped the question. */
+const label = (group: Record<string, string>, key: string) => group[key] ?? key
+
+const applicationRows = (d: ApplicationEmailData, lang: Lang) => {
+  const L = APPLICATION_LABELS[lang]
+  const t =
+    lang === "nl"
+      ? { name: "Naam", contact: "Contact", city: "Woonplaats", availability: "Beschikbaarheid", experience: "Ervaring", transport: "Vervoer", languages: "Talen", ref: "Referentie" }
+      : { name: "Name", contact: "Contact", city: "Lives in", availability: "Availability", experience: "Experience", transport: "Transport", languages: "Languages", ref: "Reference" }
+
+  const row = (l: string, value: string) => `
+    <tr>
+      <td style="padding:6px 0;font-size:14px;color:#6b7280;width:130px;vertical-align:top">${esc(l)}</td>
+      <td style="padding:6px 0;font-size:14px;color:#111827;font-weight:500">${value}</td>
+    </tr>`
+
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 20px">
+    ${row(t.name, esc(d.name))}
+    ${row(
+      t.contact,
+      `<a href="tel:${esc(d.phone)}" style="color:#2C5F70;text-decoration:none">${esc(d.phone)}</a><br>
+       <a href="mailto:${esc(d.email)}" style="color:#2C5F70;text-decoration:none">${esc(d.email)}</a>`,
+    )}
+    ${row(t.city, esc(d.city))}
+    ${row(t.availability, esc(label(L.availability, d.availability)))}
+    ${row(t.experience, esc(label(L.experience, d.experience)))}
+    ${row(t.transport, esc(label(L.transport, d.transport)))}
+    ${row(t.languages, esc(d.languages.map((l) => label(L.languages, l)).join(", ")))}
+    ${row(t.ref, `<code style="font-size:13px">${esc(d.reference)}</code>`)}
+  </table>`
+}
+
+const motivationBlock = (d: ApplicationEmailData, heading: string) => `
+  <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em">${esc(heading)}</p>
+  <div style="margin:0 0 20px;padding:14px 16px;background:#F5F0E8;border-left:3px solid #2C5F70;font-size:14px;line-height:1.65;color:#374151">
+    ${esc(d.motivation).replace(/\n/g, "<br>")}
+  </div>`
+
+/**
+ * The applicant's receipt.
+ *
+ * Deliberately echoes back everything they submitted. An open application has
+ * no vacancy attached and no date to look forward to, so this email is the only
+ * evidence the applicant has that it arrived at all — "we got it, here is what
+ * you told us, here is what happens next" is the whole job.
+ */
+export function applicationConfirmation(d: ApplicationEmailData, lang: Lang) {
+  const first = esc(d.name.split(" ")[0])
+  const copy =
+    lang === "nl"
+      ? {
+          subject: `Sollicitatie ontvangen · ${d.reference}`,
+          title: "Wij hebben uw sollicitatie ontvangen",
+          intro: `Bedankt ${first}, uw open sollicitatie is bij ons binnengekomen.`,
+          next: "Jackie leest elke sollicitatie persoonlijk en neemt contact met u op zodra er werk beschikbaar komt dat bij u past. Omdat dit een open sollicitatie is, kan dat even duren — wij bewaren uw gegevens tot er iets voorbijkomt.",
+          summary: "Wat u ons heeft verteld",
+          motivation: "Uw motivatie",
+          cv: `Wilt u nog een cv meesturen? Beantwoord deze e-mail en voeg het toe — uw antwoord komt rechtstreeks bij ons binnen.`,
+          footer: "U ontvangt deze e-mail omdat u heeft gesolliciteerd via onze website.",
+        }
+      : {
+          subject: `Application received · ${d.reference}`,
+          title: "We've received your application",
+          intro: `Thanks ${first}, your open application has reached us.`,
+          next: "Jackie reads every application personally and will contact you as soon as there's work available that suits you. Because this is an open application it may take a little while — we'll keep your details on file until something comes up.",
+          summary: "What you told us",
+          motivation: "Your motivation",
+          cv: `Want to send a CV as well? Just reply to this email and attach it — your reply comes straight to us.`,
+          footer: "You're receiving this because you applied through our website.",
+        }
+
+  return {
+    subject: copy.subject,
+    html: shell(
+      copy.title,
+      `<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#374151">${copy.intro}</p>
+       <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#374151">${copy.next}</p>
+       <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em">${esc(copy.summary)}</p>
+       ${applicationRows(d, lang)}
+       ${motivationBlock(d, copy.motivation)}
+       <p style="margin:0;font-size:13px;line-height:1.6;color:#6b7280">${copy.cv}</p>`,
+      copy.footer,
+    ),
+  }
+}
+
+/**
+ * Jackie's copy. replyTo on the send is set to the applicant, not the office —
+ * hitting reply on this email should start the conversation, not send a note
+ * to herself.
+ */
+export function applicationAlert(d: ApplicationEmailData) {
+  const when = new Intl.DateTimeFormat("en-GB", {
+    timeZone: TIMEZONE,
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(d.submittedAt)
+
+  return {
+    subject: `New cleaner application · ${d.name} · ${d.city}`,
+    html: shell(
+      "New cleaner application",
+      `<p style="margin:0 0 20px;font-size:14px;color:#6b7280">Received ${esc(when)}</p>
+       ${applicationRows(d, "en")}
+       ${motivationBlock(d, "Motivation")}
+       <p style="margin:0 0 20px">${button(`mailto:${d.email}?subject=${encodeURIComponent(`Your application to WJ Cleaning Services (${d.reference})`)}`, "Reply to applicant")}</p>
+       <p style="margin:0;font-size:13px;line-height:1.6;color:#6b7280">Replying to this email also reaches ${esc(d.name)} directly.</p>`,
+      "Sent to you because someone applied through the website.",
+    ),
+  }
+}
+
 export function cancellationNotice(d: BookingEmailData, lang: Lang) {
   const copy = lang === "nl"
     ? {

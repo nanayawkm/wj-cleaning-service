@@ -309,6 +309,19 @@ export default function Navigation() {
                     )}
                   </div>
                 ))}
+
+                {/*
+                  Recruitment, kept out of navItems on purpose. A fifth item in
+                  the desktop bar overflows it between 768px and ~800px, and the
+                  people this page is for are overwhelmingly on a phone — so it
+                  gets a row here and a footer link, not a slot up top.
+                */}
+                <SheetLink
+                  href="/careers"
+                  label={t('careers')}
+                  active={isActive("/careers")}
+                  onNavigate={() => setIsOpen(false)}
+                />
               </nav>
 
               <div className="border-t border-gray-200">

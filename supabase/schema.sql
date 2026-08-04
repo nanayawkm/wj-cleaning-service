@@ -148,11 +148,60 @@ create table if not exists public.reminders_sent (
   primary key (booking_id, kind)
 );
 
+-- ============================================================ applications
+
+-- Open job applications from /careers.
+--
+-- The candidate pool, not a message log: Jackie works a row through a status
+-- rather than reading it once and losing it in an inbox. The application is
+-- committed here first and the emails go out afterwards, so a mail provider
+-- outage costs a notification, never the application itself.
+create table if not exists public.applications (
+  id            uuid primary key default gen_random_uuid(),
+  reference     text unique not null,
+
+  name          text not null,
+  email         text not null,
+  phone         text not null,
+  city          text not null,
+
+  -- Option keys ('parttime', 'oneToThree', …), resolved to labels in the app.
+  -- Stored as given rather than as prose so they stay filterable and
+  -- translatable after the fact.
+  availability  text not null,
+  experience    text not null,
+  transport     text not null,
+  languages     text[] not null default '{}',
+
+  motivation    text not null,
+
+  status        text not null default 'new'
+                check (status in ('new','shortlisted','contacted','hired','rejected')),
+  -- Jackie's own working notes. Never shown to the applicant, and never
+  -- included in any email.
+  notes         text,
+
+  language      text not null default 'nl' check (language in ('nl','en')),
+
+  -- When the applicant ticked the consent box. This is the lawful basis for
+  -- holding the row at all, and what the 12-month retention counts from, so it
+  -- is recorded explicitly rather than inferred from created_at.
+  consent_at    timestamptz not null,
+
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+
+create index if not exists applications_status_idx  on public.applications (status);
+create index if not exists applications_created_idx on public.applications (created_at desc);
+create index if not exists applications_email_idx   on public.applications (lower(email));
+
 -- ============================================================ RLS
 -- Nothing below relies on application code being correct. Postgres refuses
 -- the rows regardless of what the app asks for.
 
 alter table public.customers            enable row level security;
+alter table public.applications         enable row level security;
 alter table public.bookings             enable row level security;
 alter table public.booking_addons       enable row level security;
 alter table public.reminders_sent       enable row level security;
@@ -220,7 +269,11 @@ begin
   foreach t in array array[
     'customers','bookings','booking_addons','reminders_sent',
     'pricing_bands','addons','discount_codes',
-    'availability_rules','availability_overrides'
+    'availability_rules','availability_overrides',
+    -- No anon policy exists for applications, deliberately. Nobody can read a
+    -- stranger's application from the browser even holding the anon key; the
+    -- public form writes through the service-role client, which bypasses RLS.
+    'applications'
   ] loop
     execute format('drop policy if exists "authenticated full access" on public.%I', t);
     execute format('drop policy if exists "admin full access" on public.%I', t);

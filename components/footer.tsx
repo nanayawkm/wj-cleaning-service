@@ -29,6 +29,10 @@ export default function Footer() {
     { href: "/about", label: t('about') },
     { href: "/services", label: t('services') },
     { href: "/contact", label: t('contact') },
+    // Recruitment sits here rather than in the top nav: a fifth item overflows
+    // that bar between 768px and ~800px, and the footer is where people look
+    // for a careers link anyway.
+    { href: "/careers", label: t('careers') },
   ]
 
   return (
