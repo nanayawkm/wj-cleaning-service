@@ -26,6 +26,9 @@ const translations = {
     // the row into the phone/CTA cluster. "Vacancies" is also what people
     // scan for on a careers link.
     careers: "Vacancies",
+    // Mirrors careersCopy.en.applyCta — used by the mobile bottom bar, which
+    // reads from this context rather than the careers copy module.
+    applyNow: "Apply now",
     getQuote: "Book Now",
     
     // Hero Section
@@ -138,7 +141,7 @@ const translations = {
     // Contact
     phoneNumber: CONTACT_DETAILS.phone,
     contactEmail: "info@wjcleaningservices.nl",
-    region: "Flevoland Region",
+    region: "Flevoland and surrounding areas",
     
     // Mobile bottom bar
     callNow: "Call Now",
@@ -391,10 +394,11 @@ const translations = {
     services: "Diensten",
     contact: "Contact",
     careers: "Vacatures",
+    applyNow: "Solliciteer nu",
     getQuote: "Nu Boeken",
     
     // Hero Section
-    heroTitle: "Professionele Schoonmaak en Personeel in Lelystad",
+    heroTitle: "Professionele Schoonmaak en Personeel in Flevoland en omgeving",
     heroSubtitle: "Schoonmaak voor woningen en kantoren, plus gescreend personeel voor magazijnen, hotels en evenementen. Gevestigd in Lelystad, actief in Flevoland en omgeving.",
     getFreeQuote: "Nu Boeken",
     hireStaff: "Personeel Inhuren",
@@ -503,7 +507,7 @@ const translations = {
     // Contact
     phoneNumber: CONTACT_DETAILS.phone, 
     contactEmail: "info@wjcleaningservices.nl",
-    region: "Regio Flevoland",
+    region: "Flevoland en omgeving",
     
     // Mobile bottom bar
     callNow: "Nu Bellen",
@@ -517,7 +521,7 @@ const translations = {
     professionalCleaningStaffing: "Professionele Schoonmaak & Personeelsoplossingen",
     aboutWJCleanforce: "Over WJ Cleaning Services",
     trustedPartnersExcellence: "Vertrouwde Partners in Uitmuntendheid",
-    aboutDescription: "WJ Cleaning Services levert schoonmaak en personeel voor woningen en bedrijven in Lelystad en heel Flevoland, gebouwd op kwaliteit, betrouwbaarheid en klanttevredenheid.",
+    aboutDescription: "WJ Cleaning Services levert schoonmaak en personeel voor woningen en bedrijven in Lelystad, heel Flevoland en omgeving, gebouwd op kwaliteit, betrouwbaarheid en klanttevredenheid.",
     experienceYearsDesc: "Ons team heeft meer dan 5 jaar ervaring in de schoonmaaksector.",
     personalizedSchedulesDesc: "Op maat gemaakte schoonmaakschema's die perfect aansluiten bij jouw wensen.",
     extraHygieneDesc: "Extra aandacht aan hygiëne voor een volledig schone en gezonde omgeving.",
@@ -698,7 +702,7 @@ const translations = {
     schoolCleaning: "School Schoonmaak",
     
     // Footer translations
-    footerDescription: "Schoonmaak- en personeelsdiensten vanuit Lelystad. Woningen, kantoren, magazijnen, hotels en scholen in heel Flevoland.",
+    footerDescription: "Schoonmaak- en personeelsdiensten vanuit Lelystad. Woningen, kantoren, magazijnen, hotels en scholen in heel Flevoland en omgeving.",
     
     // Gallery section translations
     commercialCleaning: "Commerciële Schoonmaak",

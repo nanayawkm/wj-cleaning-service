@@ -7,7 +7,7 @@ import { BookAssurances, BookHeroCopy } from "./components/page-copy"
 export const metadata: Metadata = {
   title: "Book a cleaning",
   description:
-    "Book a general cleaning in Lelystad. Fixed prices by home size, pick your own time slot, confirmed by email.",
+    "Book a general cleaning in Flevoland and surrounding areas. Fixed prices by home size, pick your own time slot, confirmed by email.",
 }
 
 // Prices and availability change, so this must never be cached.

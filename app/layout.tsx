@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   keywords: [
     'cleaning services', 'professional cleaning', 'staffing services', 'residential cleaning', 
     'office cleaning', 'warehouse staffing', 'event staffing', 'WJ Cleaning Services', 
-    'cleaning company', 'Lelystad', 'Netherlands', 'commercial cleaning', 'industrial cleaning',
+    'cleaning company', 'Lelystad', 'Flevoland', 'Almere', 'Netherlands', 'commercial cleaning', 'industrial cleaning',
     'hotel cleaning', 'restaurant cleaning', 'school cleaning', 'warehouse cleaning'
   ],
   authors: [{ name: 'WJ Cleaning Services' }],
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     url: 'https://wjcleaningservices.nl',
     siteName: 'WJ Cleaning Services',
     title: 'WJ Cleaning Services - Professional Cleaning & Staffing Services',
-    description: 'Professional cleaning and staffing services built on trust, reliability, and excellence. Serving Lelystad and surrounding areas with residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.',
+    description: 'Professional cleaning and staffing services built on trust, reliability, and excellence. Serving Flevoland and surrounding areas with residential cleaning, office cleaning, warehouse staffing, and event staffing solutions.',
     images: [
       {
         url: '/images/logo1.png',
@@ -149,7 +149,29 @@ export default function RootLayout({
                 "Hotel Staff",
                 "School Support Staff"
               ],
-              "areaServed": "Lelystad, Netherlands",
+              /*
+                The business is registered in Lelystad (see "address" above) but
+                serves the whole province and roughly 50km beyond it.
+
+                Listed as places rather than the sentence used in the visible copy
+                ("Flevoland and surrounding areas"): a crawler can resolve a named
+                AdministrativeArea or City, whereas "and surrounding areas" is text
+                it cannot act on. The towns here are exactly the ones promised in
+                aboutHeroSubtitle — if that copy changes, change this too.
+
+                Note this does not feed Google's local pack; that comes from the
+                Google Business Profile service area. This is for the crawlers and
+                assistants that do read JSON-LD.
+              */
+              "areaServed": [
+                { "@type": "AdministrativeArea", "name": "Flevoland" },
+                { "@type": "City", "name": "Lelystad" },
+                { "@type": "City", "name": "Almere" },
+                { "@type": "City", "name": "Amsterdam" },
+                { "@type": "City", "name": "Utrecht" },
+                { "@type": "City", "name": "Amersfoort" },
+                { "@type": "City", "name": "Zwolle" }
+              ],
               "priceRange": "$$",
               "sameAs": [
                 "https://wjcleaningservices.nl"

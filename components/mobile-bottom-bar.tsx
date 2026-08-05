@@ -26,14 +26,27 @@ export default function MobileBottomBar() {
   /*
     Context-aware, matching the header. Staffing cannot be priced from a form —
     m² tells you nothing about a warehouse shift — so there the primary action
-    is a conversation. Everywhere else it is the booking flow.
+    is a conversation. On /careers the visitor is looking for work, not buying
+    cleaning, so "Book Now" was both meaningless and pointed them away from the
+    application form. Everywhere else it is the booking flow.
 
     This button previously pointed at /contact on every page while reading
     "Book Now", which sent the whole of mobile past the booking flow entirely.
   */
   const isStaffing = pathname?.startsWith("/services/staffing") ?? false
-  const primaryHref = isStaffing ? "/contact" : "/book"
-  const primaryLabel = isStaffing ? t("talkToUs") : t("getFreeQuote")
+  const isCareers = pathname?.startsWith("/careers") ?? false
+
+  let primaryHref = "/book"
+  let primaryLabel = t("getFreeQuote")
+  if (isStaffing) {
+    primaryHref = "/contact"
+    primaryLabel = t("talkToUs")
+  } else if (isCareers) {
+    // Same anchor the hero CTA uses, so the bar just repeats the page's own
+    // primary action once the hero has scrolled away.
+    primaryHref = "/careers#apply"
+    primaryLabel = t("applyNow")
+  }
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 backdrop-blur-sm md:hidden">
