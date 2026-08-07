@@ -69,7 +69,7 @@ const copy = {
       "You speak good Dutch or English",
     ],
     noExperienceNote:
-      "No cleaning experience? Apply anyway. We'd rather train someone reliable than hire someone who isn't.",
+      "No cleaning experience? Apply anyway — we'll show you the work.",
 
     // ---- form ------------------------------------------------------------
     formTitle: "Send your open application",
@@ -206,7 +206,7 @@ const copy = {
       "U spreekt goed Nederlands of Engels",
     ],
     noExperienceNote:
-      "Geen schoonmaakervaring? Solliciteer toch. Wij leiden liever iemand op die betrouwbaar is dan dat wij iemand aannemen die dat niet is.",
+      "Geen schoonmaakervaring? Solliciteer gerust — wij leren u het werk.",
 
     formTitle: "Stuur uw open sollicitatie",
     formLead:

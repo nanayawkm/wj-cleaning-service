@@ -175,8 +175,13 @@ export default function CareersPage() {
             </ul>
 
             {/* Said plainly, because "experience is a plus" reads to a lot of
-                people as "experience is required" and they close the tab. */}
-            <p className="mt-8 rounded-xl border-l-4 border-wj-dark bg-wj-cream px-5 py-4 text-base leading-relaxed text-gray-700">
+                people as "experience is required" and they close the tab.
+
+                Set off with the same thin rule used for asides on the homepage
+                and in the dashboard, not a tinted box — the filled callout was
+                the only one of its kind on the site and read as a stock
+                template component rather than part of this page. */}
+            <p className="mt-8 border-l-2 border-wj-dark pl-4 text-lg leading-relaxed text-gray-900">
               {c.noExperienceNote}
             </p>
           </div>
