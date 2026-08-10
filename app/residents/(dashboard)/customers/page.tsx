@@ -15,7 +15,10 @@ export default async function CustomersPage() {
   // and it keeps the "what counts as revenue" rule in one readable place.
   const { data } = await supabase
     .from("bookings")
-    .select("customer_id, starts_at, total_cents, status, customers ( name, email, phone, street, postcode, city )")
+    .select(
+      `id, reference, customer_id, starts_at, total_cents, status, paid_at, m2_label,
+       customers ( name, email, phone, street, postcode, city )`,
+    )
     .order("starts_at", { ascending: false })
     .limit(2000)
 
@@ -43,7 +46,21 @@ export default async function CustomersPage() {
       totalCents: 0,
       lastAt: b.starts_at,
       firstAt: b.starts_at,
+      history: [],
     }
+
+    // Every booking, cancelled ones included — the panel is the place where
+    // Jackie needs the whole story, not just the part that counts as revenue.
+    // The query is already newest-first, so pushing keeps that order.
+    entry.history.push({
+      id: b.id,
+      reference: b.reference,
+      startsAt: b.starts_at,
+      status: b.status,
+      totalCents: b.total_cents,
+      paidAt: b.paid_at,
+      m2Label: b.m2_label,
+    })
 
     if (counts) {
       entry.bookings += 1
@@ -64,7 +81,7 @@ export default async function CustomersPage() {
     <div className="p-4 sm:p-6 lg:p-8">
       <PageHeader
         title="Customers"
-        hint={`${rows.length} customer${rows.length === 1 ? "" : "s"} · ${repeat} have booked more than once · ${formatCents(lifetime, "nl")} booked in total. Times are ${TIMEZONE.replace("_", " ")}.`}
+        hint={`${rows.length} customer${rows.length === 1 ? "" : "s"} · ${repeat} ${repeat === 1 ? "has" : "have"} booked more than once · ${formatCents(lifetime, "nl")} booked in total. Times are ${TIMEZONE.replace("_", " ")}.`}
       />
 
       {rows.length === 0 ? (

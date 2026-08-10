@@ -481,6 +481,23 @@ Two rules fall out of the same fact:
 - **Finishing a job does not close the panel.** The status pill flips in place. A row
   vanishing under the reader is what made deletion the natural reading in the first place.
 
+### No dead ends ✅
+
+Every row that states a fact must lead to the detail behind it. The Customers list said
+"2 bookings · repeat" and was not tappable, so the obvious next question — *which two?* —
+had no answer, and the mobile `repeat` badge was bare `wj-dark` text, which is this page's
+link styling. It advertised a tap and swallowed it.
+
+Both fixed: the badge is the same tinted chip as the desktop table, and a row opens a
+`<CustomerPanel>` — contact actions, lifetime totals, outstanding money, and every booking
+including cancelled ones. Same slide-over shape as the booking panel, so the two screens
+behave identically.
+
+Rows carry `role="button"` rather than being `<button>` elements, because each one contains
+a `tel:` link and a button may not wrap an anchor; the inner link stops propagation so
+calling never opens the panel by accident. `<Panel>` now forwards native div props, so
+making a panel interactive does not require a second recipe growing beside it.
+
 ### Money ✅
 
 `paid_at` is a manual admin flag — there is no payment provider. Every future booking is

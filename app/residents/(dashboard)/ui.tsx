@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode } from "react"
+import type { ComponentPropsWithoutRef, ComponentType, ReactNode } from "react"
 
 /**
  * The dashboard's shared vocabulary, so every screen is built from the same
@@ -21,8 +21,20 @@ export function PageHeader({ title, hint, action }: { title: string; hint?: stri
   )
 }
 
-export function Panel({ className = "", children }: { className?: string; children: ReactNode }) {
-  return <div className={`border border-gray-200 bg-white ${className}`}>{children}</div>
+/**
+ * Native div props pass straight through, so a panel can be made interactive
+ * without a second recipe growing beside this one.
+ */
+export function Panel({
+  className = "",
+  children,
+  ...rest
+}: ComponentPropsWithoutRef<"div"> & { children: ReactNode }) {
+  return (
+    <div className={`border border-gray-200 bg-white ${className}`} {...rest}>
+      {children}
+    </div>
+  )
 }
 
 export function Stat({

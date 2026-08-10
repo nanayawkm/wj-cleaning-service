@@ -6,6 +6,18 @@ import { MagnifyingGlass, Phone, Repeat } from "@phosphor-icons/react"
 import { formatCents } from "@/lib/booking/pricing"
 import { TIMEZONE } from "@/lib/booking/config"
 import { Panel } from "../ui"
+import { CustomerPanel } from "./customer-panel"
+
+/** One line of a customer's history, newest first. */
+export interface CustomerBooking {
+  id: string
+  reference: string
+  startsAt: string
+  status: string
+  totalCents: number
+  paidAt: string | null
+  m2Label: string | null
+}
 
 export interface CustomerRow {
   key: string
@@ -18,6 +30,7 @@ export interface CustomerRow {
   totalCents: number
   lastAt: string
   firstAt: string
+  history: CustomerBooking[]
 }
 
 const fmt = (iso: string) =>
@@ -28,6 +41,7 @@ const fmt = (iso: string) =>
 export function CustomerList({ rows }: { rows: CustomerRow[] }) {
   const [q, setQ] = useState("")
   const [repeatOnly, setRepeatOnly] = useState(false)
+  const [openKey, setOpenKey] = useState<string | null>(null)
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase()
@@ -37,6 +51,22 @@ export function CustomerList({ rows }: { rows: CustomerRow[] }) {
       return [r.name, r.email, r.phone, r.address].some((v) => v.toLowerCase().includes(term))
     })
   }, [rows, q, repeatOnly])
+
+  const open = rows.find((r) => r.key === openKey) ?? null
+
+  // Rows are containers rather than buttons: each one holds a tel: link, and a
+  // <button> may not wrap an <a>. role="button" keeps it operable by keyboard.
+  const rowProps = (r: CustomerRow) => ({
+    role: "button" as const,
+    tabIndex: 0,
+    onClick: () => setOpenKey(r.key),
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault()
+        setOpenKey(r.key)
+      }
+    },
+  })
 
   return (
     <>
@@ -79,10 +109,20 @@ export function CustomerList({ rows }: { rows: CustomerRow[] }) {
           </thead>
           <tbody className="divide-y divide-gray-100">
             {filtered.map((r) => (
-              <tr key={r.key} className="align-top transition-colors hover:bg-gray-50">
+              <tr
+                key={r.key}
+                {...rowProps(r)}
+                className="cursor-pointer align-top transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
+              >
                 <td className="px-4 py-3">
                   <div className="font-medium text-gray-900">{r.name}</div>
-                  <a href={`tel:${r.phone}`} className="text-xs text-wj-dark hover:underline">{r.phone}</a>
+                  <a
+                    href={`tel:${r.phone}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-xs text-wj-dark hover:underline"
+                  >
+                    {r.phone}
+                  </a>
                 </td>
                 <td className="px-4 py-3 text-gray-700">{r.address}</td>
                 <td className="px-4 py-3">
@@ -109,7 +149,7 @@ export function CustomerList({ rows }: { rows: CustomerRow[] }) {
       {/* mobile */}
       <div className="space-y-3 lg:hidden">
         {filtered.map((r) => (
-          <Panel key={r.key} className="p-4">
+          <Panel key={r.key} className="cursor-pointer p-4 transition-colors hover:bg-gray-50" {...rowProps(r)}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="font-semibold text-gray-900">{r.name}</p>
@@ -118,6 +158,7 @@ export function CustomerList({ rows }: { rows: CustomerRow[] }) {
               <a
                 href={`tel:${r.phone}`}
                 aria-label={`Call ${r.name}`}
+                onClick={(e) => e.stopPropagation()}
                 className="flex h-11 w-11 flex-shrink-0 items-center justify-center bg-wj-dark text-white"
               >
                 <Phone weight="fill" className="h-4 w-4" />
@@ -126,7 +167,16 @@ export function CustomerList({ rows }: { rows: CustomerRow[] }) {
             <div className="mt-3 flex items-end justify-between border-t border-gray-100 pt-3">
               <span className="text-sm text-gray-600">
                 {r.bookings} booking{r.bookings === 1 ? "" : "s"}
-                {r.bookings > 1 && <span className="ml-1.5 text-xs font-medium text-wj-dark">repeat</span>}
+                {/*
+                  Same chip as the desktop table. Bare wj-dark text is this
+                  page's link styling — the phone number above uses it — so an
+                  unbacked badge reads as tappable and does nothing when tapped.
+                */}
+                {r.bookings > 1 && (
+                  <span className="ml-1.5 bg-wj-dark/10 px-1.5 py-0.5 text-xs font-medium text-wj-dark">
+                    repeat
+                  </span>
+                )}
                 <span className="block text-xs text-gray-500">Last {fmt(r.lastAt)}</span>
               </span>
               <span className="text-lg font-semibold text-gray-900 tabular-nums">
@@ -142,6 +192,8 @@ export function CustomerList({ rows }: { rows: CustomerRow[] }) {
           <p className="text-sm text-gray-500">Nothing matches that.</p>
         </Panel>
       )}
+
+      {open && <CustomerPanel customer={open} onClose={() => setOpenKey(null)} />}
     </>
   )
 }
