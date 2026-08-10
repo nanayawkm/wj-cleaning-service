@@ -19,36 +19,44 @@ const fmtTime = (iso: string) =>
     timeZone: TIMEZONE, hour: "2-digit", minute: "2-digit", hour12: false,
   }).format(new Date(iso))
 
-type Filter = "upcoming" | "past" | "unpaid" | "cancelled" | "all"
+type Filter = "open" | "completed" | "unpaid" | "cancelled" | "all"
 
+/**
+ * One axis: is this job still on the list, or is it behind us?
+ *
+ * Deliberately no date-based tab. Splitting on the clock is what let a job
+ * marked done before its slot arrived fall between "upcoming" and "past" and
+ * disappear from the dashboard entirely. Status decides, and every status
+ * lands in exactly one tab — no tab is a subset of another.
+ */
 const FILTERS: { id: Filter; label: string }[] = [
-  { id: "upcoming", label: "Upcoming" },
-  { id: "past", label: "Past" },
+  { id: "open", label: "Open" },
+  { id: "completed", label: "Completed" },
   { id: "unpaid", label: "Unpaid" },
   { id: "cancelled", label: "Cancelled" },
   { id: "all", label: "All" },
 ]
 
 export function BookingsTable({ bookings }: { bookings: AdminBooking[] }) {
-  const [filter, setFilter] = useState<Filter>("upcoming")
+  const [filter, setFilter] = useState<Filter>("open")
   const [q, setQ] = useState("")
   const [openId, setOpenId] = useState<string | null>(null)
   const [exporting, setExporting] = useState(false)
 
-  const now = Date.now()
-
   const rows = useMemo(() => {
     const term = q.trim().toLowerCase()
-    return bookings.filter((b) => {
-      const active = b.status === "confirmed" || b.status === "rescheduled"
-      const started = new Date(b.startsAt).getTime() < now
-
+    const matched = bookings.filter((b) => {
       const passesFilter =
         filter === "all" ? true
-        : filter === "upcoming" ? active && !started
-        : filter === "past" ? started && b.status !== "cancelled"
-        : filter === "unpaid" ? !b.paidAt && b.status !== "cancelled"
-        : b.status === "cancelled"
+        // Still on the list. The clock is ignored on purpose: a job whose slot
+        // has passed but was never marked is overdue work, not history.
+        : filter === "open" ? b.status === "confirmed" || b.status === "rescheduled"
+        : filter === "completed" ? b.status === "completed"
+        // Money actually owed. There is no online payment, so every future
+        // booking is unpaid — listing those too would just restate Open.
+        : filter === "unpaid" ? b.status === "completed" && !b.paidAt
+        // Both mean the job did not happen.
+        : b.status === "cancelled" || b.status === "no_show"
 
       if (!passesFilter) return false
       if (!term) return true
@@ -58,7 +66,12 @@ export function BookingsTable({ bookings }: { bookings: AdminBooking[] }) {
         .filter(Boolean)
         .some((v) => String(v).toLowerCase().includes(term))
     })
-  }, [bookings, filter, q, now])
+
+    // Open reads forwards, so anything overdue surfaces at the top where it
+    // needs attention. Every other tab is history and reads backwards.
+    const dir = filter === "open" ? 1 : -1
+    return matched.sort((a, b) => dir * a.startsAt.localeCompare(b.startsAt))
+  }, [bookings, filter, q])
 
   const open = bookings.find((b) => b.id === openId) ?? null
 
@@ -110,7 +123,7 @@ export function BookingsTable({ bookings }: { bookings: AdminBooking[] }) {
               type="button"
               onClick={() => setFilter(f.id)}
               aria-pressed={on}
-              className={`h-9 px-3 text-sm transition-colors ${
+              className={`h-11 px-3 text-sm transition-colors ${
                 on
                   ? "bg-wj-dark font-semibold text-white"
                   : "border border-gray-200 bg-white font-medium text-gray-600 hover:bg-gray-50"
@@ -179,7 +192,7 @@ export function BookingsTable({ bookings }: { bookings: AdminBooking[] }) {
                     </td>
                     <td className="px-4 py-3">
                       <StatusPill status={b.status} />
-                      {!b.paidAt && b.status !== "cancelled" && (
+                      {b.status === "completed" && !b.paidAt && (
                         <span className="mt-1 block text-xs text-amber-700">unpaid</span>
                       )}
                     </td>
@@ -219,7 +232,7 @@ export function BookingsTable({ bookings }: { bookings: AdminBooking[] }) {
                     {b.m2Label} · {b.durationMin} min
                   </span>
                   <span className="text-right">
-                    {!b.paidAt && b.status !== "cancelled" && (
+                    {b.status === "completed" && !b.paidAt && (
                       <span className="block text-xs text-amber-700">unpaid</span>
                     )}
                     <span className="text-lg font-semibold text-gray-900 tabular-nums">

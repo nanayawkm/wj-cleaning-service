@@ -47,7 +47,10 @@ export async function getAdminBookings(): Promise<AdminBooking[]> {
   const { data } = await supabase
     .from("bookings")
     .select(SELECT)
-    .order("starts_at", { ascending: true })
+    // Newest first: once there is more history than the cap, the rows that fall
+    // off the end should be the oldest ones, not this week's work. The table
+    // re-sorts per filter.
+    .order("starts_at", { ascending: false })
     .limit(500)
   return ((data ?? []) as unknown as Row[]).map(shape)
 }

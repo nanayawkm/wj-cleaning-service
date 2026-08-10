@@ -197,7 +197,9 @@ export function BookingPanel({
                   <p className="text-xs text-gray-500">
                     {paid
                       ? `Paid ${new Intl.DateTimeFormat("en-GB", { timeZone: TIMEZONE, day: "numeric", month: "short" }).format(new Date(booking.paidAt!))}`
-                      : "Not yet paid"}
+                      : active && new Date(booking.startsAt).getTime() <= Date.now()
+                        ? "Not yet paid · marking paid also completes the job"
+                        : "Not yet paid"}
                   </p>
                 </div>
                 <button
@@ -247,11 +249,14 @@ export function BookingPanel({
                   <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
                     After the job
                   </p>
+                  {/* The panel deliberately stays open: the pill flips to
+                      "completed" in place, so finishing a job never reads as
+                      the booking having been deleted. */}
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       type="button"
                       disabled={pending}
-                      onClick={() => run(() => setBookingStatus(booking.id, "completed"), onClose)}
+                      onClick={() => run(() => setBookingStatus(booking.id, "completed"))}
                       className="inline-flex h-11 items-center justify-center gap-2 border border-emerald-200 bg-emerald-50 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 disabled:opacity-50"
                     >
                       <CheckCircle weight="fill" className="h-4 w-4" /> Completed
@@ -259,7 +264,7 @@ export function BookingPanel({
                     <button
                       type="button"
                       disabled={pending}
-                      onClick={() => run(() => setBookingStatus(booking.id, "no_show"), onClose)}
+                      onClick={() => run(() => setBookingStatus(booking.id, "no_show"))}
                       className="inline-flex h-11 items-center justify-center gap-2 border border-gray-300 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
                     >
                       <UserMinus className="h-4 w-4" /> No show

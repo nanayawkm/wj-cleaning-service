@@ -404,7 +404,94 @@ Now handled by [`components/scroll-reveal.tsx`](components/scroll-reveal.tsx):
 Verified: all 17 elements reveal on scroll, tab-switch cards reveal, and **with JavaScript
 disabled 0 elements are hidden**.
 
-## 9. Accessibility ✅
+## 9. Booking system and dashboard ✅
+
+Built and live: Supabase + Resend. Three surfaces — the public flow at `/book`, customer
+self-service at `/booking/manage?token=…`, and Jackie's dashboard at `/residents`
+(Today · Bookings · Customers · Applications · Availability · Pricing · Discounts).
+
+### Square corners: a second dialect, on purpose ✅
+
+The marketing site is cream ground, `rounded-xl`, photography. The booking flow and the
+dashboard are **`rounded-none` throughout** — 36 instances across the two booking-flow
+components, 4 in the dashboard. The only `rounded-full` survivors are the six places a
+circle carries meaning rather than style: the step badges, the radio and checkbox
+indicators, and the dot marking a day with availability.
+
+This is not drift. The marketing site is arguing; the product is being used. Rounded cards
+on cream read as brochure, and a brochure is the wrong signal once someone has decided to
+book. The shared vocabulary is set once in
+[`app/residents/(dashboard)/ui.tsx`](app/residents/(dashboard)/ui.tsx):
+
+- Square corners, **one hairline border** (`border-gray-200`), no shadows
+- White panels on a light ground (`bg-gray-50/70` — cream stays on the marketing site)
+- `wj-dark` reserved for **the thing currently selected**, nothing else
+
+`<PageHeader>`, `<Panel>`, `<Stat>` and `<StatusPill>` are the only recipes. Every admin
+screen is assembled from them rather than inventing its own spacing.
+
+### Touch targets ✅
+
+**h-11 (44px)** on every action control, matching §4. The bookings filter row was `h-9` —
+36px, sitting directly beneath an `h-11` Export button — and was corrected. The dashboard
+is used one-handed on a phone between jobs, so this matters more here than on the
+marketing site, not less.
+
+🟡 One holdout remains: the mobile **Sign out** button in
+[`nav.tsx`](app/residents/(dashboard)/nav.tsx) is still `h-9`. Low-frequency and
+deliberately de-emphasised, but it is below the floor.
+
+### Status is the only axis ✅
+
+Five statuses, enforced by a CHECK constraint: `confirmed · rescheduled · completed ·
+cancelled · no_show`.
+
+**Only `confirmed` and `rescheduled` hold a slot.** This is the load-bearing fact of the
+whole system — `BLOCKING_STATUSES` drives both the Postgres exclusion constraint
+(`bookings_no_overlap`) and the public availability query, so *any* move to `completed`
+releases that time to the next customer who asks for it.
+
+The bookings list therefore filters on status alone, never on the clock:
+
+| Tab | Rule |
+|---|---|
+| **Open** | `confirmed` / `rescheduled`, **any date**. Sorted forwards, so an overdue job Jackie never marked surfaces at the top |
+| **Completed** | `completed` |
+| **Unpaid** | `completed && !paid` — money actually owed |
+| **Cancelled** | `cancelled` or `no_show` — both mean the job did not happen |
+| **All** | everything, newest first |
+
+Every status lands in exactly one bucket and no tab is a subset of another. The four stat
+tiles use the same predicates, so a tile can never disagree with the tab beneath it, and
+the money figures stay disjoint instead of counting one job twice.
+
+**What this replaced, and why it is written down:** the tabs used to split on time —
+`upcoming` meant *active and not yet started*, `past` meant *already started*. A job marked
+done on Monday for a slot on Wednesday was too late for one and too early for the other. It
+fell out of every tab and read as though the record had been deleted. Nothing had been
+deleted; there was simply nowhere for it to appear. **A booking must never be reachable
+only through "All".**
+
+Two rules fall out of the same fact:
+
+- **Marking paid completes the job — but only once the slot has started.** Money is
+  collected at the door, never online, so confirming the cash is normally confirming the
+  work. Auto-completing a job that has not happened yet would put Jackie's own working time
+  back on sale and sell the slot out from under the customer who just paid.
+- **Finishing a job does not close the panel.** The status pill flips in place. A row
+  vanishing under the reader is what made deletion the natural reading in the first place.
+
+### Money ✅
+
+`paid_at` is a manual admin flag — there is no payment provider. Every future booking is
+therefore unpaid by definition, which is why "unpaid" as a signal is scoped to completed
+work in both the tab and the amber row badge. "Earned this month" counts what Jackie has
+**marked done**, not what the calendar says has passed: a slot whose time went by with
+nothing recorded against it is not revenue, it is a job to chase.
+
+---
+
+## 10. Accessibility ✅
 
 - Pinch-zoom restored (`maximumScale: 1` removed — WCAG 1.4.4 failure)
 - Focus rings brand teal, not shadcn blue
@@ -416,7 +503,7 @@ disabled 0 elements are hidden**.
 
 ---
 
-## 9. Legal ✅
+## 11. Legal ✅
 
 - `/privacy`, `/terms`, `/cookies` exist and are linked (previously `href="#"`)
 - KVK and BTW render in the footer when filled in `constant.ts` — **legally required on
@@ -426,10 +513,8 @@ disabled 0 elements are hidden**.
 
 ---
 
-## 10. Not yet built
+## 12. Not yet built
 
-- **Booking system** — Supabase + Resend, ~$25/month. Architecture is settled; blocked on
-  Jackie's m² price table. See the separate plan document.
 - Open Graph card — metadata declares 1200×630 but the file is a 1024×1024 square, so
   social shares render distorted
 - `<ServiceCard>` / `<InfoCard>` / `<IconChip>` extraction

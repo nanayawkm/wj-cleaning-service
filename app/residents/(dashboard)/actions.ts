@@ -42,7 +42,15 @@ export async function setBookingStatus(
     .eq("id", id)
     .select("id")
 
-  if (error) return { ok: false, error: "Could not update. Please try again." }
+  if (error) {
+    // Reopening puts the row back under the no-overlap constraint. That is the
+    // one failure here with a cause Jackie can act on, so name it instead of
+    // telling her to try again at something that will never succeed.
+    if ((error as { code?: string }).code === "23P01") {
+      return { ok: false, error: "That slot is taken by another booking." }
+    }
+    return { ok: false, error: "Could not update. Please try again." }
+  }
   if (!data?.length) return { ok: false, error: "Booking not found." }
   refresh()
   return { ok: true }
@@ -52,9 +60,41 @@ export async function setBookingStatus(
 
 export async function setPaid(id: string, paid: boolean): Promise<Result> {
   const supabase = await createSupabaseServerClient()
+
+  const { data: current } = await supabase
+    .from("bookings")
+    .select("status, starts_at")
+    .eq("id", id)
+    .maybeSingle()
+  if (!current) return { ok: false, error: "Booking not found." }
+
+  /*
+    Money is collected at the door, never online, so confirming the cash has
+    arrived is normally also confirming the job happened. Marking paid closes
+    the job in the same tap rather than making Jackie tick twice.
+
+    Guarded on the job having started, and that guard is load-bearing rather
+    than tidiness. The exclusion constraint and the public availability query
+    both key on confirmed/rescheduled, so moving a booking to completed frees
+    its slot. Auto-completing a job that has not happened yet would quietly put
+    Jackie's own working time back on sale — a prepayment would sell the slot
+    out from under the customer who just paid for it.
+
+    Only ever a promotion. Unticking paid corrects a mistake about the money and
+    says nothing about whether the work was done, so it leaves the status alone.
+  */
+  const alsoCompletes =
+    paid &&
+    (BLOCKING_STATUSES as readonly string[]).includes(current.status) &&
+    new Date(current.starts_at).getTime() <= Date.now()
+
   const { data, error } = await supabase
     .from("bookings")
-    .update({ paid_at: paid ? new Date().toISOString() : null, updated_at: new Date().toISOString() })
+    .update({
+      paid_at: paid ? new Date().toISOString() : null,
+      ...(alsoCompletes ? { status: "completed" } : {}),
+      updated_at: new Date().toISOString(),
+    })
     .eq("id", id)
     .select("id")
 
