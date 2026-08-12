@@ -372,7 +372,11 @@ export async function ensurePdf(id: string): Promise<Result<{ path: string }>> {
   let buffer: Buffer
   try {
     buffer = await renderInvoicePdf(doc)
-  } catch {
+  } catch (e) {
+    // Surfaced to the server logs so a render failure is diagnosable rather
+    // than a silent "could not be made". The invoice itself is already validly
+    // issued; only the document is missing, and this is retried on next open.
+    console.error("[invoice] PDF render failed", { id, error: (e as Error)?.message })
     return fail("The invoice was issued, but the PDF could not be made. Open it again to retry.")
   }
 

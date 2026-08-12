@@ -1,8 +1,3 @@
-// No `server-only` guard here on purpose: the `node:path` import already makes
-// this unbuildable from a client component, and leaving it off lets the layout
-// be rendered by a plain script — see __tests__/render-sample.tsx.
-import fs from "node:fs"
-import path from "node:path"
 // Imported explicitly so this module also renders outside Next, where the
 // classic JSX transform expects React in scope. Harmless under React 19.
 import React from "react"
@@ -17,6 +12,7 @@ import {
   renderToBuffer,
 } from "@react-pdf/renderer"
 
+import { GEIST_REGULAR, GEIST_SEMIBOLD, LOGO_PNG } from "./assets.generated"
 import { formatCents } from "./money"
 import type { VatBand } from "./money"
 
@@ -31,18 +27,18 @@ import type { VatBand } from "./money"
 
 /* ───────────────────────────────────────────────────── fonts and artwork */
 
-const asset = (...p: string[]) => path.join(process.cwd(), "public", ...p)
-
 /**
- * Both of these have to be handed over as bytes, not paths.
+ * The fonts and the logo are compiled into the bundle as base64 (see
+ * assets.generated.ts), not read from disk.
  *
- * The font loader only understands a data URL or something `fetch` can reach —
- * it never touches the filesystem — and a file path silently fails, falling
- * back to Helvetica with only a "fetch failed" on stderr to show for it. The
- * image loader is the same story, but takes a Buffer directly.
+ * This used to `fs.readFileSync` from public/, which works locally but throws
+ * ENOENT on Vercel — public/ is served by the CDN and is not part of the
+ * serverless function's filesystem, so the PDF render failed in production with
+ * only a caught error to show for it. Embedding the bytes removes the
+ * filesystem dependency entirely: identical behaviour everywhere.
  *
- * Loaded once, on first render rather than at import, so a missing file fails
- * where it can be reported instead of at module load.
+ * The font loader accepts a data URL directly; so does Image. No fetch, no
+ * disk.
  */
 let registered = false
 
@@ -50,27 +46,17 @@ function ensureFonts() {
   if (registered) return
   registered = true
 
-  const dataUrl = (file: string) =>
-    `data:font/ttf;base64,${fs.readFileSync(asset("fonts", file)).toString("base64")}`
-
   Font.register({
     family: "Geist",
     fonts: [
-      { src: dataUrl("Geist-Regular.ttf"), fontWeight: 400 },
-      { src: dataUrl("Geist-SemiBold.ttf"), fontWeight: 600 },
+      { src: GEIST_REGULAR, fontWeight: 400 },
+      { src: GEIST_SEMIBOLD, fontWeight: 600 },
     ],
   })
 
   // Without this a long word is broken mid-character rather than wrapped.
   // A Dutch street name is the usual victim.
   Font.registerHyphenationCallback((word) => [word])
-}
-
-let logoCache: { data: Buffer; format: "png" } | null = null
-
-function logo() {
-  if (!logoCache) logoCache = { data: fs.readFileSync(asset("images", "logo1.png")), format: "png" }
-  return logoCache
 }
 
 /* ───────────────────────────────────────────────────────────────── types */
@@ -316,7 +302,7 @@ export function InvoiceDocument({ inv }: { inv: PdfInvoice }) {
         {inv.isTest ? <Text style={s.testBanner}>{t.testBanner}</Text> : null}
 
         <View style={s.head}>
-          <Image src={logo()} style={s.logo} />
+          <Image src={LOGO_PNG} style={s.logo} />
           <View style={s.issuer}>
             <View style={s.issuerGroup}>
               <Text>{issuer.companyName}</Text>
