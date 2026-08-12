@@ -96,8 +96,8 @@ export default function CareersPage() {
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.aboutTitle}</h2>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">{c.aboutBody}</p>
+              <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.aboutTitle}</h2>
+              <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{c.aboutBody}</p>
 
               <div className="mt-8 overflow-hidden rounded-xl border border-wj-cream-deep">
                 <Image
@@ -106,14 +106,17 @@ export default function CareersPage() {
                   width={800}
                   height={500}
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="h-56 w-full object-cover sm:h-64"
+                  /* §5: aspect ratio, not a fixed height. h-56/h-64 gave a
+                     different crop at every width — 2.2:1 on a phone and
+                     nearly 4:1 on a wide column. */
+                  className="aspect-[16/10] w-full object-cover"
                 />
               </div>
             </div>
 
             <div>
-              <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.dutiesTitle}</h2>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">{c.dutiesLead}</p>
+              <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.dutiesTitle}</h2>
+              <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{c.dutiesLead}</p>
               <ul className="mt-6 space-y-3">
                 {c.duties.map((duty) => (
                   <li key={duty} className="flex items-start gap-3">
@@ -134,27 +137,36 @@ export default function CareersPage() {
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-10 max-w-2xl">
             <Badge className="mb-4 bg-wj-accent-light/20 text-wj-accent-dark">{c.badge}</Badge>
-            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.offerTitle}</h2>
-            <p className="mt-4 text-lg leading-relaxed text-gray-600">{c.offerLead}</p>
+            <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.offerTitle}</h2>
+            <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{c.offerLead}</p>
           </div>
 
-          <div className="scroll-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {/*
+            One panel, not six cards. As a 3-up grid of padded cards with 44px
+            icon chips this ran ~440px tall and pushed the form — the thing on
+            this page anyone actually needs to reach — most of a screen further
+            down. Benefits on a job page are a reference list, so it is set as
+            one: a white panel on cream, hairline-divided rows, two columns.
+            Same border token and radius as every other card on the site, at
+            roughly 40% of the height.
+          */}
+          <ul className="scroll-animate grid overflow-hidden rounded-xl border border-wj-cream-deep bg-white sm:grid-cols-2">
             {c.offer.map((item, i) => {
               const Icon = OFFER_ICONS[i] ?? Sparkle
               return (
-                <div
+                <li
                   key={item.title}
-                  className="rounded-xl border border-wj-cream-deep bg-white p-6"
+                  className="flex items-start gap-3.5 border-b border-wj-cream-deep p-5 last:border-b-0 sm:odd:border-r sm:[&:nth-last-child(2)]:border-b-0"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-wj-dark bg-white">
-                    <Icon className="h-5 w-5 text-wj-dark" />
-                  </span>
-                  <h3 className="mt-4 text-lg font-semibold text-gray-900">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{item.body}</p>
-                </div>
+                  <Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-wj-dark" />
+                  <div className="min-w-0">
+                    <h3 className="text-base font-semibold text-gray-900">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-600">{item.body}</p>
+                  </div>
+                </li>
               )
             })}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -162,7 +174,7 @@ export default function CareersPage() {
       <section className="border-b border-wj-cream-deep bg-white py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-3xl">
-            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.lookingTitle}</h2>
+            <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.lookingTitle}</h2>
             <ul className="mt-6 space-y-4">
               {c.looking.map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -196,8 +208,8 @@ export default function CareersPage() {
               <span className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border-2 border-wj-dark bg-white">
                 <Briefcase className="h-6 w-6 text-wj-dark" />
               </span>
-              <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.formTitle}</h2>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">{c.formLead}</p>
+              <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">{c.formTitle}</h2>
+              <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{c.formLead}</p>
             </div>
 
             <div className="rounded-xl border border-wj-cream-deep bg-white p-5 sm:p-8">

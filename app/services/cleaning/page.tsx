@@ -75,12 +75,17 @@ export default function CleaningServicesPage() {
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-2xl">
-            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">
               {t("commercialTitle")}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("commercialLead")}</p>
-            {/* deliberately /contact, not /book — commercial is not priced by m² */}
-            <Button size="lg" variant="outline" className="mt-7" asChild>
+            <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{t("commercialLead")}</p>
+            {/* Deliberately /contact, not /book — commercial is not priced by m².
+                variant="outline" resolves to bg-background (cream) with a
+                border-input hairline, so on a cream section it was a cream
+                button on cream ground: no fill boundary, no affordance. This
+                is the only action in the section, so it takes the primary
+                variant rather than a secondary treatment. */}
+            <Button size="lg" className="mt-7" asChild>
               <Link href="/contact">
                 {t("requestQuote")}
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -95,10 +100,10 @@ export default function CleaningServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">
                 {t("homeCleaningTitle")}
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("homeCleaningLead")}</p>
+              <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{t("homeCleaningLead")}</p>
 
               <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-gray-500">
                 {t("whatsIncluded")}

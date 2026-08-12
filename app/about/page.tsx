@@ -4,9 +4,12 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Buildings, Certificate, Check, Clock, Drop, Heart, HouseLine, MapPin, ShieldCheck, Sparkle, Star, Users, Warehouse } from "@phosphor-icons/react"
+// Only what this page actually draws. Buildings, Certificate, Check, Drop,
+// HouseLine, MapPin, ShieldCheck, Star, Users and Warehouse were all imported
+// and never rendered — dead weight on a barrel import.
+import { Broom, ChatCircleText, Clock, HandHeart, Handshake, Key, MagnifyingGlass, Sparkle, TrendUp } from "@phosphor-icons/react"
 import { useLanguage } from '@/contexts/LanguageContext'
-import { FeatureCard, tintFor } from '@/components/feature-card'
+import { FeatureCard, TINTS, tintFor } from '@/components/feature-card'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -30,8 +33,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Mission Section */}
-      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+      {/*
+        Our Mission Section.
+
+        Grounds on this page run dark → white → cream → white → dark, per §5.
+        Mission moved onto white so Values can sit on cream: the FeatureCard
+        grid below is a white card held by a wj-cream-deep hairline, and that
+        border only does a job on cream (white on cream is 1.13:1 — the border
+        is what holds the card edge). On a white section the card cannot lift
+        at all and the border reads as a stray outline round nothing, which is
+        the "row of plain outlined boxes" §4 exists to prevent.
+      */}
+      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden border-b border-wj-cream-deep bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
@@ -40,41 +53,52 @@ export default function AboutPage() {
                 <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
                   {t('deliveringExcellence')}
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-relaxed">
                   {t('aboutDescription')}
                 </p>
               </div>
 
-              <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <Heart className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{t('customerCentricApproach')}</h3>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('customerCentricDesc')}</p>
-                  </div>
-                </div>
+              {/*
+                Three identical white squares with a 2px teal outline, carrying
+                Heart / ShieldCheck / Star — the three most-used glyphs in any
+                stock template, drawn in the one chip treatment that reads as a
+                default. §3 flags exactly this ("the values grid still uses
+                generic glyphs"), and §4 flags the nine competing icon-chip
+                recipes it belongs to.
 
-                <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{t('trustedReliable')}</h3>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('trustedReliableDesc')}</p>
-                  </div>
-                </div>
+                Two changes. The glyphs are the specific ones: HandHeart for
+                personal care, Handshake for the lasting relationship the copy
+                actually claims, and Sparkle from §3's cleaning-specific set for
+                doing it properly. And the chip is now a filled brand block on
+                the TINTS cycle shared with FeatureCard, so the three rows carry
+                three different colours instead of one outline repeated — the
+                same mechanism that stops the card grid below reading as boxes.
 
-                <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <Star className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-wj-dark" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{t('excellenceInService')}</h3>
-                    <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('excellenceInServiceDesc')}</p>
-                  </div>
-                </div>
+                Sizes also collapsed from three-step chains to the §2 cap: one
+                44px chip (§4's touch floor), text-lg heading, text-base body.
+                The body was text-xs at 12px, below anything else on the page.
+              */}
+              <div className="space-y-4 lg:space-y-6">
+                {[
+                  { Icon: HandHeart, title: t('customerCentricApproach'), body: t('customerCentricDesc') },
+                  { Icon: Handshake, title: t('trustedReliable'), body: t('trustedReliableDesc') },
+                  { Icon: Sparkle, title: t('excellenceInService'), body: t('excellenceInServiceDesc') },
+                ].map((row, i) => {
+                  const tint = TINTS[tintFor(i)]
+                  return (
+                    <div key={row.title} className="flex items-start gap-3 sm:gap-4">
+                      <span
+                        className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl ${tint.block}`}
+                      >
+                        <row.Icon weight="light" className={`h-6 w-6 ${tint.icon}`} />
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="text-lg font-semibold text-gray-900">{row.title}</h3>
+                        <p className="mt-1 text-base leading-relaxed text-gray-600">{row.body}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
@@ -100,8 +124,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      {/* Values Section — cream ground, so the FeatureCard borders hold an edge */}
+      <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-2xl mb-12">
             <div className="inline-flex items-center px-4 py-2 bg-wj-accent-light/20 text-wj-accent-dark rounded-full mb-6">
@@ -115,14 +139,36 @@ export default function AboutPage() {
             </p>
           </div>
 
+          {/*
+            Glyphs picked from what each value actually claims, not from the
+            stock set (§3). Heart / ShieldCheck / Star / Users / Certificate is
+            the same five any template ships with, and they were doing no work
+            beyond filling the tinted block.
+
+              Broom            — the craft itself, for dedication to the task
+              Key              — what trust concretely means to someone letting
+                                 a cleaner into their home. More specific than a
+                                 shield, and §7's "specific beats superlative"
+                                 applies to pictures as much as to copy
+              Clock            — kept; "On time" is literal, so the literal
+                                 glyph is the right one
+              MagnifyingGlass  — quality control is the inspection pass, which
+                                 is what the copy describes
+              ChatCircleText   — "responsive support" is a conversation
+              TrendUp          — growth, drawn as growth rather than as a
+                                 certificate nobody has been shown
+
+            None repeat the mission block above (HandHeart, Handshake, Sparkle),
+            so the page does not use the same picture twice in two sections.
+          */}
           <div className="scroll-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
-              { Icon: Heart, title: t('passionForExcellence'), description: t('passionForExcellenceDesc') },
-              { Icon: ShieldCheck, title: t('trustReliabilityTitle'), description: t('trustReliabilityDesc') },
+              { Icon: Broom, title: t('passionForExcellence'), description: t('passionForExcellenceDesc') },
+              { Icon: Key, title: t('trustReliabilityTitle'), description: t('trustReliabilityDesc') },
               { Icon: Clock, title: t('timelyServiceTitle'), description: t('timelyServiceDesc') },
-              { Icon: Star, title: t('qualityAssuranceTitle'), description: t('qualityAssuranceDesc') },
-              { Icon: Users, title: t('customerFocusTitle'), description: t('customerFocusDesc') },
-              { Icon: Certificate, title: t('continuousGrowthTitle'), description: t('continuousGrowthDesc') },
+              { Icon: MagnifyingGlass, title: t('qualityAssuranceTitle'), description: t('qualityAssuranceDesc') },
+              { Icon: ChatCircleText, title: t('customerFocusTitle'), description: t('customerFocusDesc') },
+              { Icon: TrendUp, title: t('continuousGrowthTitle'), description: t('continuousGrowthDesc') },
             ].map((card, i) => (
               <FeatureCard
                 key={card.title}
@@ -136,8 +182,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      {/* Gallery Section — white is fine here: these cards open with a
+          photograph, so the image carries the edge rather than the hairline */}
+      <section className="py-24 border-y border-wj-cream-deep bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mb-12">
             <div className="inline-flex items-center px-4 py-2 bg-wj-light/20 text-wj-dark rounded-full mb-6">
@@ -209,10 +256,16 @@ export default function AboutPage() {
               <Button asChild size="lg" variant="onDark">
                 <Link href="/contact">{t('getStartedToday')}</Link>
               </Button>
-              <Button
-                size="lg"
-                variant="onDarkOutline"
-              >
+              {/*
+                `asChild` is load-bearing, not decoration. Without it Button
+                renders a real <button> and the Link becomes an <a> nested
+                inside it — interactive content inside a button, which is
+                invalid HTML and which §9 already records as a rule ("a button
+                may not wrap an anchor"). It also left the anchor outside the
+                size variant, so this CTA measured 24px tall against the 44px
+                floor while its `asChild` sibling on the same row measured 48.
+              */}
+              <Button asChild size="lg" variant="onDarkOutline">
                 <Link href="/services">{t('viewOurServices')}</Link>
               </Button>
             </div>

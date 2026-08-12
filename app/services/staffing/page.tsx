@@ -114,17 +114,20 @@ export default function StaffingServicesPage() {
       <section className="border-b border-wj-cream-deep bg-white py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-10 max-w-2xl">
-            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">
               {t("staffRolesTitle")}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("staffRolesLead")}</p>
+            <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{t("staffRolesLead")}</p>
           </div>
           <StaffCarousel slides={staffSlides} label={t("staffRolesTitle")} />
         </div>
       </section>
 
-      {/* how it works */}
-      <section className="border-y border-wj-cream-deep bg-white py-16 sm:py-20">
+      {/* how it works — cream, not white. It followed a white section, so the
+          two ran together as one slab, and its FeatureCards were white-on-white
+          with a wj-cream-deep hairline holding an edge that had nothing to hold
+          it against (§1: that border is specified for cream ground). */}
+      <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <h2 className="max-w-2xl text-3xl tracking-tight text-gray-900 sm:text-4xl">
             {t("staffingHowTitle")}

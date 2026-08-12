@@ -439,3 +439,116 @@ export function cancellationNotice(d: BookingEmailData, lang: Lang) {
     ),
   }
 }
+
+/* ------------------------------------------------------------------ contact */
+
+export interface ContactEmailData {
+  reference: string
+  name: string
+  email: string
+  /** Optional on the form, so it is omitted from the tables rather than blank. */
+  phone?: string
+  /** English label resolved server-side from the fixed service list. */
+  service: string
+  message: string
+  submittedAt: Date
+}
+
+const contactRows = (d: ContactEmailData, lang: Lang) => {
+  const t =
+    lang === "nl"
+      ? { name: "Naam", email: "E-mail", phone: "Telefoon", service: "Dienst", ref: "Referentie" }
+      : { name: "Name", email: "Email", phone: "Phone", service: "Service", ref: "Reference" }
+
+  const row = (label: string, value: string) => `
+    <tr>
+      <td style="padding:6px 0;font-size:14px;color:#6b7280;width:110px;vertical-align:top">${esc(label)}</td>
+      <td style="padding:6px 0;font-size:14px;color:#111827;font-weight:500">${value}</td>
+    </tr>`
+
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 20px">
+    ${row(t.name, esc(d.name))}
+    ${row(t.email, esc(d.email))}
+    ${d.phone ? row(t.phone, esc(d.phone)) : ""}
+    ${row(t.service, esc(d.service))}
+    ${row(t.ref, `<code style="font-size:13px">${esc(d.reference)}</code>`)}
+  </table>`
+}
+
+/*
+  The message is echoed back to the sender, not only forwarded to Jackie. An
+  enquiry form that answers "thanks, we got it" without showing what it got
+  leaves the sender no way to tell a delivered message from a swallowed one —
+  which is the exact failure this whole route exists to end.
+*/
+const messageBlock = (d: ContactEmailData, heading: string) => `
+  <p style="margin:0 0 6px;font-size:14px;color:#6b7280">${esc(heading)}</p>
+  <div style="margin:0 0 20px;padding:12px 14px;background:#F5F0E8;border:1px solid #EDE6DA;border-radius:8px;font-size:14px;line-height:1.6;color:#111827">${esc(
+    d.message,
+  ).replace(/\n/g, "<br>")}</div>`
+
+export function contactAlert(d: ContactEmailData) {
+  const when = new Intl.DateTimeFormat("en-GB", {
+    timeZone: TIMEZONE,
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(d.submittedAt)
+
+  return {
+    subject: `New enquiry · ${d.service} · ${d.name}`,
+    html: shell(
+      "New enquiry from the website",
+      `<p style="margin:0 0 20px;font-size:14px;color:#6b7280">Received ${esc(when)}</p>
+       ${contactRows(d, "en")}
+       ${messageBlock(d, "Message")}
+       <p style="margin:0 0 20px">${button(
+         `mailto:${d.email}?subject=${encodeURIComponent(`Re: your enquiry to WJ Cleaning Services (${d.reference})`)}`,
+         "Reply to sender",
+       )}</p>
+       <p style="margin:0;font-size:13px;line-height:1.6;color:#6b7280">Replying to this email also reaches ${esc(
+         d.name,
+       )} directly.</p>`,
+      "Sent to you because someone used the contact form.",
+    ),
+  }
+}
+
+export function contactConfirmation(d: ContactEmailData, lang: Lang) {
+  const first = esc(d.name.split(" ")[0])
+  const copy =
+    lang === "nl"
+      ? {
+          subject: `Bericht ontvangen · ${d.reference}`,
+          title: "Wij hebben uw bericht ontvangen",
+          intro: `Bedankt ${first}, uw bericht is bij ons binnengekomen.`,
+          next: "Wij reageren binnen vier werkuren. Heeft u haast? Bel of WhatsApp ons gerust — dat is altijd sneller dan e-mail.",
+          summary: "Wat u ons heeft gestuurd",
+          message: "Uw bericht",
+          footer: "U ontvangt deze e-mail omdat u het contactformulier op onze website heeft gebruikt.",
+        }
+      : {
+          subject: `Message received · ${d.reference}`,
+          title: "We've got your message",
+          intro: `Thanks ${first} — your message has reached us.`,
+          next: "We reply within four working hours. In a hurry? Call or WhatsApp us instead; that is always faster than email.",
+          summary: "What you sent us",
+          message: "Your message",
+          footer: "You're receiving this because you used the contact form on our website.",
+        }
+
+  return {
+    subject: copy.subject,
+    html: shell(
+      copy.title,
+      `<p style="margin:0 0 16px;font-size:15px;line-height:1.6">${copy.intro}</p>
+       <p style="margin:0 0 20px;font-size:15px;line-height:1.6">${copy.next}</p>
+       <p style="margin:0 0 6px;font-size:14px;color:#6b7280">${esc(copy.summary)}</p>
+       ${contactRows(d, lang)}
+       ${messageBlock(d, copy.message)}`,
+      copy.footer,
+    ),
+  }
+}

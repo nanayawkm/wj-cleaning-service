@@ -176,3 +176,85 @@
     transition: none;
   }
 }
+
+/*
+ * Staffing carousel.
+ *
+ * Two pieces of motion, deliberately different in axis. The picture slides
+ * sideways — it sits inside an `overflow-hidden` box, so a horizontal
+ * transform there cannot reach page scroll width. The copy only fades and
+ * rises, because it is *not* inside a clip and a horizontal offset on an
+ * unclipped element is exactly what put a page-wide scrollbar at 390px before
+ * (see the note on .scroll-animate-right above).
+ */
+@keyframes wj-carousel-copy {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The picture itself, travelling sideways inside the clip. Same overshoot
+   curve as the scroll reveals above: arrives quickly, then settles. */
+.carousel-slide {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.carousel-copy {
+  animation: wj-carousel-copy 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/*
+ * The active dot fills over one interval, so the section reads as advancing on
+ * its own rather than sitting waiting for a click. `animation-duration` and
+ * `animation-play-state` are set inline from the component: play-state pauses
+ * the fill in place on hover instead of resetting it, so a pause looks like a
+ * pause and not like a cancelled slide.
+ */
+@keyframes wj-carousel-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.carousel-progress {
+  transform-origin: left center;
+  animation-name: wj-carousel-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/*
+ * Reduced motion cuts the carousel; it does not stop it.
+ *
+ * This block is the whole of what `prefers-reduced-motion` means to this
+ * component — the advance interval deliberately does not consult the flag.
+ * Gating advance on it left the section frozen for every visitor with Windows
+ * "Animation effects" off, which is a common setting and not a statement about
+ * carousels. The flag targets travelling motion, so travelling motion is what
+ * is removed: slides change without crossing the screen.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-copy {
+    animation: none;
+  }
+
+  .carousel-slide {
+    transition: none;
+  }
+
+  /* The countdown is the motion here, so it goes. With no animation and no
+     scale the bar simply sits full, which is exactly the plain active dot this
+     replaced — so the control still reads as "this one", just without ticking. */
+  .carousel-progress {
+    animation: none;
+    transform: none;
+  }
+}

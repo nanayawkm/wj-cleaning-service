@@ -8,7 +8,10 @@
     "lint": "next lint",
     "start": "next start",
     "test:booking": "tsx lib/booking/__tests__/booking.test.ts",
-    "test:security": "node scripts/security-test.mjs"
+    "test:invoicing": "tsx lib/invoicing/__tests__/invoicing.test.ts",
+    "invoice:sample": "tsx lib/invoicing/__tests__/render-sample.tsx",
+    "test:security": "node scripts/security-test.mjs",
+    "test:carousel": "node scripts/carousel-test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -40,6 +43,7 @@
     "@radix-ui/react-toggle": "1.1.1",
     "@radix-ui/react-toggle-group": "1.1.1",
     "@radix-ui/react-tooltip": "1.1.6",
+    "@react-pdf/renderer": "^4.6.0",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.110.9",
     "@tabler/icons-react": "^3.34.1",

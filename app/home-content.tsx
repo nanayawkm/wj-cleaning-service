@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Buildings, Clock, HouseLine, MapPin, ShieldCheck, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
 import { useLanguage } from "@/contexts/LanguageContext"
@@ -9,11 +9,35 @@ import Image from "next/image"
 import { CONTACT_DETAILS } from "@/components/constant"
 import { FeatureCard } from "@/components/feature-card"
 
+const TABS = ['cleaning', 'staffing'] as const
+type Tab = (typeof TABS)[number]
+
 const whatsappHref = `https://wa.me/${CONTACT_DETAILS.phoneWa}`
 
 export default function HomePage() {
   const { t } = useLanguage()
-  const [activeTab, setActiveTab] = useState<'cleaning' | 'staffing'>('cleaning')
+  const [activeTab, setActiveTab] = useState<Tab>('cleaning')
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  /**
+   * Arrow / Home / End across the tablist, wrapping at both ends.
+   *
+   * Selection follows focus, which is the right choice here because switching
+   * costs nothing — the panel is two cards already in memory. (Where a tab
+   * triggers a fetch, the pattern is to move focus only and select on Enter.)
+   */
+  function onTabKeyDown(event: React.KeyboardEvent, index: number) {
+    const delta = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0
+    let next = -1
+    if (delta) next = (index + delta + TABS.length) % TABS.length
+    else if (event.key === 'Home') next = 0
+    else if (event.key === 'End') next = TABS.length - 1
+    if (next < 0) return
+
+    event.preventDefault()
+    setActiveTab(TABS[next])
+    tabRefs.current[next]?.focus()
+  }
 
   const cleaningServices = [
     {
@@ -150,12 +174,38 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-8 inline-flex rounded-lg bg-gray-100 p-1">
-            {(['cleaning', 'staffing'] as const).map((tab) => (
+          {/*
+            A real tab set, not two toggle buttons.
+
+            These carried `aria-pressed`, which describes a button that is on or
+            off — a mute button, a bold button. It does not say that the two are
+            alternatives, and it does not connect either one to the grid below
+            that it swaps out. A screen-reader user heard "Cleaning, pressed"
+            and "Staffing, not pressed" with no indication that the second would
+            replace the content underneath.
+
+            Claiming `role="tab"` means owing the keyboard behaviour that goes
+            with it, so it is implemented rather than asserted: arrow keys move
+            between tabs, Home and End jump to the ends, and roving tabindex
+            keeps the set a single Tab stop instead of two.
+          */}
+          <div
+            role="tablist"
+            aria-label={t('servicesTitle')}
+            className="mt-8 inline-flex rounded-lg bg-gray-100 p-1"
+          >
+            {TABS.map((tab, i) => (
               <button
                 key={tab}
+                id={`services-tab-${tab}`}
+                role="tab"
+                type="button"
+                aria-selected={activeTab === tab}
+                aria-controls={`services-panel-${tab}`}
+                tabIndex={activeTab === tab ? 0 : -1}
+                ref={(el) => { tabRefs.current[i] = el }}
                 onClick={() => setActiveTab(tab)}
-                aria-pressed={activeTab === tab}
+                onKeyDown={(e) => onTabKeyDown(e, i)}
                 className={`h-11 rounded-md px-5 text-sm font-semibold transition-colors ${
                   activeTab === tab
                     ? 'bg-wj-dark text-white'
@@ -174,7 +224,12 @@ export default function HomePage() {
             there is no scrim, so the image is never tinted.
             Only the active tab is mounted, so hidden images are never fetched.
           */}
-          <div className="scroll-stagger mt-8 grid gap-6 sm:grid-cols-2">
+          <div
+            id={`services-panel-${activeTab}`}
+            role="tabpanel"
+            aria-labelledby={`services-tab-${activeTab}`}
+            className="scroll-stagger mt-8 grid gap-6 sm:grid-cols-2"
+          >
             {services.map((card) => (
               <FeatureCard
                 key={card.title}

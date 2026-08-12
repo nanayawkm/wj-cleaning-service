@@ -7,8 +7,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Buildings, CaretDown, Certificate, Check, Clock, Drop, Envelope, Heart, HouseLine, MapPin, PaperPlaneTilt, Phone, ShieldCheck, Sparkle, Star, Users, Warehouse, WhatsappLogo } from "@phosphor-icons/react"
+// Only what this page draws. Twelve of the eighteen names here were imported
+// and never rendered.
+import { Clock, Envelope, MapPin, Phone, ShieldCheck, WhatsappLogo } from "@phosphor-icons/react"
 import { useLanguage } from '@/contexts/LanguageContext'
+import { TINTS, tintFor } from '@/components/feature-card'
+import { ContactForm } from './contact-form'
 import Image from 'next/image'
 import { CONTACT_DETAILS } from '@/components/constant'
 
@@ -40,140 +44,48 @@ export default function ContactPage() {
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div>
                 <Badge className="bg-wj-light/20 text-wj-dark mb-2 sm:mb-3 lg:mb-4 text-xs sm:text-sm">{t('getInTouch')}</Badge>
-                <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
+                <h2 className="scroll-animate text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
                   {t('sendMessage')}
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                {/* §2 caps heading and body chains at two steps. This was
+                    text-sm → base → lg → xl, four sizes for one paragraph. */}
+                <p className="scroll-animate text-lg text-gray-600 leading-relaxed">
                   {t('sendMessageDesc')}
                 </p>
               </div>
 
-                             <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 p-3 sm:p-4 lg:p-6 bg-wj-light/10 rounded-xl">
-                 <ShieldCheck className="h-8 w-8 flex-shrink-0 text-wj-accent" />
-                 <div>
-                   <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900">{t('quickResponseGuaranteed')}</h3>
-                   <p className="text-xs sm:text-sm lg:text-base text-gray-600">{t('quickResponseDesc')}</p>
-                 </div>
-               </div>
-
-              <form className="space-y-3 sm:space-y-4 lg:space-y-6">
-                <div className="space-y-1 sm:space-y-2">
-                  <Label htmlFor="fullName" className="text-gray-700 font-medium text-sm">
-                    {t('fullName')} *
-                  </Label>
-                  <Input
-                    id="fullName"
-                    name="fullName"
-                    autoComplete="name"
-                    placeholder={t('fullNamePlaceholder')}
-                    className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
-                  />
+              {/* Icon takes the TINTS pairing rather than a bare wj-accent
+                  glyph on a tint — see §3. Body text was text-xs (12px). */}
+              <div className="flex items-center gap-4 rounded-xl bg-wj-light/10 p-4 sm:p-6">
+                <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-wj-dark">
+                  <ShieldCheck weight="light" className="h-6 w-6 text-white" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">{t('quickResponseGuaranteed')}</h3>
+                  <p className="text-base leading-relaxed text-gray-600">{t('quickResponseDesc')}</p>
                 </div>
+              </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
-                  <div className="space-y-1 sm:space-y-2">
-                    <Label htmlFor="email" className="text-gray-700 font-medium text-sm">
-                      {t('email')} *
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      placeholder={t('email')}
-                      className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
-                    />
-                  </div>
-                  <div className="space-y-1 sm:space-y-2">
-                    <Label htmlFor="phone" className="text-gray-700 font-medium text-sm">
-                      {t('phone')}
-                    </Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder={t('phone')}
-                      className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
-                    />
-                  </div>
-                </div>
+              <ContactForm />
 
-                <div className="space-y-1 sm:space-y-2">
-                  <Label htmlFor="service" className="text-gray-700 font-medium text-sm">
-                    {t('serviceType')} *
-                  </Label>
-                  {/*
-                    pr-10 reserved room for an arrow that was never drawn, so
-                    the browser's own arrow sat past the gap and looked
-                    detached. appearance-none removes the native one; ours is
-                    positioned against that same padding.
-                  */}
-                  <div className="relative">
-                  <select
-                    id="service"
-                    name="service"
-                    className="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 pr-10 text-base focus:border-wj-dark focus:ring-wj-dark/20"
-                  >
-                    <option value="">{t('selectService')}</option>
-                                         {/* Cleaning Services */}
-                     <optgroup label={t('cleaningServices')}>
-                       <option value="residential">{t('residentialCleaning')}</option>
-                       <option value="office">{t('officeCleaning')}</option>
-                       <option value="warehouse-cleaning">{t('warehouseCleaning')}</option>
-                       <option value="restaurant-cleaning">{t('restaurantCleaning')}</option>
-                       <option value="hotel-cleaning">{t('hotelCleaning')}</option>
-                       <option value="school-cleaning">{t('schoolCleaning')}</option>
-                     </optgroup>
-                    {/* Staffing Services */}
-                    <optgroup label={t('staffingServices')}>
-                      <option value="warehouse">{t('warehouseStaffing')}</option>
-                      <option value="event">{t('eventStaffing')}</option>
-                      <option value="office-support">{t('officeSupportStaff')}</option>
-                      <option value="restaurant-cafe">{t('restaurantCafePersonnel')}</option>
-                      <option value="hotel">{t('hotelStaff')}</option>
-                      <option value="school">{t('schoolSupportStaff')}</option>
-                    </optgroup>
-                  </select>
-                  <CaretDown
-                    aria-hidden
-                    className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
-                  />
-                  </div>
-                </div>
-
-                <div className="space-y-1 sm:space-y-2">
-                  <Label htmlFor="message" className="text-gray-700 font-medium text-sm">
-                    {t('message')} *
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder={t('messagePlaceholder')}
-                    rows={4}
-                    className="border-gray-300 bg-white focus:border-wj-dark focus:ring-wj-dark/20"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg" className="w-full"
-                >
-                  <PaperPlaneTilt className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  {t('sendMessage')}
-                </Button>
-              </form>
 
               {/* WhatsApp Option */}
               <div className="mt-4 sm:mt-6">
                 <div className="text-center">
-                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{t('or')}</p>
-                  <Button
-                    onClick={() => window.open(`https://wa.me/${CONTACT_DETAILS.phoneWa}`)}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg"
-                  >
-                    <WhatsappLogo className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                    {t('whatsapp')} {t('us')}
+                  <p className="mb-4 text-base text-gray-600">{t('or')}</p>
+                  {/*
+                    A real anchor, not `onClick={window.open}` on a button. That
+                    version was popup-blockable, could not be middle-clicked or
+                    opened in a new tab, and gave the keyboard a button that
+                    behaved like a link. Sizing comes from the `lg` variant
+                    rather than a hand-written py/text chain; the green stays,
+                    because it is WhatsApp's mark rather than an invented colour.
+                  */}
+                  <Button asChild size="lg" className="w-full bg-green-600 font-semibold hover:bg-green-700">
+                    <a href={`https://wa.me/${CONTACT_DETAILS.phoneWa}`} target="_blank" rel="noopener noreferrer">
+                      <WhatsappLogo className="mr-2 h-5 w-5" />
+                      {t('whatsapp')} {t('us')}
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -182,7 +94,8 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-6 sm:space-y-8">
               <div className="mb-6 sm:mb-8">
-                <div className="w-full h-24 sm:h-32 rounded-xl overflow-hidden bg-white border border-gray-200">
+                {/* §5: aspect ratio, not h-24/h-32 — a 24px-tall strip on a phone. */}
+                <div className="w-full aspect-[16/5] rounded-xl overflow-hidden bg-white border border-gray-200">
                   <Image
                     src="/images/contact-us.webp"
                     alt={t('contactUsProfessionalCleaning')}
@@ -195,58 +108,59 @@ export default function ContactPage() {
               </div>
               <div>
                 <Badge className="bg-wj-accent-light/20 text-wj-accent-dark mb-3 sm:mb-4">{t('contactInfo')}</Badge>
-                <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
+                <h2 className="scroll-animate text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
                   {t('getInTouch')}
                 </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                <p className="scroll-animate text-lg text-gray-600 leading-relaxed">
                   {t('getInTouchDesc')}
                 </p>
               </div>
 
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('phone')}</h3>
-                    <p className="text-sm sm:text-base text-gray-600">{CONTACT_DETAILS.phone}</p>
-                  </div>
-                </div>
+              {/*
+                Four hand-written copies of one card, with the chip border
+                alternating wj-dark / wj-accent for no semantic reason — the
+                exact pattern §4 names. Now one recipe on the TINTS cycle, so
+                the colour means "next in the sequence" rather than nothing.
 
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-accent">
-                    <Envelope className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('email')}</h3>
-                    <p className="text-sm sm:text-base text-gray-600">{CONTACT_DETAILS.email}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">{t('weRespondWithin')}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-accent">
-                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-wj-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('serviceArea')}</h3>
-                    <p className="text-sm sm:text-base text-gray-600">{t('region')}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">{t('servingGreaterMetro')}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white rounded-xl border border-wj-cream-deep">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-wj-dark">
-                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-wj-dark" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t('businessHours')}</h3>
-                    <p className="text-sm sm:text-base text-gray-600">{t('mondayFriday')}</p>
-                    <p className="text-xs sm:text-sm text-gray-500">{t('weekendAppointments')}</p>
-                  </div>
-                </div>
-              </div>
+                The phone and email rows are also links now. They were plain
+                text, so the two details a visitor most wants to act on were
+                the two they had to copy out by hand — a dead end of the kind
+                §9 bans in the dashboard and this page kept by oversight.
+              */}
+              <ul className="scroll-stagger space-y-4">
+                {[
+                  { Icon: Phone, title: t('phone'), value: CONTACT_DETAILS.phone, href: `tel:${CONTACT_DETAILS.phoneTel}` },
+                  { Icon: Envelope, title: t('email'), value: CONTACT_DETAILS.email, note: t('weRespondWithin'), href: `mailto:${CONTACT_DETAILS.email}` },
+                  { Icon: MapPin, title: t('serviceArea'), value: t('region'), note: t('servingGreaterMetro') },
+                  { Icon: Clock, title: t('businessHours'), value: t('mondayFriday'), note: t('weekendAppointments') },
+                ].map((row, i) => {
+                  const tint = TINTS[tintFor(i)]
+                  const body = (
+                    <>
+                      <span className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl ${tint.block}`}>
+                        <row.Icon weight="light" className={`h-6 w-6 ${tint.icon}`} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-lg font-semibold text-gray-900">{row.title}</span>
+                        <span className="block break-words text-base text-gray-600">{row.value}</span>
+                        {row.note ? <span className="mt-0.5 block text-sm text-gray-500">{row.note}</span> : null}
+                      </span>
+                    </>
+                  )
+                  const shell = "flex items-center gap-4 rounded-xl border border-wj-cream-deep bg-white p-4 sm:p-6"
+                  return (
+                    <li key={row.title} className="scroll-animate">
+                      {row.href ? (
+                        <a href={row.href} className={`${shell} transition-colors hover:border-wj-dark`}>
+                          {body}
+                        </a>
+                      ) : (
+                        <div className={shell}>{body}</div>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
 
               <div className="p-6 sm:p-8 bg-wj-dark rounded-xl text-white">
                 <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('needImmediateAssistance')}</h3>
@@ -270,10 +184,10 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="max-w-2xl mb-12">
             <Badge className="bg-wj-light/20 text-wj-dark mb-4">{t('frequentlyAskedQuestions')}</Badge>
-            <h2 className="text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
+            <h2 className="scroll-animate text-3xl sm:text-4xl tracking-tight text-gray-900 mb-4">
               {t('commonQuestionsAnswered')}
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="scroll-animate text-lg text-gray-600 leading-relaxed">
               {t('faqDescription')}
             </p>
           </div>

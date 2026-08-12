@@ -79,10 +79,10 @@ export default function ServicesPage() {
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-2xl">
-            <h2 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="scroll-animate text-3xl tracking-tight text-gray-900 sm:text-4xl">
               {t("servingDiverse")}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-gray-600">{t("industriesDesc")}</p>
+            <p className="scroll-animate mt-4 text-lg leading-relaxed text-gray-600">{t("industriesDesc")}</p>
           </div>
 
           {/* six columns so the final row of two centres rather than orphaning */}

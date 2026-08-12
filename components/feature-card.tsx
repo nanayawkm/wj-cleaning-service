@@ -18,8 +18,14 @@ import type { Icon as PhosphorIcon } from "@phosphor-icons/react"
 
 export type CardTint = "dark" | "accent" | "light" | "lighter" | "cream"
 
-// icon colour is paired to the tint so it always clears 4.5:1
-const TINTS: Record<CardTint, { block: string; icon: string }> = {
+/**
+ * Icon colour is paired to the tint so it always clears 4.5:1.
+ *
+ * Exported because the tint pairing is the site's icon-chip rule, not this
+ * component's private detail — anything drawing an icon on a brand block reads
+ * it from here rather than re-deciding which foreground clears which tint.
+ */
+export const TINTS: Record<CardTint, { block: string; icon: string }> = {
   dark: { block: "bg-wj-dark", icon: "text-white" },
   accent: { block: "bg-wj-accent", icon: "text-white" },
   light: { block: "bg-wj-light", icon: "text-wj-darker" },

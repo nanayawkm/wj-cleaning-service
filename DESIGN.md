@@ -53,6 +53,23 @@ Sections alternate **cream → white → cream**, and cards are white so they li
 ground. White on cream is only **1.13:1**, so every card needs a `wj-cream-deep` border to
 hold its edge — shadows are not used.
 
+**Corollary: a card grid goes on cream, never on white.** ✅ The border above is specified
+*against cream*. Put the same card on a white section and it has nothing to lift off — the
+panel and the ground are the same colour, so the hairline stops reading as a card edge and
+starts reading as an outline drawn round nothing. That is precisely the "row of plain
+outlined boxes" the header band in §4 exists to prevent, reintroduced by the ground instead
+of by the card.
+
+Home and Services already did this. Two pages had drifted and were corrected:
+
+| Page | Was | Now |
+|---|---|---|
+| About — values ("How we work") | `bg-white`, and a second `bg-white` section immediately after it | cream; Mission moved to white above it, so the page reads dark → white → cream → white → dark |
+| Staffing — "How it works" | `bg-white`, directly beneath another `bg-white` section, so the two ran together as one slab | cream |
+
+A photographic card is the exception — it opens with an image, so the picture carries the
+edge and white ground is fine. That is why the About gallery stayed white.
+
 Contrast on cream: `wj-dark` **6.22:1** ✅ · `gray-600` **6.66:1** ✅ · `gray-900` 15.64:1 ✅.
 `wj-accent` is 3.90:1 — large text only, same rule as everywhere else.
 
@@ -110,8 +127,49 @@ Drop · Recycle**.
 
 - Weight: `regular` for UI, `duotone` or `fill` available for feature moments
 - Sizes are set by the button variant, not per-icon (see §4)
-- 🟡 Service cards and the values grid still use generic glyphs (Buildings, ShieldCheck).
-  Swapping these to the cleaning-specific set is pending.
+### Icon chips carry a tint, not an outline ✅
+
+`TINTS` is exported from [`feature-card.tsx`](components/feature-card.tsx), because the
+tint → icon-colour pairing is the site's icon-chip rule rather than that component's
+private detail. Anything drawing an icon on a brand block reads the foreground from there
+instead of re-deciding which colour clears which tint.
+
+The About "What we do" block was the counter-example and is fixed: three identical white
+squares with a 2px teal outline, carrying **Heart, ShieldCheck and Star** — the three
+most-used glyphs in any stock template, in the one chip treatment that reads as a default.
+It now uses filled blocks on the `tintFor` cycle, so the three rows carry three different
+colours instead of one outline repeated three times, and the glyphs are specific:
+**HandHeart** for personal care, **Handshake** for the lasting relationship the copy
+actually claims, and **Sparkle** from the cleaning set above.
+
+Its sizing also went back to the §2 cap — chains of `w-8 sm:w-10 lg:w-12`, `text-sm
+sm:text-base lg:text-lg` and a `text-xs` body (12px, smaller than anything else on the
+page) collapsed to one 44px chip, `text-lg` heading, `text-base` body.
+
+### Pick the glyph from what the copy claims ✅
+
+The About **values grid** was Heart · ShieldCheck · Clock · Star · Users · Certificate —
+five-sixths of the set every template ships with, doing no work beyond filling the tinted
+block. Replaced by reading each value's own description:
+
+| Value | Was | Now | Why |
+|---|---|---|---|
+| Passion for Excellence | Heart | **Broom** | the craft itself, for dedication to the task |
+| Trust & Reliability | ShieldCheck | **Key** | what trust concretely means to someone letting a cleaner into their home |
+| On time | Clock | **Clock** | kept — the value is literal, so the literal glyph is right |
+| Quality Assurance | Star | **MagnifyingGlass** | quality control is the inspection pass, which is what the copy describes |
+| Customer Focus | Users | **ChatCircleText** | "responsive support" is a conversation |
+| Continuous Growth | Certificate | **TrendUp** | growth drawn as growth, not as a certificate nobody has been shown |
+
+`Key` over `ShieldCheck` is the one worth defending: a shield is the generic trust picture,
+a key is the specific one for this business. §7's **specific beats superlative** applies to
+pictures as much as to copy.
+
+None repeat the mission block's HandHeart · Handshake · Sparkle, so the page never draws
+the same picture twice in two sections. The page's icon import also dropped from 15 names
+to 9 — ten of them were imported and never rendered.
+
+- 🟡 Still pending: the service cards (Buildings, ShieldCheck).
 
 ---
 
@@ -130,6 +188,15 @@ were collapsed into these.
 
 Sizes: `default` **h-11 (44px)**, `lg` **h-12**, `icon` **h-11**. The old `h-10` default sat
 below the 44px touch floor.
+
+⚠️ **shadcn's stock `outline` variant is unusable on a cream section.** It resolves to
+`bg-background` + `border-input` — and `--background` *is* cream (§1), so on a cream ground
+it renders a cream button on cream with a pale grey hairline: no fill boundary and no
+affordance. The Services → Cleaning "Request a quote" CTA was drawing this and did not
+read as a control at all; it now takes `default`, being the only action in its section.
+There is deliberately no fourth "outline on cream" variant — the three above plus `default`
+cover every ground the site actually has, and a secondary action on cream has not needed
+one yet.
 
 `[&_svg]:size-4` was removed from the base — it compiled to a descendant selector that
 outranked every icon class on the site, pinning all icons to 16px regardless of button
@@ -184,6 +251,19 @@ semantic reason.
 
 Proposed: collapse to `<ServiceCard>` (image + title + body + link), `<InfoCard>`
 (icon + title + body) and one `<IconChip>`.
+
+### Not everything with an icon and a title is a card ✅
+
+Careers → "What do we offer?" was six `FeatureCard`-shaped boxes in a 3-up grid, each with
+its own 44px icon chip and padding. Six benefits stated in a few words each ran **~440px
+tall** and pushed the application form — the only thing on that page anyone needs to reach
+— most of a screen further down. The card grid was carrying a reference list.
+
+It is now **one white panel on cream, hairline-divided, two columns**: same
+`wj-cream-deep` border, same `rounded-xl`, at roughly 40% of the height. The rule this
+records: a card grid is for things a reader chooses *between*. A list of terms is read
+straight through, so it is set as a list — the per-card border and padding are pure
+overhead there, and on a long page that overhead is measured in screens of scrolling.
 
 **"Lively" — read from the Squarespace reference:**
 
@@ -404,6 +484,49 @@ Now handled by [`components/scroll-reveal.tsx`](components/scroll-reveal.tsx):
 Verified: all 17 elements reveal on scroll, tab-switch cards reveal, and **with JavaScript
 disabled 0 elements are hidden**.
 
+### The staffing carousel ✅
+
+[`components/staff-carousel.tsx`](components/staff-carousel.tsx). It always had an
+auto-advance interval; what stopped it was the pause logic, and all three faults are worth
+recording because they are the standard ways an autoplay carousel dies:
+
+1. **Hover-pause covered the whole carousel, image included.** The image is half a section
+   wide, so a pointer resting anywhere in it — which is where a pointer usually ends up
+   after scrolling — held the carousel paused indefinitely. Nobody hovered anything on
+   purpose. Hover-pause is now scoped to the copy column, the part being read.
+2. **`mouseenter` fires on tap on touch devices, and `mouseleave` often never does.** So
+   tapping an arrow, the one interaction still working, froze auto-advance permanently
+   afterwards. It is now gated behind `(hover: hover)` and does not apply on touch.
+3. **`visibilitychange` did `setPaused(document.hidden)`** — a blanket assignment over a
+   flag four separate things were writing. Returning to the tab cleared a hover or focus
+   pause that was still true. Pause is now four independent reasons OR-ed together, so none
+   can clear another.
+
+Added with the fix: an `IntersectionObserver`, so it does not burn through slides while
+off-screen and is not already three slides in when scrolled to.
+
+**It now slides rather than cross-fades**, on two different axes on purpose. Each image is
+positioned at `translateX(offset × 100%)` where the offset is wrapped the short way round,
+so at index 0 of 6 slide 5 sits at −1 and exits left instead of sweeping back across the
+frame. Only −1, 0 and +1 are on screen; the rest are held at `opacity: 0` **with no
+transition**, because a slide moving from +3 to −2 otherwise animates its transform
+straight through 0 and flashes across the middle of the picture on every wrap.
+
+The copy only fades and rises. A horizontal offset there would sit outside any overflow
+clip, and §5 already records that doing so creates page-wide horizontal scroll at 390px.
+The image is inside a clip, so that is where the sideways motion goes.
+
+The active dot doubles as a countdown, filling over one interval — that is what tells a
+visitor the section advances on its own rather than waiting to be clicked. It pauses in
+place via `animation-play-state` rather than resetting, so a hover reads as a pause and not
+as a cancelled slide.
+
+⚠️ **`ease-[cubic-bezier(…)]` does not compile.** Tailwind maps `ease-*` to both
+`transition-timing-function` and `animation-timing-function`, so an arbitrary value there
+is ambiguous: it emits a build warning and **no CSS at all**. The class looked correct in
+the source and was simply absent from the stylesheet. The easing lives in `globals.css` as
+`.carousel-slide` instead. Worth knowing before reaching for that utility anywhere else.
+
 ## 9. Booking system and dashboard ✅
 
 Built and live: Supabase + Resend. Three surfaces — the public flow at `/book`, customer
@@ -532,8 +655,68 @@ nothing recorded against it is not revenue, it is a job to chase.
 
 ## 12. Not yet built
 
+- ❓ **Enquiries are not persisted.** `/api/contact` emails and does not store. Bookings
+  and applications write to Postgres first and notify second, because those are an
+  obligation and a candidate pool; an enquiry is a conversation that has not started.
+  The consequence is stated rather than hidden — **if Resend is down the enquiry is lost**,
+  and the sender is told so and given the phone number. The honest fix is a
+  `contact_enquiries` table with a retention policy and a dashboard screen to read it in.
 - Open Graph card — metadata declares 1200×630 but the file is a 1024×1024 square, so
   social shares render distorted
 - `<ServiceCard>` / `<InfoCard>` / `<IconChip>` extraction
-- Cleaning-specific Phosphor icons in service and value cards
+- Cleaning-specific Phosphor icons in the service cards (the About values grid and mission
+  block are done — see §3)
 - Real trust numbers
+
+---
+
+## 13. Keeping the claims true ✅
+
+Three of this document's claims are measurable, were verified once by hand, and would
+rot silently as pages change. They now have scripts, so "verified" has a date on it.
+
+| Script | Checks | Run |
+|---|---|---|
+| [`scripts/layout-sweep.mjs`](scripts/layout-sweep.mjs) | §5 horizontal scroll and §10 touch targets, across 11 pages × 7 widths, naming the offending element | `node scripts/layout-sweep.mjs` |
+| [`scripts/carousel-test.mjs`](scripts/carousel-test.mjs) | §8 carousel: advances on a 5s cadence, pauses on hover, resumes on leave, still advances under `prefers-reduced-motion` | `npm run test:carousel` |
+
+Both need a server: `npm run build && npm start`, or point `BASE_URL` elsewhere.
+
+**Current state.** §5 is clean — no page scrolls sideways at any tested width, including
+after the ground and card changes in §1. §10's one remaining genuine failure is
+`size="sm"` (36px) on the desktop nav's primary CTA; the rest of the list is footer links
+at the 40px §10 already permits, and off-screen honeypot and `sr-only` inputs behind
+visible custom controls. The full list is in [RESPONSIVENESS.md](RESPONSIVENESS.md) §5.
+
+### The contact form ✅
+
+`contact/page.tsx` carried a bare `<form>` — no `onSubmit`, no `action`, and no
+`/api/contact` behind it. Pressing "Send message" navigated to `/contact?fullName=…` and
+threw the enquiry away. **It failed silently and looked like success**, which is the worst
+shape a bug can take on a conversion path: nobody reports it, because from the outside
+nothing went wrong.
+
+Now [`app/api/contact/route.ts`](app/api/contact/route.ts), written to the same rules as
+`/api/applications` — zod validation with length caps, 5/hour rate limit, honeypot
+answered with a plausible success rather than a 400, errors logged without the sender's
+details. Verified against the running build: short message 400, unknown service 400,
+honeypot 200-with-reference-and-no-send, sixth request in an hour 429.
+
+Two decisions worth keeping:
+
+- **The service list is shared.** [`app/contact/services.ts`](app/contact/services.ts)
+  builds both the dropdown and the zod enum, so an enquiry naming a service that does not
+  exist is rejected instead of emailed. The English `label` is resolved server-side from
+  that fixed list, so Jackie's alert is readable whichever language the sender browsed in
+  and nothing sender-controlled reaches the subject line.
+- **A failed send is reported, not swallowed.** With no database row behind an enquiry, a
+  mail failure means the message is genuinely gone, so the route returns 502 and the form
+  names the phone number. Telling someone "sent" when it was not is the bug this replaced.
+
+⚠️ **`/book` and `/booking/*` are not covered.** They need `SUPABASE_SERVICE_ROLE_KEY` at
+request time and render a server error without it, so the sweep skips them. Anything
+claimed about the booking flow's layout is still hand-verified only.
+
+Inline links inside running text are excluded from the touch-target check — WCAG 2.5.8
+exempts them, and counting them buries real control failures under every "contact us at
+…" on the site.

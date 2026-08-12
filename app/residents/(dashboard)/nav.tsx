@@ -2,13 +2,16 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { CalendarBlank, ClipboardText, SignOut, Sliders, Sun, Tag, UserPlus, Users } from "@phosphor-icons/react"
+import { CalendarBlank, ClipboardText, Receipt, SignOut, Sliders, Sun, Tag, UserPlus, Users } from "@phosphor-icons/react"
 
 const NAV = [
   // Today first: it is the screen Jackie opens most, and on a phone the first
   // tab is the one under her thumb.
   { href: "/residents/today", label: "Today", Icon: Sun },
   { href: "/residents", label: "Bookings", Icon: ClipboardText },
+  // Third because it is reached mid-job, standing on someone's doorstep —
+  // it has to be within reach without scrolling the tab strip.
+  { href: "/residents/invoices", label: "Invoices", Icon: Receipt },
   { href: "/residents/customers", label: "Customers", Icon: Users },
   // Next to Customers because it is the same kind of screen — people, not
   // settings. Everything below this line is configuration she sets once.

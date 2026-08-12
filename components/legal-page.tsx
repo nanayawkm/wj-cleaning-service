@@ -86,7 +86,10 @@ export function LegalPage({ en, nl }: { en: LegalContent; nl: LegalContent }) {
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="mx-auto max-w-3xl">
             <h1 className="text-3xl tracking-tight sm:text-4xl">{c.title}</h1>
-            <p className="mt-3 text-sm text-wj-lighter">
+            {/* wj-lighter on wj-dark measures 3.87:1 — small text needs 4.5.
+                §1's rule covers it without needing the measurement: body copy
+                on a coloured section is text-white/85 (5.16:1), never a tint. */}
+            <p className="mt-3 text-sm text-white/85">
               {t.updated}: {c.lastUpdated}
             </p>
           </div>
